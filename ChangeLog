@@ -1,3 +1,424 @@
+2015-12-15  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* Makefile.am, src/Makefile.am: build: fix make distclean by
+	including src/gl only once
+
+2016-01-08  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* symbols.last: symbols.last: added new symbol
+
+2016-01-08  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* NEWS, configure.ac, m4/hooks.m4: bumped version
+
+2016-01-07  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* lib/x509/verify-high.c: trust_list_get_issuer_by_dn: fixed check
+	for DN or SPKI
+
+2016-01-07  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* Makefile.am: symbols.last: don't include internal symbols into
+	exported list
+
+2016-01-07  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* doc/Makefile.am, doc/manpages/Makefile.am, symbols.last: updated
+	auto-generated files
+
+2016-01-07  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* configure.ac: configure: no longer distribute lzip tarballs
+
+2016-01-05  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* tests/cert-tests/template-date.pem,
+	tests/cert-tests/template-dn.pem,
+	tests/cert-tests/template-generalized.pem,
+	tests/cert-tests/template-nc.pem,
+	tests/cert-tests/template-overflow.pem,
+	tests/cert-tests/template-overflow2.pem,
+	tests/cert-tests/template-test.pem,
+	tests/cert-tests/template-unique.pem: tests: updated to account for
+	cert generation after 2adb9b2bfb31afebbdd9f990e2b74c9a3d4e5c57 fix
+
+2016-01-04  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* NEWS: doc update
+
+2016-01-04  Tim Kosse <tim.kosse@filezilla-project.org>
+
+	* lib/x509/x509_ext.c: Fix out-of-bounds read in
+	gnutls_x509_ext_export_key_usage
+
+2015-12-31  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* .gitlab-ci.yml: .gitlab-ci.yml: optimized build process That is, in slow asan and valgrind builds don't check the full test
+	suite.
+
+2015-12-31  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* NEWS: doc update [ci skip]
+
+2015-12-31  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* NEWS: doc update [ci skip]
+
+2015-12-31  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* lib/pkcs11_write.c: gnutls_pkcs11_copy_x509_privkey2: corrected
+	the writing of ECC private key
+
+2015-12-31  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* tests/suite/Makefile.am,
+	tests/suite/pkcs11-pubkey-import-ecdsa.c,
+	tests/suite/pkcs11-pubkey-import-rsa.c,
+	tests/suite/pkcs11-pubkey-import.c: tests: pkcs11-pubkey-import will
+	check both RSA and ECDSA keys
+
+2015-12-31  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* lib/pkcs11_write.c: gnutls_pkcs11_copy_x509_privkey2: corrected
+	the type of the written object Previously only RSA objects were correctly written.
+
+2015-12-31  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* tests/cert-common.h: tests: added ECDSA key in cert-common.h
+
+2015-12-31  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* lib/pkcs11_privkey.c: pkcs11: import public keys from any
+	available object That is, load public keys from the public key object, or the
+	certificate object if they are present. That affects non-RSA public
+	keys which do not contain all required fields on the private key
+	object.
+
+2015-12-31  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* lib/gnutls_db.h: session DB: made the magic number depending on
+	gnutls' version That will make sure that sessions not stored by this version of
+	gnutls will not be resumed by another (which may be incompatible).
+
+2015-12-26  Andreas Metzler <ametzler@bebt.de>
+
+	* README, lib/ext/srtp.c, lib/gnutls_priority.c, lib/locks.c,
+	lib/opencdk/keydb.c, lib/x509/pkcs7.c,
+	tests/mini-handshake-timeout.c: Fix some typos [ci skip]
+
+2015-12-24  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* NEWS: NEWS: doc update [ci skip]
+
+2015-12-23  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* lib/ext/max_record.c: max_record: don't consider this extension on
+	DTLS That is because it doesn't work as expected, and does not fragment
+	handshake messages. Relates with #61
+
+2015-12-22  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* doc/cha-crypto.texi, lib/includes/gnutls/gnutls.h.in: updated
+	documentation on supported algorithms [ci skip]
+
+2015-12-22  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* doc/cha-intro-tls.texi: Added SHA384 to the list of TLS support
+	MAC algorithms
+
+2015-12-18  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* tests/no-signal.c: tests: don't run the no-signal test in systems
+	which MSG_NOSIGNAL is not available
+
+2015-12-18  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* doc/manpages/tpmtool.1: doc: manpages: remove generated tpmtool.1
+	page
+
+2015-12-17  Alon Bar-Lev <alon.barlev@gmail.com>
+
+	* .gitignore: .gitignore: add m4/extern-inline.m4
+
+2015-12-17  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* NEWS: doc update
+
+2015-12-17  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* tests/cert-tests/pkcs7: tests: added check to verify that the
+	PKCS#7 embedded data are recovered as expected
+
+2015-12-17  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* src/certtool-args.def, src/certtool.c: certtool: introduced the
+	--p7-show-data option This option allows printing the embedded data in a PKCS#7 signed
+	structure.
+
+2015-12-17  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* lib/includes/gnutls/pkcs7.h, lib/libgnutls.map, lib/x509/pkcs7.c: 
+	gnutls_pkcs7_get_embedded_data: added function This function allows extracting the embedded data from a PKCS#7
+	signed structure.
+
+2015-12-16  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* tests/pkcs7-gen.c: tests: updated pkcs7-gen to account for
+	content-type attribute
+
+2015-12-16  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* NEWS: doc update
+
+2015-12-16  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* tests/cert-tests/pkcs7: tests: check whether the content-type
+	attribute is set if we sign using time
+
+2015-12-16  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* lib/x509/pkcs7.c: pkcs7: set by default the content type attribute That is a requirement of rfc5652. Relates #59
+
+2015-12-16  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* lib/x509/crq.c, lib/x509/mpi.c, lib/x509/pkcs7.c,
+	lib/x509/sign.c, lib/x509/x509_int.h: pkcs7: use the
+	PK_PKIX1_RSA_OID when writing RSA signature OIDs for PKCS#7
+	structures That is because there are implementations which cannot cope with the
+	normal RSA signature OIDs. Relates #59
+
+2015-12-16  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* lib/x509/pkcs7.c, tests/cert-tests/p7-combined.out: pkcs7: Disable
+	the optional fields prior to generating the PKCS#7 structure This resolves issue with our PKCS#7 structures not being parsed by
+	MacOSX' tools. Relates #59
+
+2015-12-15  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* src/certtool.c: certtool: warn if an ECDSA key is marked for
+	encryption
+
+2015-12-15  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* src/certtool.c: certtool: corrected invalid free
+
+2015-12-15  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* lib/gnutls_session_pack.c, lib/gnutls_state.c, lib/gnutls_ui.c: 
+	make sure gnutls_assert is present at the cases where
+	GNUTLS_E_INTERNAL_ERROR is returned
+
+2015-12-14  Gustavo Zacarias <gustavo@zacarias.com.ar>
+
+	* configure.ac: configure: really make --disable-crywrap work The crywrap variable is set regardless of the state of
+	enable_crywrap, hence --disable-crywrap never works.  Just put the
+	tests for crywrap deps inside the enable_crywrap conditional.  Signed-off-by: Gustavo Zacarias <gustavo@zacarias.com.ar>
+
+2015-12-14  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* NEWS: doc update
+
+2015-11-12  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* lib/algorithms/ciphersuites.c: updated chacha20 ciphers to conform
+	to latest draft
+
+2015-11-07  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* lib/algorithms/ciphers.c, lib/algorithms/ciphersuites.c,
+	lib/gnutls_cipher.c, lib/gnutls_constate.c, lib/gnutls_dtls.c,
+	lib/gnutls_int.h: Modified the CHACHA20 cipher to conform to
+	draft-ietf-tls-chacha20-poly1305-02
+
+2015-12-10  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* src/cli-debug.c: gnutls-cli-debug: rephrased inappropriate
+	fallback test description to match the rest
+
+2015-12-13  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* NEWS: doc update
+
+2015-12-13  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* .gitlab-ci.yml: .gitlab-ci.yml: valgrind build was moved at the
+	end as it is the slowest build
+
+2015-12-13  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* src/certtool-args.def, src/certtool.c: certtool: the
+	--p7-include-cert option is enabled by default This allows to generate PKCS#7 structures by default that can be
+	read by iOS.
+
+2015-12-13  sskaje <sskaje@gmail.com>
+
+	* src/certtool-args.def, src/certtool.c: #56 Feature: certtool
+	--p7-sign support GNUTLS_PKCS7_INCLUDE_CERT
+
+2015-12-08  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* lib/pkcs11_privkey.c: Do not allow importing public keys from PKCS
+	#11 private keys for DSA and ECDSA This prevents the reading of the public key when non-RSA keys are
+	available. This is a much cleaner approach than
+	5a4e692511dc3a829eda0d7c5a87e56cbc2055f0.
+
+2015-12-08  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* lib/gnutls_pubkey.c, lib/pkcs11.c, lib/pkcs11_int.h,
+	lib/pkcs11_privkey.c: Revert "Do not allow importing public keys
+	from PKCS #11 private keys for DSA and ECDSA" This reverts commit 9146ba63f5aa48358cb80aa7ccf9131cf2abdbe6.
+
+2015-12-06  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* tests/Makefile.am, tests/cert-common.h: tests: cert-common.h:
+	backported from master branch
+
+2015-12-06  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* NEWS: doc update
+
+2015-12-06  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* tests/suite/Makefile.am, tests/suite/pkcs11-pubkey-import.c: 
+	tests: check whether gnutls_pubkey_import_privkey() operates well
+	for PKCS#11 RSA keys
+
+2015-12-06  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* lib/gnutls_pubkey.c, lib/pkcs11.c, lib/pkcs11_int.h,
+	lib/pkcs11_privkey.c: Do not allow importing public keys from PKCS
+	#11 private keys for DSA and ECDSA That is, because they do not contain all the required parameters for
+	a direct import. Reported by Jan Vcelak.
+
+2015-12-06  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* lib/pkcs11_privkey.c: pkcs11: avoid setting a variable which isn't
+	used
+
+2015-12-06  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* lib/pkcs11.c, lib/pkcs11_int.h, lib/pkcs11_privkey.c: pkcs11:
+	deinitialize gnutls_pkcs11_obj_t's pubkey on deinit
+
+2015-12-06  Jan Vcelak <jan.vcelak@nic.cz>
+
+	* lib/pkcs11_privkey.c: pkcs11: fix passing of incorrect variable in
+	privkey_get_pubkey The code worked for RSA because the content of the variables
+	matched.  But it doesn't match for ECC.  CKM_RSA_PKCS_KEY_PAIR_GEN (0x0) == CKK_RSA (0x0)
+	CKM_ECDSA_KEY_PAIR_GEN (0x1040) != CKK_ECDSA (0x3) Signed-off-by: Jan Vcelak <jan.vcelak@nic.cz>
+
+2015-12-02  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* src/benchmark-tls.c: gnutls-cli: don't use RSA ciphersuites to
+	test chacha20 as they are not defined
+
+2015-12-02  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* lib/x509/x509.c: documented bug in
+	gnutls_x509_crt_get_*_unique_id()
+
+2015-11-30  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* lib/x509/x509.c: allow specifying NULL buffer in
+	gnutls_x509_crt_get_*_unique_id()
+
+2015-11-25  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* tests/slow/override-ciphers, tests/slow/test-ciphers: tests:
+	cipher-test will forward the prog exit code as the script exit code
+
+2015-11-28  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* tests/cert-tests/Makefile.am: tests: changes for running tests
+	under windows
+
+2015-11-28  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* .gitlab-ci.yml: .gitlab-ci.yml: backported from master
+
+2015-11-28  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* lib/x509/ocsp_output.c: ocsp_output: when next update is not
+	present don't print error message That is because this field is optional.  Resolves #53
+
+2015-11-26  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* tests/slow/Makefile.am, tests/slow/override-ciphers: tests:
+	override-ciphers will not run mac tests on windows There is some issue with symbols for self tests not being exported.
+
+2015-11-26  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* tests/cert-tests/Makefile.am, tests/cert-tests/certtool: tests:
+	updates for certtool test to run under windows
+
+2015-11-25  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* tests/cert-tests/Makefile.am, tests/cert-tests/aki,
+	tests/cert-tests/certtool, tests/cert-tests/certtool-long-cn,
+	tests/cert-tests/pathlen, tests/cert-tests/pem-decoding,
+	tests/cert-tests/pkcs7, tests/pkcs8-decode/pkcs8: tests: changes for
+	running tests under windows
+
+2015-11-25  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* lib/system.c: use consistent terms in system.c and
+	system-keys-win.c
+
+2015-11-28  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* .gitlab-ci.yml: .gitlab-ci.yml: backported from master
+
+2015-11-25  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* src/libopts/text_mmap.c: libopts: use the O_BINARY flag in windows
+	for files
+
+2015-11-25  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* src/libopts/COPYING.gplv3, src/libopts/COPYING.lgplv3,
+	src/libopts/COPYING.mbsd, src/libopts/Makefile.am,
+	src/libopts/README, src/libopts/ag-char-map.h, src/libopts/alias.c,
+	src/libopts/ao-strs.c, src/libopts/ao-strs.h,
+	src/libopts/autoopts.c, src/libopts/autoopts.h,
+	src/libopts/autoopts/options.h, src/libopts/autoopts/project.h,
+	src/libopts/autoopts/usage-txt.h, src/libopts/boolean.c,
+	src/libopts/check.c, src/libopts/compat/compat.h,
+	src/libopts/compat/pathfind.c, src/libopts/compat/windows-config.h,
+	src/libopts/configfile.c, src/libopts/cook.c, src/libopts/enum.c,
+	src/libopts/env.c, src/libopts/file.c, src/libopts/find.c,
+	src/libopts/genshell.c, src/libopts/genshell.h,
+	src/libopts/gettext.h, src/libopts/init.c, src/libopts/intprops.h,
+	src/libopts/libopts.c, src/libopts/load.c,
+	src/libopts/m4/libopts.m4, src/libopts/m4/liboptschk.m4,
+	src/libopts/m4/stdnoreturn.m4, src/libopts/makeshell.c,
+	src/libopts/nested.c, src/libopts/numeric.c,
+	src/libopts/option-value-type.c,
+	src/libopts/option-xat-attribute.c, src/libopts/parse-duration.c,
+	src/libopts/parse-duration.h, src/libopts/pgusage.c,
+	src/libopts/proto.h, src/libopts/putshell.c, src/libopts/reset.c,
+	src/libopts/restore.c, src/libopts/save.c, src/libopts/sort.c,
+	src/libopts/stack.c, src/libopts/stdnoreturn.in.h,
+	src/libopts/streqvcmp.c, src/libopts/text_mmap.c,
+	src/libopts/time.c, src/libopts/tokenize.c, src/libopts/usage.c,
+	src/libopts/version.c: libopts: updated to 5.18.6
+
+2015-11-24  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* tests/slow/Makefile.am: tests: use gnulib where needed
+
+2015-11-24  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* cross.mk: cross.mk: updated windows cross compile makefile
+
+2015-11-24  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* tests/global-init-override.c: tests: disable global-init-override
+	test in windows Gcc does not support weak symbols on this platform.
+
+2015-11-24  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* src/socket.c: tools: don't call endservent in windows
+
 2015-11-22  Nikos Mavrogiannopoulos <nmav@gnutls.org>
 
 	* tests/cert-tests/Makefile.am: tests: included missing files
