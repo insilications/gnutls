@@ -1,3 +1,183 @@
+2016-03-03  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* tests/slow/Makefile.am: tests: include test-hash-large into dist
+
+2016-03-03  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* NEWS: doc update
+
+2016-03-03  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* po/zh_CN.po.in: Sync with TP [ci skip]
+
+2016-03-01  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* lib/gnutls_global.c: Disable weak symbols for
+	_gnutls_global_init_skip() under windows That is to avoid an issue with running gnutls under windows; that
+	renders GNUTLS_SKIP_GLOBAL_INIT a no-op under windows.  Relates #74
+
+2016-02-29  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* configure.ac, m4/hooks.m4: bumped version [ci skip]
+
+2016-02-29  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* lib/ext/ecc.c: ecc: optimized extension parsing
+
+2016-02-29  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* NEWS: doc update [ci skip]
+
+2016-02-29  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* lib/gnutls_state.c: timespec_sub_ms: fixed operation in 32-bit
+	systems
+
+2016-02-29  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* lib/pkcs11.c, lib/pkcs11_int.h: pkcs11: Fixes to prevent undefined
+	behavior (found with libubsan)
+
+2016-02-29  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* lib/nettle/cipher.c: cipher.c: Fixes to prevent undefined behavior
+	(found with libubsan)
+
+2016-02-29  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* lib/opencdk/misc.c: opencdk: Fixes to prevent undefined behavior
+	(found with libubsan)
+
+2016-02-29  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* lib/includes/gnutls/gnutls.h.in: gnutls.h: Fixes to prevent
+	undefined behavior (found with libubsan)
+
+2016-02-29  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* lib/gnutls_mem.h, lib/x509/x509.c: x509: Fixes to prevent
+	undefined behavior (found with libubsan)
+
+2016-02-28  Andreas Metzler <ametzler@bebt.de>
+
+	* src/p11tool-args.def: Let p11tool --provider option accept
+	filenames.  Drop 'file-exists = yes;' to allow specifying either an absolute
+	pathname or a file in P11_MODULE_PATH.
+
+2016-02-27  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* tests/suite/pkcs11-chainverify.c, tests/suite/pkcs11-is-known.c,
+	tests/suite/softhsm.h, tests/suite/testpkcs11.softhsm,
+	tests/utils.c, tests/utils.h: tests: enable softhsmv2 test suite by
+	default Also do not fatally fail with known softhsmv2 bugs.
+
+2016-02-27  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* NEWS: doc update
+
+2016-02-26  Jan Vcelak <jan.vcelak@nic.cz>
+
+	* tests/suite/testpkcs11.sh: pkcs11: tests for RSA, ECC, DSA private
+	key import Signed-off-by: Jan Vcelak <jan.vcelak@nic.cz>
+
+2016-02-26  Jan Vcelak <jan.vcelak@nic.cz>
+
+	* tests/suite/testpkcs11.sh: pkcs11: tests for DSA key generating Signed-off-by: Jan Vcelak <jan.vcelak@nic.cz>
+
+2016-02-27  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* doc/cha-gtls-app.texi: added getpid() to the list of system calls
+	used
+
+2016-02-25  Jan Vcelak <jan.vcelak@nic.cz>
+
+	* lib/x509/privkey_pkcs8.c: gnutls_x509_privkey_import: add missing
+	algorithm setting for DSA keys The algorithm number was set only in the private key structure, not
+	in the nested structure with parameters. This made certain
+	operations to fail (e.g., copying the key into a PKCS #11 token).  Signed-off-by: Jan Vcelak <jan.vcelak@nic.cz>
+
+2016-02-24  Sebastian Dröge <sebastian@centricular.com>
+
+	* configure.ac: configure: Android is ELF too Without this, compiling Android for x86 or x86-64 fails because the
+	assembly optimizations are not compiled in.
+
+2016-02-18  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* NEWS: doc update
+
+2016-02-18  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* tests/Makefile.am, tests/pcert-list.c: tests: added tests for
+	gnutls_pcert_list_import_x509_raw()
+
+2016-02-18  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* lib/x509/x509.c: gnutls_x509_crt_list_import: corrected memory
+	leak This was triggered if GNUTLS_X509_CRT_LIST_FAIL_IF_UNSORTED was
+	specified and a failure occurred.
+
+2016-02-18  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* lib/x509/common.c: _gnutls_sort_clist: fixed issues when used with
+	func option This function would incorrectly call func() on elements that were
+	included in the list, and would not call func() if the size of the
+	final chain was one.
+
+2016-02-13  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* lib/algorithms/secparams.c: DH/DSA: allow the generation of larger
+	than 15360 bit parameters
+
+2016-02-13  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* tests/slow/hash-large.c: tests: eliminated mem leak in hash-large
+
+2016-02-12  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* NEWS: doc update [ci skip]
+
+2016-02-12  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* tests/slow/Makefile.am, tests/slow/hash-large.c,
+	tests/slow/test-hash-large: tests: check whether large buffer hashes
+	and MAC work as expected
+
+2016-02-12  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* lib/accelerated/x86/hmac-padlock.c,
+	lib/accelerated/x86/hmac-x86-ssse3.c,
+	lib/accelerated/x86/sha-padlock.c,
+	lib/accelerated/x86/sha-padlock.h,
+	lib/accelerated/x86/sha-x86-ssse3.c, lib/nettle/mac.c: nettle: use
+	the correct type for hash and MAC functions
+
+2016-02-11  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* src/benchmark-cipher.c: gnutls-cli: improved indentation in
+	benchmark output
+
+2016-02-10  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* tests/set_pkcs12_cred.c: tests: set_pkcs12_cred: existing tests
+	are disabled when in FIPS140-2 mode The tests require access to the RC4 cipher which is not available.
+
+2016-02-09  Andreas Metzler <ametzler@bebt.de>
+
+	* doc/cha-gtls-app.texi: improve doc on special keywords in priority
+	string Special keywords in priority strings like %COMPAT may not be
+	prefixed with +, - or !, "NORMAL:+%COMPAT is invalid.
+
+2016-02-06  Attila Molnar <attilamolnar@hush.com>
+
+	* doc/cha-cert-auth.texi, doc/cha-gtls-app.texi,
+	doc/cha-tokens.texi, lib/gnutls_auth.c, lib/gnutls_dtls.c,
+	lib/gnutls_extensions.c, src/tpmtool-args.def: doc: Fix some typos
+
+2016-02-06  Attila Molnar <attilamolnar@hush.com>
+
+	* doc/cha-gtls-app.texi, src/certtool-cfg.c, src/serv-args.def: 
+	Remove remaining RSA-EXPORT support leftovers from doc and messages
+
 2016-02-03  Nikos Mavrogiannopoulos <nmav@gnutls.org>
 
 	* tests/suite/pkcs11-pubkey-import-ecdsa.c: tests:
