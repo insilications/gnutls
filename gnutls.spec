@@ -4,7 +4,7 @@
 #
 Name     : gnutls
 Version  : 3.4.11
-Release  : 24
+Release  : 25
 URL      : http://www.mirrorservice.org/sites/ftp.gnupg.org/gcrypt/gnutls/v3.4/gnutls-3.4.11.tar.xz
 Source0  : http://www.mirrorservice.org/sites/ftp.gnupg.org/gcrypt/gnutls/v3.4/gnutls-3.4.11.tar.xz
 Summary  : DANE security library for the GNU system
