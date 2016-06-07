@@ -10,3 +10,4 @@ bison
 gmp-dev
 valgrind
 libtasn1-dev
+net-tools

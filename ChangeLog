@@ -1,3 +1,192 @@
+2016-06-06  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* NEWS, configure.ac, m4/hooks.m4: bumped versions
+
+2016-06-06  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* NEWS: doc update
+
+2016-06-06  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* tests/Makefile.am, tests/cert-common.h, tests/keylog-env.c,
+	tests/utils-adv.c, tests/utils.c, tests/utils.h: tests: backported
+	keylog test
+
+2016-06-06  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* lib/gnutls_global.c, lib/gnutls_global.h, lib/gnutls_kx.c: 
+	keylogfile: only consider the SSLKEYLOGFILE variable In addition do not check the environment in the constructor but
+	instead use static variables to save the key file name.  The
+	GNUTLS_KEYLOGFILE environment variable is no longer used since there
+	is no reason to have a separate one.
+
+2016-05-31  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* lib/x509/pkcs12_bag.c, lib/x509/x509_ext.c: doc update [ci skip]
+
+2016-05-28  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* GNUmakefile, build-aux/config.rpath, build-aux/gendocs.sh,
+	build-aux/pmccabe2html, build-aux/snippet/arg-nonnull.h,
+	build-aux/snippet/c++defs.h, build-aux/snippet/warn-on-use.h,
+	build-aux/useless-if-before-free, build-aux/vc-list-files,
+	doc/gendocs_template, gl/Makefile.am, gl/alloca.in.h,
+	gl/asnprintf.c, gl/asprintf.c, gl/base64.c, gl/base64.h,
+	gl/byteswap.in.h, gl/c-ctype.c, gl/c-ctype.h, gl/errno.in.h,
+	gl/float+.h, gl/float.c, gl/float.in.h, gl/fstat.c, gl/ftell.c,
+	gl/ftello.c, gl/getdelim.c, gl/getline.c, gl/gettext.h,
+	gl/gettimeofday.c, gl/hash-pjw-bare.c, gl/hash-pjw-bare.h,
+	gl/intprops.h, gl/itold.c, gl/lseek.c, gl/m4/00gnulib.m4,
+	gl/m4/absolute-header.m4, gl/m4/alloca.m4, gl/m4/base64.m4,
+	gl/m4/byteswap.m4, gl/m4/ctype.m4, gl/m4/errno_h.m4,
+	gl/m4/exponentd.m4, gl/m4/extensions.m4, gl/m4/extern-inline.m4,
+	gl/m4/fcntl-o.m4, gl/m4/fcntl_h.m4, gl/m4/fdopen.m4,
+	gl/m4/float_h.m4, gl/m4/fpieee.m4, gl/m4/fseeko.m4, gl/m4/fstat.m4,
+	gl/m4/ftell.m4, gl/m4/ftello.m4, gl/m4/func.m4, gl/m4/getdelim.m4,
+	gl/m4/getline.m4, gl/m4/getpagesize.m4, gl/m4/gettimeofday.m4,
+	gl/m4/gnulib-cache.m4, gl/m4/gnulib-common.m4,
+	gl/m4/gnulib-comp.m4, gl/m4/gnulib-tool.m4, gl/m4/include_next.m4,
+	gl/m4/intmax_t.m4, gl/m4/inttypes-pri.m4, gl/m4/inttypes.m4,
+	gl/m4/inttypes_h.m4, gl/m4/largefile.m4, gl/m4/ld-output-def.m4,
+	gl/m4/ld-version-script.m4, gl/m4/lib-ld.m4, gl/m4/lib-link.m4,
+	gl/m4/lib-prefix.m4, gl/m4/longlong.m4, gl/m4/lseek.m4,
+	gl/m4/malloc.m4, gl/m4/manywarnings.m4, gl/m4/math_h.m4,
+	gl/m4/memchr.m4, gl/m4/memmem.m4, gl/m4/minmax.m4,
+	gl/m4/mmap-anon.m4, gl/m4/msvc-inval.m4, gl/m4/msvc-nothrow.m4,
+	gl/m4/multiarch.m4, gl/m4/netdb_h.m4, gl/m4/netinet_in_h.m4,
+	gl/m4/off_t.m4, gl/m4/printf.m4, gl/m4/read-file.m4,
+	gl/m4/realloc.m4, gl/m4/secure_getenv.m4, gl/m4/size_max.m4,
+	gl/m4/snprintf.m4, gl/m4/socklen.m4, gl/m4/sockpfaf.m4,
+	gl/m4/ssize_t.m4, gl/m4/stdalign.m4, gl/m4/stdbool.m4,
+	gl/m4/stddef_h.m4, gl/m4/stdint.m4, gl/m4/stdint_h.m4,
+	gl/m4/stdio_h.m4, gl/m4/stdlib_h.m4, gl/m4/strcase.m4,
+	gl/m4/string_h.m4, gl/m4/strings_h.m4, gl/m4/strndup.m4,
+	gl/m4/strnlen.m4, gl/m4/strtok_r.m4, gl/m4/strverscmp.m4,
+	gl/m4/sys_socket_h.m4, gl/m4/sys_stat_h.m4, gl/m4/sys_time_h.m4,
+	gl/m4/sys_types_h.m4, gl/m4/sys_uio_h.m4, gl/m4/time_h.m4,
+	gl/m4/time_r.m4, gl/m4/ungetc.m4, gl/m4/unistd_h.m4,
+	gl/m4/valgrind-tests.m4, gl/m4/vasnprintf.m4, gl/m4/vasprintf.m4,
+	gl/m4/vsnprintf.m4, gl/m4/warn-on-use.m4, gl/m4/warnings.m4,
+	gl/m4/wchar_h.m4, gl/m4/wchar_t.m4, gl/m4/wint_t.m4,
+	gl/m4/xsize.m4, gl/malloc.c, gl/memchr.c, gl/memmem.c, gl/minmax.h,
+	gl/msvc-inval.c, gl/msvc-inval.h, gl/msvc-nothrow.c,
+	gl/msvc-nothrow.h, gl/netdb.in.h, gl/netinet_in.in.h,
+	gl/printf-args.c, gl/printf-args.h, gl/printf-parse.c,
+	gl/printf-parse.h, gl/read-file.c, gl/read-file.h, gl/realloc.c,
+	gl/secure_getenv.c, gl/size_max.h, gl/snprintf.c, gl/stdalign.in.h,
+	gl/stdbool.in.h, gl/stddef.in.h, gl/stdint.in.h, gl/stdio-impl.h,
+	gl/stdio.in.h, gl/stdlib.in.h, gl/str-two-way.h, gl/strcasecmp.c,
+	gl/string.in.h, gl/strings.in.h, gl/strncasecmp.c, gl/strndup.c,
+	gl/strnlen.c, gl/strtok_r.c, gl/strverscmp.c, gl/sys_socket.c,
+	gl/sys_socket.in.h, gl/sys_stat.in.h, gl/sys_time.in.h,
+	gl/sys_types.in.h, gl/sys_uio.in.h, gl/tests/Makefile.am,
+	gl/tests/binary-io.c, gl/tests/binary-io.h, gl/tests/ctype.in.h,
+	gl/tests/fcntl.in.h, gl/tests/fdopen.c, gl/tests/fpucw.h,
+	gl/tests/getpagesize.c, gl/tests/init.sh, gl/tests/inttypes.in.h,
+	gl/tests/macros.h, gl/tests/signature.h,
+	gl/tests/test-alloca-opt.c, gl/tests/test-base64.c,
+	gl/tests/test-binary-io.c, gl/tests/test-byteswap.c,
+	gl/tests/test-c-ctype.c, gl/tests/test-ctype.c,
+	gl/tests/test-errno.c, gl/tests/test-fcntl-h.c,
+	gl/tests/test-fdopen.c, gl/tests/test-fgetc.c,
+	gl/tests/test-float.c, gl/tests/test-fputc.c,
+	gl/tests/test-fread.c, gl/tests/test-fstat.c,
+	gl/tests/test-ftell.c, gl/tests/test-ftell3.c,
+	gl/tests/test-ftello.c, gl/tests/test-ftello3.c,
+	gl/tests/test-ftello4.c, gl/tests/test-func.c,
+	gl/tests/test-fwrite.c, gl/tests/test-getdelim.c,
+	gl/tests/test-getline.c, gl/tests/test-gettimeofday.c,
+	gl/tests/test-iconv.c, gl/tests/test-init.sh,
+	gl/tests/test-intprops.c, gl/tests/test-inttypes.c,
+	gl/tests/test-memchr.c, gl/tests/test-netdb.c,
+	gl/tests/test-netinet_in.c, gl/tests/test-read-file.c,
+	gl/tests/test-snprintf.c, gl/tests/test-stdalign.c,
+	gl/tests/test-stdbool.c, gl/tests/test-stddef.c,
+	gl/tests/test-stdint.c, gl/tests/test-stdio.c,
+	gl/tests/test-stdlib.c, gl/tests/test-string.c,
+	gl/tests/test-strings.c, gl/tests/test-strnlen.c,
+	gl/tests/test-strverscmp.c, gl/tests/test-sys_socket.c,
+	gl/tests/test-sys_stat.c, gl/tests/test-sys_time.c,
+	gl/tests/test-sys_types.c, gl/tests/test-sys_uio.c,
+	gl/tests/test-sys_wait.h, gl/tests/test-time.c,
+	gl/tests/test-unistd.c, gl/tests/test-vasnprintf.c,
+	gl/tests/test-vasprintf.c, gl/tests/test-vc-list-files-cvs.sh,
+	gl/tests/test-vc-list-files-git.sh, gl/tests/test-verify.c,
+	gl/tests/test-vsnprintf.c, gl/tests/test-wchar.c,
+	gl/tests/zerosize-ptr.h, gl/time.in.h, gl/time_r.c, gl/unistd.c,
+	gl/unistd.in.h, gl/vasnprintf.c, gl/vasnprintf.h, gl/vasprintf.c,
+	gl/verify.h, gl/vsnprintf.c, gl/wchar.in.h, gl/xsize.h,
+	lib/gnutls_mem.h, maint.mk: Rely on gnulib's secure_getenv()
+
+2016-05-28  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* lib/accelerated/x86/x86-common.c: x86-common: use secure_getenv()
+
+2016-05-27  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* configure.ac: configure.ac: check for secure_getenv where
+	available and always enable system extensions
+
+2016-05-27  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* NEWS: doc update
+
+2016-05-27  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* lib/fips.c, lib/gnutls_global.c, lib/gnutls_mem.h, lib/system.c: 
+	env: use secure_getenv when reading environment variables
+
+2016-05-27  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* doc/cha-gtls-app.texi, lib/gnutls_global.c, lib/gnutls_global.h,
+	lib/gnutls_kx.c: Append keys on keylogfile Also consider the SSLKEYLOGFILE variable, since the format is
+	identical and we are always appending keys.
+
+2016-05-23  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* lib/pkcs11.c: pkcs11: added sanity check to find_obj_url_cb() for
+	object validity Also avoid unnecessary recursion.
+
+2016-05-20  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* tests/scripts/common.sh, tests/suite/eagain.sh,
+	tests/suite/testcompat-main-openssl,
+	tests/suite/testcompat-main-polarssl, tests/suite/testdane.sh,
+	tests/suite/testpkcs11.sh, tests/suite/testrng.sh,
+	tests/suite/testsrn.sh: tests: use /bin/bash in tests which require
+	common.sh
+
+2016-05-13  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* tests/dsa/testdsa, tests/openpgp-certs/testcerts,
+	tests/scripts/common.sh, tests/suite/eagain.sh,
+	tests/suite/mini-eagain2.c, tests/suite/testcompat-main-openssl,
+	tests/suite/testcompat-main-polarssl, tests/suite/testpkcs11.sh,
+	tests/suite/testsrn.sh: tests: simplified server launching process Also attempt to use a new port on every started server and added a
+	waiting period for the port to become re-usable.
+
+2016-05-20  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* .gitlab-ci.yml: .gitlab-ci.yml: restrict windows build checks to
+	tests/ subdir That is because there is an issue with the gnulib self tests when
+	run under windows.
+
+2016-05-20  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* tests/Makefile.am: tests: do not use pkglib to generate
+	libpkcs11mock1.so This resulted in the test library being installed. Install we use
+	noinst for the library, but pass -rpath to LDFLAGS as a hack to for
+	libtool to generate the shared version.
+
+2016-05-20  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* .gitlab-ci.yml: .gitlab-ci.yml: added windows DLL build for 3.4.x
+	branch
+
+2016-05-20  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* doc/manpages/Makefile.am: updated auto-generated files
+
 2016-05-20  Nikos Mavrogiannopoulos <nmav@gnutls.org>
 
 	* NEWS, configure.ac, m4/hooks.m4: released 3.4.12
