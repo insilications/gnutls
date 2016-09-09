@@ -1,3 +1,250 @@
+2016-09-08  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* configure.ac, m4/hooks.m4: bumped versions
+
+2016-09-07  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* NEWS: doc update
+
+2016-09-07  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* lib/system.c: _gnutls_ucs2_to_utf8: fixed use of
+	WideCharToMultiByte in windows
+
+2016-09-05  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* NEWS: doc update [ci skip]
+
+2016-09-03  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* lib/gnutls_pk.c: _gnutls_encode_ber_rs_raw: zero-pad values when
+	necessary This addresses issue when encoding values obtained via PKCS#11 which
+	may not be necessarily padded.  Resolves #122
+
+2016-09-03  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* tests/slow/hash-large.c: tests: backported hash-large from master
+
+2016-09-02  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* .gitlab-ci.yml: .gitlab-ci.yml: use the gitlab.com shared runners Backported from master branch
+
+2016-08-28  David Woodhouse <dwmw2@infradead.org>
+
+	* lib/x509/pkcs12.c: gnutls_pkcs12_simple_parse: set the key value
+	to null on failure
+
+2016-02-18  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* src/Makefile.am: src: added systemkey-args to BUILT_SOURCES
+
+2016-08-27  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* lib/x509/ocsp.c: ocsp: corrected the comparison of the serial size
+	in OCSP response Previously the OCSP certificate check wouldn't verify the serial
+	length and could succeed in cases it shouldn't.  Reported by Stefan Buehler.
+
+2016-08-24  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* tests/pkcs8-decode/Makefile.am, tests/pkcs8-decode/pkcs8,
+	tests/pkcs8-decode/pkcs8-pbes2-sha256.pem: tests: added decoding of
+	key with pbes2 and SHA256 PRF
+
+2016-08-24  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* NEWS, lib/algorithms.h, lib/algorithms/mac.c, lib/gnutls_int.h,
+	lib/x509/pkcs12.c, lib/x509/privkey_pkcs8.c, lib/x509/x509_int.h: 
+	Added support for decrypting PKCS#8 files which use HMAC-SHA256 as
+	PRF This improves compatibility with new openssl versions.
+
+2016-08-08  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* NEWS: doc update
+
+2016-08-08  Stefan Sørensen <stefan.sorensen@spectralink.com>
+
+	* lib/x509/pkcs12.c: Fix gnutls_pkcs12_simple_parse to always
+	extract the complete chain gnutls_pkcs12_simple_parse was only collecting extra certificates
+	that was possible elements of the certificate chain when the
+	extra_certs argument was not NULL. Fix by allways collecting all the
+	certificates, any unneeded certificates are released before
+	returning if extra_certs is NULL anyway.  Signed-off-by: Stefan Sørensen <stefan.sorensen@spectralink.com>
+
+2016-08-08  Stefan Sørensen <stefan.sorensen@spectralink.com>
+
+	* tests/x509cert.c, tests/x509dn.c, tests/x509self.c: tests: Use
+	common ca3 test certificates in x509cert, x509dn and x509self tests.  Signed-off-by: Stefan Sørensen <stefan.sorensen@spectralink.com>
+
+2016-08-08  Stefan Sørensen <stefan.sorensen@spectralink.com>
+
+	* tests/cert-common.h: tests: Remove zero-termination of
+	gnutls_datum encapsulated certificates This allows for memcmp comparison with certificates after
+	processing.  Signed-off-by: Stefan Sørensen <stefan.sorensen@spectralink.com>
+
+2016-08-08  Stefan Sørensen <stefan.sorensen@spectralink.com>
+
+	* lib/gnutls_x509.c: Fix invalid pointer operation in
+	gnutls_certificate_get_x509_crt The access to the allocated crt_list variable was missing a pointer
+	dereference, leading to memory corruption for any certificate list
+	with more than one element.  Signed-off-by: Stefan Sørensen <stefan.sorensen@spectralink.com>
+
+2016-08-07  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* lib/nettle/pk.c: nettle: use rsa_*_key_prepare on key import Previously we calculated the size of the key directly, but by using
+	the rsa_*_key_prepare we benefit from any checks that may be
+	introduced in the future. Specifically any checks for invalid public
+	keys (e.g., keys that may crash the underlying gmp functions).  This patch avoids calling rsa_private_key_prepare every time we
+	construct a nettle private key struct, because this function
+	requires a bigint multiplication. We call that function once on
+	private key import.
+
+2016-08-08  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* lib/nettle/pk.c: Revert "nettle: use rsa_*_key_prepare" This reverts commit 920deb69dd19afc45f5d75e536d59d05671c3170.
+
+2016-08-01  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* lib/nettle/pk.c: nettle: use rsa_*_key_prepare Previously we calculated the size of the key directly, but by using
+	the rsa_*_key_prepare we benefit from any checks that may be
+	introduced in the future. Specifically any checks for invalid public
+	keys (e.g., keys that may crash the underlying gmp functions).
+
+2016-07-28  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* NEWS: doc update [ci skip]
+
+2016-07-09  Tim Kosse <tim.kosse@filezilla-project.org>
+
+	* lib/x509/crl.c: gnutls_x509_crl_list_import2 was ignoring the
+	passed flags if all CTLs in the list fit within the initially
+	allocated memory.
+
+2016-07-09  Tim Kosse <tim.kosse@filezilla-project.org>
+
+	* lib/x509/x509.c: gnutls_x509_crt_list_import2 was ignoring the
+	passed flags if all certificates in the list fit within the
+	initially allocated memory.
+
+2016-07-25  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* lib/minitasn1/coding.c, lib/minitasn1/decoding.c,
+	lib/minitasn1/element.c, lib/minitasn1/int.h,
+	lib/minitasn1/libtasn1.h, lib/minitasn1/parser_aux.c,
+	lib/minitasn1/parser_aux.h: minitasn1: updated to libtasn1 4.9
+
+2016-07-08  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* NEWS: NEWS: corrected release date [ci skip]
+
+2016-07-07  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* lib/gnutls_kx.c: write_nss_key_log: write the premaster secret
+	while it is still valid
+
+2016-07-07  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* lib/minitasn1/coding.c: updated libtasn1
+
+2016-07-06  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* NEWS: released 3.4.14
+
+2016-07-05  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* configure.ac, m4/hooks.m4: bumped version
+
+2016-07-05  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* libdane/errors.c, libdane/includes/gnutls/dane.h: dane: corrected
+	the license of libdane files The license was always LGPL version 2.1, and these files mentioned
+	LGPL version 3. Reported by Thomas Petazzoni.
+
+2016-06-30  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* lib/pkcs11_int.c: pkcs11_get_attribute_avalue: correctly handle a
+	-1 value length from C_GetAttributeValue That is, work-around modules which do not return an error on
+	sensitive objects.  Relates #108
+
+2016-06-29  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* tests/cert-tests/Makefile.am: tests: name-constraints moved to
+	non-windows running scripts That is because datefudge doesn't work there.
+
+2016-06-29  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* NEWS: doc update [ci skip]
+
+2016-06-29  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* lib/pkcs11_int.c: pkcs11_get_attribute_avalue: do not assign
+	values on failure When C_GetAttributeValue() returns size but does not return data
+	then pkcs11_get_attribute_avalue() would set the return data pointer
+	to a free'd value. This is against the convention expected by
+	callers, i.e, set data to NULL. Reported by Anthony Alba in #108.
+
+2016-06-29  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* tests/cert-tests/name-constraints: tests: use datefudge in
+	name-constraints test This avoids the expiration of the used certificate to affect the
+	test.
+
+2016-06-28  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* tests/suite/pkcs11-is-known.c: tests: backported pkcs11-is-known
+	from master branch
+
+2016-06-23  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* lib/pkcs11.c: gnutls_pkcs11_crt_is_known: always assume
+	GNUTLS_PKCS11_OBJ_FLAG_COMPARE unless
+	GNUTLS_PKCS11_OBJ_FLAG_RETRIEVE_DISTRUSTED is given
+
+2016-06-28  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* lib/pkcs11.c: find_cert_cb: minor cleanups in find_cert_cb
+
+2016-06-22  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* lib/pkcs11.c: pkcs11: correctly encode the serial number when
+	searching for certificate In gnutls_pkcs11_crt_is_known() corrected the encoding of the serial
+	number to TLV DER from LV DER. This is the encoding we use when
+	storing that number.
+
+2016-06-22  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* lib/pkcs11.c: pkcs11: correctly account check_found_cert()
+
+2016-06-16  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* NEWS: doc update [ci skip]
+
+2016-06-16  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* NEWS: doc update
+
+2016-06-16  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* lib/gnutls_buffers.c: dtls: corrected reconstruction of handshake
+	packets received out of order That is, when the handshake packet is split into multiple different
+	chunks and received out of order, make sure that reconstruction
+	occurs properly. Reported by Guillaume Roguez.
+
+2016-06-16  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* lib/pkcs11_write.c: Corrected the writing of serial number in
+	PKCS#11 modules That is previously the serial number was written in raw format, but
+	in PKCS#11 the serial number must be set encoded as integer. Report
+	and fix by Stanislav Zidek.
+
+2016-06-08  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* doc/cha-gtls-app.texi: doc: remove references to GNUTLS_KEYLOGFILE
+	[ci skip]
+
+2016-06-06  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* tests/Makefile.am: tests: link libutils against gnutls
+
 2016-06-06  Nikos Mavrogiannopoulos <nmav@gnutls.org>
 
 	* NEWS, configure.ac, m4/hooks.m4: bumped versions
@@ -1611,23 +1858,21 @@
 
 2015-11-12  Nikos Mavrogiannopoulos <nmav@redhat.com>
 
-	* tests/suite/Makefile.am, tests/suite/eagain,
-	tests/suite/eagain.sh, tests/suite/invalid-cert,
-	tests/suite/invalid-cert.sh, tests/suite/testcompat-openssl.sh,
-	tests/suite/testcompat-polarssl.sh, tests/suite/testdane,
-	tests/suite/testdane.sh, tests/suite/testrandom,
-	tests/suite/testrandom.sh, tests/suite/testrng,
-	tests/suite/testrng.sh, tests/suite/testsrn, tests/suite/testsrn.sh: 
-	tests: suite: more shell scripts were given the .sh suffix and
-	simplified makefile
+	* tests/suite/Makefile.am, tests/suite/{eagain => eagain.sh},
+	tests/suite/{invalid-cert => invalid-cert.sh},
+	tests/suite/testcompat-openssl.sh,
+	tests/suite/testcompat-polarssl.sh, tests/suite/{testdane =>
+	testdane.sh}, tests/suite/{testrandom => testrandom.sh},
+	tests/suite/{testrng => testrng.sh}, tests/suite/{testsrn =>
+	testsrn.sh}: tests: suite: more shell scripts were given the .sh
+	suffix and simplified makefile
 
 2015-11-10  Nikos Mavrogiannopoulos <nmav@redhat.com>
 
-	* tests/suite/Makefile.am, tests/suite/chain, tests/suite/chain.sh,
-	tests/suite/test-ciphersuite-names,
-	tests/suite/test-ciphersuite-names.sh, tests/suite/testpkcs11,
-	tests/suite/testpkcs11.sh: tests: suite: don't run shell scripts
-	with valgrind
+	* tests/suite/Makefile.am, tests/suite/{chain => chain.sh},
+	tests/suite/{test-ciphersuite-names => test-ciphersuite-names.sh},
+	tests/suite/{testpkcs11 => testpkcs11.sh}: tests: suite: don't run
+	shell scripts with valgrind
 
 2015-11-10  Nikos Mavrogiannopoulos <nmav@redhat.com>
 
@@ -2755,9 +3000,9 @@
 2015-06-22  Nikos Mavrogiannopoulos <nmav@gnutls.org>
 
 	* tests/suite/Makefile.am, tests/suite/ciphersuite/scan-gnutls.sh,
-	tests/suite/ciphersuite/test-ciphersuites.sh,
-	tests/suite/test-ciphersuite-names: tests: moved
-	test-ciphersuites.sh one level up That simplifies running the script outside make check.
+	tests/suite/{ciphersuite/test-ciphersuites.sh =>
+	test-ciphersuite-names}: tests: moved test-ciphersuites.sh one level
+	up That simplifies running the script outside make check.
 
 2015-06-21  Alon Bar-Lev <alon.barlev@gmail.com>
 
@@ -3052,8 +3297,8 @@
 
 2015-06-16  Nikos Mavrogiannopoulos <nmav@gnutls.org>
 
-	* lib/x509/Makefile.am, lib/x509/pkcs7-output.c,
-	lib/x509/pkcs7_output.c: use common base for pkcs7 files
+	* lib/x509/Makefile.am, lib/x509/{pkcs7_output.c => pkcs7-output.c}: 
+	use common base for pkcs7 files
 
 2015-06-16  Nikos Mavrogiannopoulos <nmav@gnutls.org>
 
@@ -3656,8 +3901,8 @@
 
 2015-04-28  Nikos Mavrogiannopoulos <nmav@redhat.com>
 
-	* tests/Makefile.am, tests/keygen.c, tests/slow/Makefile.am,
-	tests/slow/keygen.c: tests: key generation test was moved to main
+	* tests/Makefile.am, tests/{slow => }/keygen.c,
+	tests/slow/Makefile.am: tests: key generation test was moved to main
 	checks This will allow to catch memory leaks with valgrind.
 
 2015-04-28  Jan Vcelak <jan.vcelak@nic.cz>
@@ -5211,13 +5456,13 @@
 
 2015-03-06  Nikos Mavrogiannopoulos <nmav@gnutls.org>
 
-	* Makefile.am, README-alpha, README.md: README-alpha is README.md on
-	repository It contains information for developers.
+	* Makefile.am, README-alpha => README.md: README-alpha is README.md
+	on repository It contains information for developers.
 
 2015-03-06  Nikos Mavrogiannopoulos <nmav@gnutls.org>
 
-	* Makefile.am, README, README.md: Revert "auto-generate README from
-	README.md" This reverts commit aff4b2151b42c6a59e490c3714d3e1e64d2921dd.
+	* Makefile.am, README.md => README: Revert "auto-generate README
+	from README.md" This reverts commit aff4b2151b42c6a59e490c3714d3e1e64d2921dd.
 
 2015-03-06  Nikos Mavrogiannopoulos <nmav@redhat.com>
 
@@ -5225,7 +5470,7 @@
 
 2015-03-06  Nikos Mavrogiannopoulos <nmav@redhat.com>
 
-	* Makefile.am, README, README.md: auto-generate README from
+	* Makefile.am, README => README.md: auto-generate README from
 	README.md
 
 2015-03-06  Nikos Mavrogiannopoulos <nmav@redhat.com>
@@ -5238,13 +5483,13 @@
 
 2015-03-06  Nikos Mavrogiannopoulos <nmav@redhat.com>
 
-	* README, README-alpha, README-alpha.md, README.md: Revert "renamed
-	README files" This reverts commit 05b4fa46667d3f5972f6de6ac61ff959382c67a5.
+	* README.md => README, README-alpha.md => README-alpha: Revert
+	"renamed README files" This reverts commit 05b4fa46667d3f5972f6de6ac61ff959382c67a5.
 
 2015-03-06  Nikos Mavrogiannopoulos <nmav@redhat.com>
 
-	* README, README-alpha, README-alpha.md, README.md: renamed README
-	files
+	* README-alpha => README-alpha.md, README => README.md: renamed
+	README files
 
 2015-03-06  Nikos Mavrogiannopoulos <nmav@redhat.com>
 
@@ -7132,7 +7377,7 @@
 
 2014-11-23  Nikos Mavrogiannopoulos <nmav@gnutls.org>
 
-	* src/Makefile.am, src/systemkey-tool.c, src/systemkey.c: renamed
+	* src/Makefile.am, src/{systemkey-tool.c => systemkey.c}: renamed
 	systemkey-tool to systemkey, and don't install it by default
 
 2014-11-23  Nikos Mavrogiannopoulos <nmav@gnutls.org>
@@ -7234,8 +7479,8 @@
 
 2014-11-20  Nikos Mavrogiannopoulos <nmav@redhat.com>
 
-	* lib/Makefile.am, lib/system-keys-dummy.c, lib/system-keys-win.c,
-	lib/system-keys.c: separated system-keys implementations
+	* lib/Makefile.am, lib/system-keys-dummy.c, lib/{system-keys.c =>
+	system-keys-win.c}: separated system-keys implementations
 
 2014-11-20  Nikos Mavrogiannopoulos <nmav@gnutls.org>
 
@@ -7529,7 +7774,7 @@
 
 	* lib/Makefile.am, lib/crypto-api.c, lib/ext/session_ticket.c,
 	lib/gnutls_cipher.c, lib/includes/gnutls/gnutls.h.in,
-	lib/libgnutls.map, lib/safe-memfuncs.c, lib/safe-memset.c: Added
+	lib/libgnutls.map, lib/{safe-memset.c => safe-memfuncs.c}: Added
 	gnutls_memcmp() and exported it.
 
 2014-11-11  Nikos Mavrogiannopoulos <nmav@redhat.com>
@@ -7543,7 +7788,7 @@
 2014-11-07  Nikos Mavrogiannopoulos <nmav@redhat.com>
 
 	* lib/includes/gnutls/pkcs12.h, lib/libgnutls.map,
-	lib/x509/pkcs12_bag.c: added gnutls_pkcs12_bag_set_privkey() Conflicts: 	lib/libgnutls.map
+	lib/x509/pkcs12_bag.c: added gnutls_pkcs12_bag_set_privkey() Conflicts:         lib/libgnutls.map
 
 2014-11-10  Nikos Mavrogiannopoulos <nmav@redhat.com>
 
@@ -7662,11 +7907,11 @@
 
 2014-11-05  Nikos Mavrogiannopoulos <nmav@redhat.com>
 
-	* tests/suite/Makefile.am, tests/suite/testcompat,
-	tests/suite/testcompat-main, tests/suite/testcompat-main-openssl,
-	tests/suite/testcompat-main-polarssl,
-	tests/suite/testcompat-openssl, tests/suite/testcompat-polarssl: 
-	tests: separated the two testcompat tests (openssl/polarssl)
+	* tests/suite/Makefile.am, tests/suite/{testcompat-main =>
+	testcompat-main-openssl}, tests/suite/testcompat-main-polarssl,
+	tests/suite/{testcompat => testcompat-openssl},
+	tests/suite/testcompat-polarssl: tests: separated the two testcompat
+	tests (openssl/polarssl)
 
 2014-11-05  Nikos Mavrogiannopoulos <nmav@gnutls.org>
 
@@ -9662,9 +9907,8 @@
 
 2014-08-20  Nikos Mavrogiannopoulos <nmav@redhat.com>
 
-	* lib/x509/Makefile.am, lib/x509/hostname-verify.c,
-	lib/x509/rfc2818_hostname.c: renamed rfc2818_hostname to
-	hostname-verify The file no longer follows RFC2818.
+	* lib/x509/Makefile.am, lib/x509/{rfc2818_hostname.c =>
+	hostname-verify.c}: renamed rfc2818_hostname to hostname-verify The file no longer follows RFC2818.
 
 2014-08-20  Nikos Mavrogiannopoulos <nmav@redhat.com>
 
@@ -11872,9 +12116,9 @@
 	lib/accelerated/x86/aes-padlock.c,
 	lib/accelerated/x86/sha-padlock.c,
 	lib/accelerated/x86/sha-x86-ssse3.c,
-	lib/accelerated/x86/x86-common.c, lib/accelerated/x86/x86-common.h,
-	lib/accelerated/x86/x86.h: x86.h was renamed to x86-common.h to
-	avoid clashes with system headers.
+	lib/accelerated/x86/x86-common.c, lib/accelerated/x86/{x86.h =>
+	x86-common.h}: x86.h was renamed to x86-common.h to avoid clashes
+	with system headers.
 
 2014-04-27  Nikos Mavrogiannopoulos <nmav@gnutls.org>
 
@@ -12512,18 +12756,16 @@
 
 2014-04-03  Nikos Mavrogiannopoulos <nmav@gnutls.org>
 
-	* configure.ac, tests/Makefile.am, tests/key-id/Makefile.am,
-	tests/key-id/README, tests/key-id/ca-gnutls-keyid.pem,
-	tests/key-id/ca-no-keyid.pem, tests/key-id/ca-weird-keyid.pem,
-	tests/key-id/key-ca.pem, tests/key-id/key-id,
-	tests/key-id/key-user.pem, tests/key-tests/Makefile.am,
-	tests/key-tests/README, tests/key-tests/ca-gnutls-keyid.pem,
-	tests/key-tests/ca-no-keyid.pem,
-	tests/key-tests/ca-weird-keyid.pem, tests/key-tests/key-ca-1234.p8,
+	* configure.ac, tests/Makefile.am, tests/{key-id =>
+	key-tests}/Makefile.am, tests/{key-id => key-tests}/README,
+	tests/{key-id => key-tests}/ca-gnutls-keyid.pem, tests/{key-id =>
+	key-tests}/ca-no-keyid.pem, tests/{key-id =>
+	key-tests}/ca-weird-keyid.pem, tests/key-tests/key-ca-1234.p8,
 	tests/key-tests/key-ca-empty.p8, tests/key-tests/key-ca-null.p8,
-	tests/key-tests/key-ca.pem, tests/key-tests/key-id,
-	tests/key-tests/key-user.pem, tests/key-tests/pkcs8: Added self-test
-	for PKCS #8 key conversion and reading
+	tests/{key-id => key-tests}/key-ca.pem, tests/{key-id =>
+	key-tests}/key-id, tests/{key-id => key-tests}/key-user.pem,
+	tests/key-tests/pkcs8: Added self-test for PKCS #8 key conversion
+	and reading
 
 2014-04-03  Nikos Mavrogiannopoulos <nmav@redhat.com>
 
@@ -13032,9 +13274,9 @@
 
 2014-03-06  Kevin Cernekee <cernekee@gmail.com>
 
-	* .gitignore, doc/manpages/Makefile.am, src/Makefile.am,
-	src/psk-args.def, src/psk.c, src/psktool-args.def: Rename
-	psk-args.def to psktool-args.def Other utilities generate invoke-%.texi from %-args.def, but
+	* .gitignore, doc/manpages/Makefile.am, src/Makefile.am, src/psk.c,
+	src/{psk-args.def => psktool-args.def}: Rename psk-args.def to
+	psktool-args.def Other utilities generate invoke-%.texi from %-args.def, but
 	currently invoke-psktool.texi is generated from psk-args.def.  If we
 	make psktool conform to the same convention as the other utilities,
 	we can use a generic pattern to handle all of them the same way.  Signed-off-by: Kevin Cernekee <cernekee@gmail.com>
@@ -14283,7 +14525,7 @@
 2014-01-26  Nikos Mavrogiannopoulos <nmav@gnutls.org>
 
 	* doc/scripts/getfuncs-map.pl, lib/libgnutls.map: added
-	gnutls_realloc_fast to false positives Conflicts: 	lib/libgnutls.map
+	gnutls_realloc_fast to false positives Conflicts:         lib/libgnutls.map
 
 2014-01-26  Nikos Mavrogiannopoulos <nmav@gnutls.org>
 
@@ -15189,7 +15431,7 @@
 
 2013-12-20  Nikos Mavrogiannopoulos <nmav@gnutls.org>
 
-	* lib/Makefile.am: libtasn1 generated files are set in BUILT_SOURCES Conflicts: 	lib/Makefile.am
+	* lib/Makefile.am: libtasn1 generated files are set in BUILT_SOURCES Conflicts:         lib/Makefile.am
 
 2013-12-18  Nikos Mavrogiannopoulos <nmav@redhat.com>
 
@@ -15370,11 +15612,9 @@
 
 2013-12-14  Nikos Mavrogiannopoulos <nmav@gnutls.org>
 
-	* lib/accelerated/x86/Makefile.am,
-	lib/accelerated/x86/hmac-x86-ssse3.c,
-	lib/accelerated/x86/hmac-x86.c,
-	lib/accelerated/x86/sha-x86-ssse3.c, lib/accelerated/x86/sha-x86.c: 
-	use better names for files
+	* lib/accelerated/x86/Makefile.am, lib/accelerated/x86/{hmac-x86.c
+	=> hmac-x86-ssse3.c}, lib/accelerated/x86/{sha-x86.c =>
+	sha-x86-ssse3.c}: use better names for files
 
 2013-12-14  Nikos Mavrogiannopoulos <nmav@gnutls.org>
 
@@ -15387,13 +15627,12 @@
 2013-12-14  Nikos Mavrogiannopoulos <nmav@gnutls.org>
 
 	* lib/accelerated/x86/Makefile.am,
-	lib/accelerated/x86/aes-gcm-x86-pclmul.c,
+	lib/accelerated/x86/{aes-gcm-x86.c => aes-gcm-x86-pclmul.c},
 	lib/accelerated/x86/aes-gcm-x86-ssse3.c,
-	lib/accelerated/x86/aes-gcm-x86.c, lib/accelerated/x86/aes-x86.c,
-	lib/accelerated/x86/aes-x86.h, lib/accelerated/x86/hmac-x86.c,
-	lib/accelerated/x86/sha-x86.c, lib/accelerated/x86/sha-x86.h: When
-	PCLMUL isn't available use the SSSE3 implementation of AES to
-	optimize GCM.
+	lib/accelerated/x86/aes-x86.c, lib/accelerated/x86/aes-x86.h,
+	lib/accelerated/x86/hmac-x86.c, lib/accelerated/x86/sha-x86.c,
+	lib/accelerated/x86/sha-x86.h: When PCLMUL isn't available use the
+	SSSE3 implementation of AES to optimize GCM.
 
 2013-12-14  Nikos Mavrogiannopoulos <nmav@gnutls.org>
 
@@ -15487,40 +15726,28 @@
 	devel/perlasm/sha512-ssse3-x86_64.pl,
 	lib/accelerated/x86/Makefile.am, lib/accelerated/x86/aes-padlock.h,
 	lib/accelerated/x86/aes-x86.c,
-	lib/accelerated/x86/coff/aesni-x86.s,
-	lib/accelerated/x86/coff/aesni-x86_64.s,
-	lib/accelerated/x86/coff/appro-aes-gcm-x86-64-coff.s,
-	lib/accelerated/x86/coff/appro-aes-x86-64-coff.s,
-	lib/accelerated/x86/coff/appro-aes-x86-coff.s,
-	lib/accelerated/x86/coff/cpuid-x86-64-coff.s,
-	lib/accelerated/x86/coff/cpuid-x86-coff.s,
-	lib/accelerated/x86/coff/cpuid-x86.s,
-	lib/accelerated/x86/coff/cpuid-x86_64.s,
-	lib/accelerated/x86/coff/e_padlock-x86.s,
-	lib/accelerated/x86/coff/e_padlock-x86_64.s,
-	lib/accelerated/x86/coff/ghash-x86_64.s,
-	lib/accelerated/x86/coff/openssl-cpuid-x86.s,
+	lib/accelerated/x86/coff/{appro-aes-x86-coff.s => aesni-x86.s},
+	lib/accelerated/x86/coff/{appro-aes-x86-64-coff.s =>
+	aesni-x86_64.s}, lib/accelerated/x86/coff/{cpuid-x86-coff.s =>
+	cpuid-x86.s}, lib/accelerated/x86/coff/{cpuid-x86-64-coff.s =>
+	cpuid-x86_64.s}, lib/accelerated/x86/coff/{padlock-x86-coff.s =>
+	e_padlock-x86.s}, lib/accelerated/x86/coff/{padlock-x86-64-coff.s
+	=> e_padlock-x86_64.s},
+	lib/accelerated/x86/coff/{appro-aes-gcm-x86-64-coff.s =>
+	ghash-x86_64.s}, lib/accelerated/x86/coff/openssl-cpuid-x86.s,
 	lib/accelerated/x86/coff/openssl-cpuid-x86_64.s,
-	lib/accelerated/x86/coff/padlock-x86-64-coff.s,
-	lib/accelerated/x86/coff/padlock-x86-coff.s,
 	lib/accelerated/x86/coff/sha1-ssse3-x86.s,
 	lib/accelerated/x86/coff/sha1-ssse3-x86_64.s,
 	lib/accelerated/x86/coff/sha256-avx-x86_64.s,
 	lib/accelerated/x86/coff/sha256-ssse3-x86.s,
 	lib/accelerated/x86/coff/sha512-ssse3-x86.s,
 	lib/accelerated/x86/coff/sha512-ssse3-x86_64.s,
-	lib/accelerated/x86/elf/aesni-x86.s,
-	lib/accelerated/x86/elf/aesni-x86_64.s,
-	lib/accelerated/x86/elf/appro-aes-gcm-x86-64.s,
-	lib/accelerated/x86/elf/appro-aes-x86-64.s,
-	lib/accelerated/x86/elf/appro-aes-x86.s,
-	lib/accelerated/x86/elf/cpuid-x86-64.s,
-	lib/accelerated/x86/elf/cpuid-x86_64.s,
-	lib/accelerated/x86/elf/e_padlock-x86.s,
-	lib/accelerated/x86/elf/e_padlock-x86_64.s,
-	lib/accelerated/x86/elf/ghash-x86_64.s,
-	lib/accelerated/x86/elf/padlock-x86-64.s,
-	lib/accelerated/x86/elf/padlock-x86.s,
+	lib/accelerated/x86/elf/{appro-aes-x86.s => aesni-x86.s},
+	lib/accelerated/x86/elf/{appro-aes-x86-64.s => aesni-x86_64.s},
+	lib/accelerated/x86/elf/{cpuid-x86-64.s => cpuid-x86_64.s},
+	lib/accelerated/x86/elf/{padlock-x86.s => e_padlock-x86.s},
+	lib/accelerated/x86/elf/{padlock-x86-64.s => e_padlock-x86_64.s},
+	lib/accelerated/x86/elf/{appro-aes-gcm-x86-64.s => ghash-x86_64.s},
 	lib/accelerated/x86/elf/sha1-ssse3-x86.s,
 	lib/accelerated/x86/elf/sha1-ssse3-x86_64.s,
 	lib/accelerated/x86/elf/sha256-avx-x86_64.s,
@@ -15528,22 +15755,19 @@
 	lib/accelerated/x86/elf/sha512-ssse3-x86.s,
 	lib/accelerated/x86/elf/sha512-ssse3-x86_64.s,
 	lib/accelerated/x86/files.mk, lib/accelerated/x86/hmac-x86.c,
-	lib/accelerated/x86/macosx/aesni-x86.s,
-	lib/accelerated/x86/macosx/aesni-x86_64.s,
-	lib/accelerated/x86/macosx/appro-aes-gcm-x86-64-macosx.s,
-	lib/accelerated/x86/macosx/appro-aes-x86-64-macosx.s,
-	lib/accelerated/x86/macosx/appro-aes-x86-macosx.s,
-	lib/accelerated/x86/macosx/cpuid-x86-64-macosx.s,
+	lib/accelerated/x86/macosx/{appro-aes-x86-macosx.s => aesni-x86.s},
+	lib/accelerated/x86/macosx/{appro-aes-x86-64-macosx.s =>
+	aesni-x86_64.s}, lib/accelerated/x86/macosx/cpuid-x86-64-macosx.s,
 	lib/accelerated/x86/macosx/cpuid-x86-macosx.s,
 	lib/accelerated/x86/macosx/cpuid-x86.s,
 	lib/accelerated/x86/macosx/cpuid-x86_64.s,
-	lib/accelerated/x86/macosx/e_padlock-x86.s,
-	lib/accelerated/x86/macosx/e_padlock-x86_64.s,
-	lib/accelerated/x86/macosx/ghash-x86_64.s,
-	lib/accelerated/x86/macosx/openssl-cpuid-x86.s,
+	lib/accelerated/x86/macosx/{padlock-x86-macosx.s =>
+	e_padlock-x86.s},
+	lib/accelerated/x86/macosx/{padlock-x86-64-macosx.s =>
+	e_padlock-x86_64.s},
+	lib/accelerated/x86/macosx/{appro-aes-gcm-x86-64-macosx.s =>
+	ghash-x86_64.s}, lib/accelerated/x86/macosx/openssl-cpuid-x86.s,
 	lib/accelerated/x86/macosx/openssl-cpuid-x86_64.s,
-	lib/accelerated/x86/macosx/padlock-x86-64-macosx.s,
-	lib/accelerated/x86/macosx/padlock-x86-macosx.s,
 	lib/accelerated/x86/macosx/sha1-ssse3-x86.s,
 	lib/accelerated/x86/macosx/sha1-ssse3-x86_64.s,
 	lib/accelerated/x86/macosx/sha256-avx-x86_64.s,
@@ -15829,7 +16053,7 @@
 
 2013-11-30  Nikos Mavrogiannopoulos <nmav@gnutls.org>
 
-	* : Merged the FIPS140-2 support code.  Conflicts: 	lib/gnutls_global.c 	tests/mini-overhead.c
+	* : Merged the FIPS140-2 support code.  Conflicts:         lib/gnutls_global.c         tests/mini-overhead.c
 
 2013-11-30  Nikos Mavrogiannopoulos <nmav@gnutls.org>
 
@@ -16061,11 +16285,11 @@
 
 2013-11-25  Nikos Mavrogiannopoulos <nmav@redhat.com>
 
-	* configure.ac, lib/nettle/Makefile.am, lib/nettle/gcm-camellia.c,
-	lib/nettle/gcm-camellia.h, lib/nettle/int/drbg-aes-self-test.c,
-	lib/nettle/int/drbg-aes.c, lib/nettle/int/drbg-aes.h,
-	lib/nettle/int/gcm-camellia.c, lib/nettle/int/gcm-camellia.h,
-	lib/nettle/rnd-fips.c: Added DRBG submitted to nettle in gnutls.
+	* configure.ac, lib/nettle/Makefile.am,
+	lib/nettle/int/drbg-aes-self-test.c, lib/nettle/int/drbg-aes.c,
+	lib/nettle/int/drbg-aes.h, lib/nettle/{ => int}/gcm-camellia.c,
+	lib/nettle/{ => int}/gcm-camellia.h, lib/nettle/rnd-fips.c: Added
+	DRBG submitted to nettle in gnutls.
 
 2013-11-25  Nikos Mavrogiannopoulos <nmav@redhat.com>
 
@@ -16365,7 +16589,7 @@
 	lib/x509/verify-high.c, lib/x509/x509.c, lib/xssl.c: Added support
 	for fips states.  This implies that when in FIPS mode and the library is not in
 	operational state (i.e., all self checks succeeded), crypto
-	functionality of the library will fail.  This includes: 	* API functions of gnutls/crypto.h 	* API functions of gnutls/abstract.h 	* API functions of gnutls/x509.h 	* gnutls_init() 	* API functions of gnutls/xssl.h
+	functionality of the library will fail.  This includes:         * API functions of gnutls/crypto.h         * API functions of gnutls/abstract.h         * API functions of gnutls/x509.h         * gnutls_init()         * API functions of gnutls/xssl.h
 
 2013-11-11  Nikos Mavrogiannopoulos <nmav@redhat.com>
 
@@ -16459,7 +16683,7 @@
 2013-11-26  Nikos Mavrogiannopoulos <nmav@redhat.com>
 
 	* configure.ac, lib/Makefile.am: Do not link gnutls against librt
-	unlress it is really necessary.  Conflicts: 	configure.ac 	lib/Makefile.am
+	unlress it is really necessary.  Conflicts:         configure.ac         lib/Makefile.am
 
 2013-11-24  Nikos Mavrogiannopoulos <nmav@gnutls.org>
 
@@ -16520,10 +16744,9 @@
 2013-11-23  Nikos Mavrogiannopoulos <nmav@gnutls.org>
 
 	* gl/Makefile.am, gl/m4/gnulib-cache.m4, gl/m4/gnulib-comp.m4,
-	gl/strerror-override.c, gl/strerror-override.h, gl/strerror.c,
-	gl/tests/Makefile.am, gl/tests/strerror-override.c,
-	gl/tests/strerror-override.h, gl/tests/strerror.c: Added strerror
-	module.
+	gl/{tests => }/strerror-override.c, gl/{tests =>
+	}/strerror-override.h, gl/{tests => }/strerror.c,
+	gl/tests/Makefile.am: Added strerror module.
 
 2013-11-23  Nikos Mavrogiannopoulos <nmav@gnutls.org>
 
@@ -16828,11 +17051,10 @@
 
 2013-11-13  Nikos Mavrogiannopoulos <nmav@redhat.com>
 
-	* gl/Makefile.am, gl/base64.c, gl/intprops.h,
+	* gl/Makefile.am, gl/base64.c, gl/{tests => }/intprops.h,
 	gl/m4/extern-inline.m4, gl/m4/gnulib-cache.m4,
-	gl/m4/gnulib-comp.m4, gl/tests/Makefile.am, gl/tests/intprops.h,
-	maint.mk: Added intprops module (which is needed by newer libtasn1
-	versions)
+	gl/m4/gnulib-comp.m4, gl/tests/Makefile.am, maint.mk: Added intprops
+	module (which is needed by newer libtasn1 versions)
 
 2013-11-12  Nikos Mavrogiannopoulos <nmav@redhat.com>
 
@@ -18348,19 +18570,18 @@
 	gl/basename-lgpl.c, gl/bind.c, gl/byteswap.in.h, gl/c-ctype.c,
 	gl/c-ctype.h, gl/close.c, gl/closedir.c, gl/connect.c,
 	gl/dirent-private.h, gl/dirent.in.h, gl/dirname-lgpl.c,
-	gl/dirname.h, gl/dosname.h, gl/dup2.c, gl/errno.in.h, gl/error.c,
-	gl/error.h, gl/fd-hook.c, gl/fd-hook.h, gl/filename.h, gl/float+.h,
-	gl/float.c, gl/float.in.h, gl/fpucw.h, gl/frexp.c, gl/frexpl.c,
-	gl/fseek.c, gl/fseeko.c, gl/fseterr.c, gl/fseterr.h, gl/fstat.c,
-	gl/ftell.c, gl/ftello.c, gl/gai_strerror.c, gl/getaddrinfo.c,
-	gl/getdelim.c, gl/getline.c, gl/getopt.c, gl/getopt.in.h,
-	gl/getopt1.c, gl/getopt_int.h, gl/getpass.c, gl/getpass.h,
-	gl/getpeername.c, gl/getsubopt.c, gl/gettext.h, gl/gettimeofday.c,
-	gl/hash-pjw-bare.c, gl/hash-pjw-bare.h, gl/inet_ntop.c,
-	gl/inet_pton.c, gl/intprops.h, gl/isnan.c, gl/isnand-nolibm.h,
-	gl/isnand.c, gl/isnanf-nolibm.h, gl/isnanf.c, gl/isnanl-nolibm.h,
-	gl/isnanl.c, gl/itold.c, gl/listen.c, gl/lseek.c,
-	gl/m4/alphasort.m4, gl/m4/argp.m4, gl/m4/closedir.m4,
+	gl/dirname.h, gl/dup2.c, gl/errno.in.h, gl/error.c, gl/error.h,
+	gl/fd-hook.c, gl/fd-hook.h, gl/filename.h, gl/float+.h, gl/float.c,
+	gl/float.in.h, gl/frexp.c, gl/frexpl.c, gl/fseek.c, gl/fseeko.c,
+	gl/fseterr.c, gl/fseterr.h, gl/fstat.c, gl/ftell.c, gl/ftello.c,
+	gl/gai_strerror.c, gl/getaddrinfo.c, gl/getdelim.c, gl/getline.c,
+	gl/getopt.c, gl/getopt.in.h, gl/getopt1.c, gl/getopt_int.h,
+	gl/getpass.c, gl/getpass.h, gl/getpeername.c, gl/getsubopt.c,
+	gl/gettext.h, gl/gettimeofday.c, gl/hash-pjw-bare.c,
+	gl/hash-pjw-bare.h, gl/inet_ntop.c, gl/inet_pton.c, gl/isnan.c,
+	gl/isnand-nolibm.h, gl/isnand.c, gl/isnanf-nolibm.h, gl/isnanf.c,
+	gl/isnanl-nolibm.h, gl/isnanl.c, gl/itold.c, gl/listen.c,
+	gl/lseek.c, gl/m4/alphasort.m4, gl/m4/argp.m4, gl/m4/closedir.m4,
 	gl/m4/dirent_h.m4, gl/m4/dirname.m4, gl/m4/double-slash-root.m4,
 	gl/m4/eealloc.m4, gl/m4/environ.m4, gl/m4/error.m4,
 	gl/m4/exponentf.m4, gl/m4/exponentl.m4, gl/m4/frexp.m4,
@@ -18389,45 +18610,45 @@
 	gl/stdalign.in.h, gl/stdarg.in.h, gl/stdbool.in.h, gl/stddef.in.h,
 	gl/stdint.in.h, gl/stdio-impl.h, gl/stdio.in.h, gl/stdlib.in.h,
 	gl/str-two-way.h, gl/strcasecmp.c, gl/strchrnul.c,
-	gl/strchrnul.valgrind, gl/strdup.c, gl/strerror-override.c,
-	gl/strerror-override.h, gl/strerror.c, gl/string.in.h,
+	gl/strchrnul.valgrind, gl/strdup.c, gl/string.in.h,
 	gl/strings.in.h, gl/stripslash.c, gl/strncasecmp.c, gl/strndup.c,
 	gl/strnlen.c, gl/strtok_r.c, gl/strverscmp.c, gl/sys_select.in.h,
 	gl/sys_socket.in.h, gl/sys_stat.in.h, gl/sys_time.in.h,
 	gl/sys_types.in.h, gl/sys_uio.in.h, gl/sysexits.in.h,
-	gl/tests/Makefile.am, gl/tests/dosname.h, gl/tests/fpucw.h,
-	gl/tests/infinity.h, gl/tests/intprops.h, gl/tests/malloca.c,
-	gl/tests/malloca.h, gl/tests/malloca.valgrind,
+	gl/tests/Makefile.am, gl/{ => tests}/dosname.h, gl/{ =>
+	tests}/fpucw.h, gl/tests/infinity.h, gl/{ => tests}/intprops.h,
+	gl/tests/malloca.c, gl/tests/malloca.h, gl/tests/malloca.valgrind,
 	gl/tests/minus-zero.h, gl/tests/nan.h, gl/tests/putenv.c,
-	gl/tests/randomd.c, gl/tests/randoml.c, gl/tests/setenv.c,
-	gl/tests/strerror-override.c, gl/tests/strerror-override.h,
-	gl/tests/strerror.c, gl/tests/test-argp-2.sh, gl/tests/test-argp.c,
-	gl/tests/test-dirent.c, gl/tests/test-environ.c,
-	gl/tests/test-fprintf-posix.h, gl/tests/test-frexp.c,
-	gl/tests/test-frexp.h, gl/tests/test-frexpl.c,
-	gl/tests/test-fseterr.c, gl/tests/test-getopt.c,
-	gl/tests/test-getopt.h, gl/tests/test-getopt_long.h,
-	gl/tests/test-isnand-nolibm.c, gl/tests/test-isnand.h,
-	gl/tests/test-isnanf-nolibm.c, gl/tests/test-isnanf.h,
-	gl/tests/test-isnanl-nolibm.c, gl/tests/test-isnanl.h,
-	gl/tests/test-malloc-gnu.c, gl/tests/test-malloca.c,
-	gl/tests/test-math.c, gl/tests/test-printf-frexp.c,
-	gl/tests/test-printf-frexpl.c, gl/tests/test-printf-posix.h,
-	gl/tests/test-printf-posix.output, gl/tests/test-rawmemchr.c,
-	gl/tests/test-setenv.c, gl/tests/test-signbit.c,
-	gl/tests/test-sleep.c, gl/tests/test-strchrnul.c,
-	gl/tests/test-sysexits.c, gl/tests/test-unsetenv.c,
-	gl/tests/test-version-etc.c, gl/tests/test-version-etc.sh,
-	gl/tests/test-vfprintf-posix.c, gl/tests/test-vfprintf-posix.sh,
-	gl/tests/test-vprintf-posix.c, gl/tests/test-vprintf-posix.sh,
-	gl/tests/unsetenv.c, gl/time.in.h, gl/time_r.c, gl/u64.h,
-	gl/unistd.in.h, gl/vasnprintf.c, gl/vasnprintf.h, gl/vasprintf.c,
-	gl/verify.h, gl/version-etc-fsf.c, gl/version-etc.c,
-	gl/version-etc.h, gl/vfprintf.c, gl/vprintf.c, gl/vsnprintf.c,
-	gl/w32sock.h, gl/wchar.in.h, gl/xsize.h, src/certtool.c,
-	src/cli-debug.c, src/cli.c, src/danetool.c, src/ocsptool-common.c,
-	src/ocsptool.c, src/p11tool.c, src/psk.c, src/serv.c,
-	src/srptool.c, src/tpmtool.c: gnulib only contains lgplv2 modules
+	gl/tests/randomd.c, gl/tests/randoml.c, gl/tests/setenv.c, gl/{ =>
+	tests}/strerror-override.c, gl/{ => tests}/strerror-override.h,
+	gl/{ => tests}/strerror.c, gl/tests/test-argp-2.sh,
+	gl/tests/test-argp.c, gl/tests/test-dirent.c,
+	gl/tests/test-environ.c, gl/tests/test-fprintf-posix.h,
+	gl/tests/test-frexp.c, gl/tests/test-frexp.h,
+	gl/tests/test-frexpl.c, gl/tests/test-fseterr.c,
+	gl/tests/test-getopt.c, gl/tests/test-getopt.h,
+	gl/tests/test-getopt_long.h, gl/tests/test-isnand-nolibm.c,
+	gl/tests/test-isnand.h, gl/tests/test-isnanf-nolibm.c,
+	gl/tests/test-isnanf.h, gl/tests/test-isnanl-nolibm.c,
+	gl/tests/test-isnanl.h, gl/tests/test-malloc-gnu.c,
+	gl/tests/test-malloca.c, gl/tests/test-math.c,
+	gl/tests/test-printf-frexp.c, gl/tests/test-printf-frexpl.c,
+	gl/tests/test-printf-posix.h, gl/tests/test-printf-posix.output,
+	gl/tests/test-rawmemchr.c, gl/tests/test-setenv.c,
+	gl/tests/test-signbit.c, gl/tests/test-sleep.c,
+	gl/tests/test-strchrnul.c, gl/tests/test-sysexits.c,
+	gl/tests/test-unsetenv.c, gl/tests/test-version-etc.c,
+	gl/tests/test-version-etc.sh, gl/tests/test-vfprintf-posix.c,
+	gl/tests/test-vfprintf-posix.sh, gl/tests/test-vprintf-posix.c,
+	gl/tests/test-vprintf-posix.sh, gl/tests/unsetenv.c, gl/time.in.h,
+	gl/time_r.c, gl/u64.h, gl/unistd.in.h, gl/vasnprintf.c,
+	gl/vasnprintf.h, gl/vasprintf.c, gl/verify.h, gl/version-etc-fsf.c,
+	gl/version-etc.c, gl/version-etc.h, gl/vfprintf.c, gl/vprintf.c,
+	gl/vsnprintf.c, gl/w32sock.h, gl/wchar.in.h, gl/xsize.h,
+	src/certtool.c, src/cli-debug.c, src/cli.c, src/danetool.c,
+	src/ocsptool-common.c, src/ocsptool.c, src/p11tool.c, src/psk.c,
+	src/serv.c, src/srptool.c, src/tpmtool.c: gnulib only contains
+	lgplv2 modules
 
 2013-08-05  Nikos Mavrogiannopoulos <nmav@gnutls.org>
 
@@ -18607,8 +18828,8 @@
 
 2013-07-26  Nikos Mavrogiannopoulos <nmav@gnutls.org>
 
-	* tests/Makefile.am, tests/mini.c, tests/record-sizes.c: Updated
-	mini test.
+	* tests/Makefile.am, tests/{mini.c => record-sizes.c}: Updated mini
+	test.
 
 2013-07-25  Nikos Mavrogiannopoulos <nmav@gnutls.org>
 
@@ -20342,8 +20563,8 @@
 	* configure.ac, lib/algorithms/ciphersuites.c, lib/algorithms/kx.c,
 	lib/auth/Makefile.am, lib/auth/anon_ecdh.c, lib/auth/cert.c,
 	lib/auth/cert.h, lib/auth/dh_common.c, lib/auth/dhe.c,
-	lib/auth/dhe_psk.c, lib/auth/ecdh_common.c, lib/auth/ecdh_common.h,
-	lib/auth/ecdhe.c, lib/auth/ecdhe.h, lib/auth/rsa_export.c,
+	lib/auth/dhe_psk.c, lib/auth/{ecdh_common.c => ecdhe.c},
+	lib/auth/{ecdh_common.h => ecdhe.h}, lib/auth/rsa_export.c,
 	lib/gnutls_handshake.c, lib/gnutls_kx.c, lib/gnutls_priority.c,
 	lib/gnutls_rsa_export.c, lib/gnutls_state.c, lib/gnutls_ui.c,
 	m4/hooks.m4: Added options to disable more key exchange mechanisms.  In that DHE was separated from ECDHE.
@@ -21443,10 +21664,10 @@
 
 	* NEWS, lib/Makefile.am, lib/gnutls_cert.c, lib/gnutls_errors.c,
 	lib/includes/Makefile.am, lib/includes/gnutls/gnutls.h.in,
-	lib/includes/gnutls/sbuf.h, lib/includes/gnutls/xssl.h,
-	lib/libgnutls.map, lib/sbuf.c, lib/sbuf.h, lib/sbuf_getline.c,
-	lib/xssl.c, lib/xssl.h, lib/xssl_getline.c, tests/Makefile.am,
-	tests/mini-sbuf.c, tests/mini-xssl.c: Added new interface.
+	lib/includes/gnutls/{sbuf.h => xssl.h}, lib/libgnutls.map,
+	lib/{sbuf.c => xssl.c}, lib/{sbuf.h => xssl.h}, lib/{sbuf_getline.c
+	=> xssl_getline.c}, tests/Makefile.am, tests/mini-sbuf.c,
+	tests/mini-xssl.c: Added new interface.
 
 2013-01-27  Nikos Mavrogiannopoulos <nmav@gnutls.org>
 
@@ -22486,14 +22707,14 @@
 
 2012-11-20  Nikos Mavrogiannopoulos <nmav@gnutls.org>
 
-	* build-aux/gendocs.sh, configure.ac, gl/Makefile.am, gl/dup2.c,
-	gl/errno.in.h, gl/m4/errno_h.m4, gl/m4/gnulib-cache.m4,
+	* build-aux/gendocs.sh, configure.ac, gl/Makefile.am, gl/{tests =>
+	}/dup2.c, gl/errno.in.h, gl/m4/errno_h.m4, gl/m4/gnulib-cache.m4,
 	gl/m4/gnulib-comp.m4, gl/m4/select.m4, gl/m4/stdlib_h.m4,
 	gl/select.c, gl/stdlib.in.h, gl/strerror-override.c,
-	gl/strerror-override.h, gl/tests/Makefile.am, gl/tests/dup2.c,
-	gl/tests/fcntl.in.h, gl/tests/test-fcntl-h.c,
-	gl/tests/test-iconv.c, gl/tests/test-select.h, lib/system.c,
-	m4/hooks.m4, maint.mk: use gnulib to detect iconv.
+	gl/strerror-override.h, gl/tests/Makefile.am, gl/tests/fcntl.in.h,
+	gl/tests/test-fcntl-h.c, gl/tests/test-iconv.c,
+	gl/tests/test-select.h, lib/system.c, m4/hooks.m4, maint.mk: use
+	gnulib to detect iconv.
 
 2012-11-20  Nikos Mavrogiannopoulos <nmav@gnutls.org>
 
