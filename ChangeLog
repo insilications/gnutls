@@ -1,3 +1,122 @@
+2016-10-09  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* NEWS, configure.ac, m4/hooks.m4: bumped version
+
+2016-10-09  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* lib/gnutls_extensions.c: TLS extensions: only cache the extension
+	IDs from exts that the server supports That avoids imposing any artificial limits on the number of
+	extensions that a server can handle.  Resolves #136
+
+2016-10-06  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* NEWS: doc update
+
+2016-10-05  Ludovic Courtès <ludo@gnu.org>
+
+	* guile/src/core.c: guile: Implement session record ports using the
+	Guile 2.2 API.  This allows the Guile bindings to be built and used with Guile >=
+	2.1.4, which introduced a new port API.  * guile/src/core.c (USING_GUILE_BEFORE_2_2): New macro.  (session_record_port_type) [!USING_GUILE_BEFORE_2_2]: New
+	definition.  (read_from_session_record_port, write_to_session_record_port) (make_session_record_port) [!USING_GUILE_BEFORE_2_2]: New functions.
+	Conditionalize the other same-named functions on
+	USING_GUILE_BEFORE_2_2.  (scm_init_gnutls_session_record_port_type): Use
+	'read_from_session_record_port' when !USING_GUILE_BEFORE_2_2.
+
+2016-10-05  Ludovic Courtès <ludo@gnu.org>
+
+	* guile/tests/session-record-port.scm: guile: Test
+	'set-session-transport-fd!'.  * guile/tests/session-record-port.scm: Use
+	'set-session-transport-fd!' on the server side.
+
+2016-10-05  Ludovic Courtès <ludo@gnu.org>
+
+	* guile/modules/gnutls/build/tests.scm: guile: Guile 2.x
+	'uniform-vector-read!' replacement returns 0 upon EOF.  This problem was never hit in practice because our tests always got
+	the non-EOF case.  * guile/modules/gnutls/build/tests.scm (uniform-vector-read!)
+	[guile-2]: Return 0 upon EOF.
+
+2016-02-21  Ludovic Courtès <ludo@gnu.org>
+
+	* guile/Makefile.am: guile: Fix out-of-tree builds.  This fixes a regression introduced in 3045a96.  * guile/Makefile.am (.in.scm): Make the parent directory of $@.
+
+2016-02-11  Ludovic Courtès <ludo@gnu.org>
+
+	* guile/modules/gnutls.in: guile: Work around lack of 'eval-when' on
+	1.8.  * guile/modules/gnutls.in (eval-when) [!guile-2]: New macro.
+
+2016-02-11  Ludovic Courtès <ludo@gnu.org>
+
+	* guile/Makefile.am, guile/src/Makefile.am: guile: build: Make
+	silent rules actually quiet.  * guile/Makefile.am (.in.scm): Use $(AM_V_GEN) and $(AM_V_at).  * guile/src/Makefile.am (enums.h, enum-map.i.c) (smobs.h, smob-types.i.c, %.x): Likewise.
+
+2016-02-11  Ludovic Courtès <ludo@gnu.org>
+
+	* configure.ac, guile/Makefile.am, guile/modules/Makefile.am,
+	guile/tests/Makefile.am: guile: Build and install .go files on Guile
+	2.x.  * configure.ac: Check for 'guild' and substitute 'GUILD'.  Define
+	'HAVE_GUILD'.  Substitute 'guileobjectdir'.  Don't output
+	guile/modules/Makefile and guile/tests/Makefile.  * guile/modules/Makefile.am, guile/tests/Makefile.am: Remove.  Move
+	contents to...  * guile/Makefile.am: ... here.  (SUBDIRS): Remove 'modules' and 'tests'.
+
+2016-02-11  Ludovic Courtès <ludo@gnu.org>
+
+	* doc/gnutls-guile.texi, guile/modules/gnutls/build/tests.scm: 
+	guile: tests: Add Guile 2.2 compatibility layer.  This allows tests to run with Guile 2.1/2.2.  * guile/modules/gnutls/build/tests.scm (define-replacement)
+	[guile-2]: New macro.  (uniform-vector-read!, uniform-vector-write)
+	[guile-2]: New procedures.  * doc/gnutls-guile.texi (Guile Preparations): Mention 2.2.
+
+2016-02-11  Ludovic Courtès <ludo@gnu.org>
+
+	* guile/tests/anonymous-auth.scm, guile/tests/openpgp-auth.scm,
+	guile/tests/session-record-port.scm, guile/tests/x509-auth.scm: 
+	guile: tests: Make sure no processes are left behind.  Before that, child processes would be left behind and become
+	zombies.  * guile/tests/anonymous-auth.scm, guile/tests/openpgp-auth.scm,
+	guile/tests/session-record-port.scm, guile/tests/x509-auth.scm: Add
+	(waitpid pid) call on the server side.
+
+2016-02-11  Ludovic Courtès <ludo@gnu.org>
+
+	* guile/.dir-locals.el, guile/Makefile.am,
+	guile/modules/gnutls/build/tests.scm,
+	guile/tests/anonymous-auth.scm, guile/tests/openpgp-auth.scm,
+	guile/tests/session-record-port.scm, guile/tests/x509-auth.scm: 
+	guile: tests: Add 'with-child-process'.  This makes sure that child processes always exit no matter what.  * guile/modules/gnutls/build/tests.scm (define-syntax-rule)
+	[!guile-2]: New macro.  (call-with-child-process): New procedure.  (with-child-process): New macro.  * guile/tests/anonymous-auth.scm, guile/tests/openpgp-auth.scm,
+	guile/tests/session-record-port.scm, guile/tests/x509-auth.scm: Use
+	it instead of an explicit 'primitive-fork' call.  * guile/.dir-locals.el: New file.  * guile/Makefile.am (EXTRA_DIST): New variable.
+
+2016-09-22  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* NEWS: doc update
+
+2016-09-21  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* lib/ext/signature.c, lib/ext/signature.h, lib/gnutls_sig.c: On
+	client side allow signing with the signature algorithm of our cert That allows to sign for example with DSA-SHA1 as client even if we
+	do not allow DSA-SHA1 as signature algorithm for server's
+	certificate. This allows to use a deprecated certificate without
+	enabling deprecated algorithms globally.
+
+2016-09-19  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* NEWS: doc update
+
+2016-09-16  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* lib/gnutls_handshake.c, lib/gnutls_int.h: Increased the maximum
+	size allowed for handshake messages to 128kb This would allow the library to cope with larger packets, as well as
+	TLS 1.3 hellos. Suggested by Hubert Kario.
+
+2016-09-12  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* NEWS: doc update
+
+2016-09-12  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* lib/gnutls_x509.c: gnutls_certificate_set_*key: ensure proper
+	cleanup on key mismatch failures That is, ensure that we keep no local references that are shared
+	with the caller, and that we properly free all initialized values.
+
 2016-09-08  Nikos Mavrogiannopoulos <nmav@gnutls.org>
 
 	* configure.ac, m4/hooks.m4: bumped versions
@@ -23004,18 +23123,8 @@
 
 2012-11-07  Nikos Mavrogiannopoulos <nmav@gnutls.org>
 
-	* NEWS, lib/gnutls_cert.c, lib/gnutls_x509.c,
-	lib/includes/gnutls/gnutls.h.in: Removed
-	GNUTLS_CERT_REVOCATION_DATA_INVALID and no longer fail on OCSP
-	parsing errors.
-
-2012-11-07  Nikos Mavrogiannopoulos <nmav@gnutls.org>
-
-	* doc/cha-cert-auth.texi, doc/cha-tokens.texi: doc update
-
-2012-11-07  Nikos Mavrogiannopoulos <nmav@gnutls.org>
-
-	* gnutls-cli-debug uses server name indication.
+	* Removed GNUTLS_CERT_REVOCATION_DATA_INVALID and no longer fail on
+	OCSP parsing errors.
 
 	-----
 
