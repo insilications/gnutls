@@ -4,9 +4,9 @@
 #
 Name     : gnutls
 Version  : 3.4.16
-Release  : 31
-URL      : http://www.mirrorservice.org/sites/ftp.gnupg.org/gcrypt/gnutls/v3.4/gnutls-3.4.16.tar.xz
-Source0  : http://www.mirrorservice.org/sites/ftp.gnupg.org/gcrypt/gnutls/v3.4/gnutls-3.4.16.tar.xz
+Release  : 32
+URL      : ftp://ftp.gnupg.org/gcrypt/gnutls/v3.4/gnutls-3.4.16.tar.xz
+Source0  : ftp://ftp.gnupg.org/gcrypt/gnutls/v3.4/gnutls-3.4.16.tar.xz
 Summary  : DANE security library for the GNU system
 Group    : Development/Tools
 License  : BSD-3-Clause BSD-3-Clause-Clear GFDL-1.3 GPL-3.0 GPL-3.0+ LGPL-2.0+ LGPL-2.1 LGPL-3.0
@@ -135,8 +135,9 @@ rm -rf %{buildroot}
 /usr/include/gnutls/urls.h
 /usr/include/gnutls/x509-ext.h
 /usr/include/gnutls/x509.h
-/usr/lib64/*.so
-/usr/lib64/pkgconfig/*.pc
+/usr/lib64/libgnutls.so
+/usr/lib64/libgnutlsxx.so
+/usr/lib64/pkgconfig/gnutls.pc
 
 %files doc
 %defattr(-,root,root,-)
@@ -146,8 +147,11 @@ rm -rf %{buildroot}
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib64/*.so.*
+/usr/lib64/libgnutls.so.30
+/usr/lib64/libgnutls.so.30.6.8
+/usr/lib64/libgnutlsxx.so.28
+/usr/lib64/libgnutlsxx.so.28.1.0
 
-%files locales -f gnutls.lang 
+%files locales -f gnutls.lang
 %defattr(-,root,root,-)
 
