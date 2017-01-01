@@ -6,8 +6,14 @@ nettle-dev
 nettle-lib
 nettle
 libidn-dev
+libidn-dev32
 bison
 gmp-dev
 valgrind
 libtasn1-dev
+libtasn1-dev32
 net-tools
+nettle-dev32
+nettle-lib32
+gmp-dev32
+gmp-lib32
