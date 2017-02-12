@@ -17,3 +17,5 @@ nettle-dev32
 nettle-lib32
 gmp-dev32
 gmp-lib32
+libunistring-dev
+libunistring-dev32
