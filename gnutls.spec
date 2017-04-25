@@ -97,6 +97,7 @@ doc components for the gnutls package.
 %package lib
 Summary: lib components for the gnutls package.
 Group: Libraries
+Requires: p11-kit
 
 %description lib
 lib components for the gnutls package.
