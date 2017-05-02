@@ -6,7 +6,7 @@
 #
 Name     : gnutls
 Version  : 3.5.10
-Release  : 36
+Release  : 37
 URL      : ftp://ftp.gnupg.org/gcrypt/gnutls/v3.5/gnutls-3.5.10.tar.xz
 Source0  : ftp://ftp.gnupg.org/gcrypt/gnutls/v3.5/gnutls-3.5.10.tar.xz
 Source99 : ftp://ftp.gnupg.org/gcrypt/gnutls/v3.5/gnutls-3.5.10.tar.xz.sig
