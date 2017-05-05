@@ -5,23 +5,26 @@
 # Source0 file verified with key 0x9D5EAAF69013B842 (nmav@gnutls.org)
 #
 Name     : gnutls
-Version  : 3.5.10
-Release  : 37
-URL      : ftp://ftp.gnupg.org/gcrypt/gnutls/v3.5/gnutls-3.5.10.tar.xz
-Source0  : ftp://ftp.gnupg.org/gcrypt/gnutls/v3.5/gnutls-3.5.10.tar.xz
-Source99 : ftp://ftp.gnupg.org/gcrypt/gnutls/v3.5/gnutls-3.5.10.tar.xz.sig
+Version  : 3.5.11
+Release  : 38
+URL      : ftp://ftp.gnupg.org/gcrypt/gnutls/v3.5/gnutls-3.5.11.tar.xz
+Source0  : ftp://ftp.gnupg.org/gcrypt/gnutls/v3.5/gnutls-3.5.11.tar.xz
+Source99 : ftp://ftp.gnupg.org/gcrypt/gnutls/v3.5/gnutls-3.5.11.tar.xz.sig
 Summary  : DANE security library for the GNU system
 Group    : Development/Tools
-License  : BSD-3-Clause BSD-3-Clause-Clear GFDL-1.3 GPL-3.0 GPL-3.0+ LGPL-2.0+ LGPL-2.1 LGPL-3.0 MIT
+License  : BSD-3-Clause BSD-3-Clause-Clear GPL-3.0 GPL-3.0+ LGPL-2.0+ LGPL-2.1 LGPL-3.0 MIT
 Requires: gnutls-bin
 Requires: gnutls-lib
 Requires: gnutls-doc
 Requires: gnutls-locales
+BuildRequires : automake
+BuildRequires : automake-dev
 BuildRequires : bison
 BuildRequires : docbook-xml
 BuildRequires : gcc-dev32
 BuildRequires : gcc-libgcc32
 BuildRequires : gcc-libstdc++32
+BuildRequires : gettext-bin
 BuildRequires : glibc-dev32
 BuildRequires : glibc-libc32
 BuildRequires : gmp-dev
@@ -33,15 +36,19 @@ BuildRequires : libidn-dev
 BuildRequires : libidn-dev32
 BuildRequires : libtasn1-dev
 BuildRequires : libtasn1-dev32
+BuildRequires : libtool
+BuildRequires : libtool-dev
 BuildRequires : libunistring-dev
 BuildRequires : libunistring-dev32
 BuildRequires : libxslt-bin
+BuildRequires : m4
 BuildRequires : net-tools
 BuildRequires : nettle
 BuildRequires : nettle-dev
 BuildRequires : nettle-dev32
 BuildRequires : nettle-lib
 BuildRequires : nettle-lib32
+BuildRequires : pkg-config-dev
 BuildRequires : pkgconfig(32libidn)
 BuildRequires : pkgconfig(32p11-kit-1)
 BuildRequires : pkgconfig(32zlib)
@@ -50,6 +57,7 @@ BuildRequires : pkgconfig(p11-kit-1)
 BuildRequires : pkgconfig(zlib)
 BuildRequires : sed
 BuildRequires : valgrind
+Patch1: 0001-tests-Skip-trust-store-test-as-SSL-trust-uninitialis.patch
 
 %description
 ext/         -> Implementation of TLS extensions
@@ -97,7 +105,6 @@ doc components for the gnutls package.
 %package lib
 Summary: lib components for the gnutls package.
 Group: Libraries
-Requires: p11-kit
 
 %description lib
 lib components for the gnutls package.
@@ -120,40 +127,44 @@ locales components for the gnutls package.
 
 
 %prep
-%setup -q -n gnutls-3.5.10
+%setup -q -n gnutls-3.5.11
+%patch1 -p1
 pushd ..
-cp -a gnutls-3.5.10 build32
+cp -a gnutls-3.5.11 build32
 popd
 
 %build
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1488824492
+export SOURCE_DATE_EPOCH=1494001989
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
 export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
 export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
 export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
-%configure --disable-static --with-default-trust-store-file=%{_sysconfdir}/ssl/cert.pem \
+%reconfigure --disable-static --with-default-trust-store-file=%{_sysconfdir}/ssl/cert.pem \
 --with-default-trust-store-dir=%{_datadir}/ca-certs
 make V=1  %{?_smp_mflags}
-
 pushd ../build32/
 export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
 export CFLAGS="$CFLAGS -m32"
 export CXXFLAGS="$CXXFLAGS -m32"
 export LDFLAGS="$LDFLAGS -m32"
-%configure --disable-static --with-default-trust-store-file=%{_sysconfdir}/ssl/cert.pem \
---with-default-trust-store-dir=%{_datadir}/ca-certs   --libdir=/usr/lib32 --build=i686-generic-linux-gnu --host=i686-generic-linux-gnu --target=i686-clr-linux-gnu
+%reconfigure --disable-static --with-default-trust-store-file=%{_sysconfdir}/ssl/cert.pem \
+--with-default-trust-store-dir=%{_datadir}/ca-certs  --libdir=/usr/lib32 --build=i686-generic-linux-gnu --host=i686-generic-linux-gnu --target=i686-clr-linux-gnu
 make V=1  %{?_smp_mflags}
 popd
+
 %check
 export LANG=C
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
-export no_proxy=localhost
+export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1488824492
+export SOURCE_DATE_EPOCH=1494001989
 rm -rf %{buildroot}
 pushd ../build32/
 %make_install32
@@ -222,14 +233,14 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libgnutls.so.30
-/usr/lib64/libgnutls.so.30.14.1
+/usr/lib64/libgnutls.so.30.14.2
 /usr/lib64/libgnutlsxx.so.28
 /usr/lib64/libgnutlsxx.so.28.1.0
 
 %files lib32
 %defattr(-,root,root,-)
 /usr/lib32/libgnutls.so.30
-/usr/lib32/libgnutls.so.30.14.1
+/usr/lib32/libgnutls.so.30.14.2
 /usr/lib32/libgnutlsxx.so.28
 /usr/lib32/libgnutlsxx.so.28.1.0
 
