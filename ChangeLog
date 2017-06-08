@@ -1,3 +1,168 @@
+2017-06-07  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* tests/cert-tests/Makefile.am: tests: corrected typo in makefile Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+2017-06-07  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* NEWS, configure.ac, m4/hooks.m4: released 3.5.13 Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+2017-06-06  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* src/certtool.c: certtool: fix DER export with --p7-info Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+2017-06-05  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* NEWS: doc update Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+2017-05-29  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* tests/Makefile.am, tests/cert-tests/Makefile.am,
+	tests/cert-tests/data/openssl-invalid-time-format.pem,
+	tests/cert-tests/tolerate-invalid-time, tests/strict-der.c: tests:
+	added unit test to verify that certificates with non-DER strict time
+	fields are accepted Also removed the old strict compliance DER test.  Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+2017-05-29  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* lib/x509/common.h: Tolerate DER time encoding errors It seems that openssl generated certificates may contain invalid
+	formatted times, and gnutls will no longer parse them. Ignore such
+	formatting errors when DER decoding.  We should reconsider this in the future (#207) Resolves #196 Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+2017-05-30  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* lib/errors.c: GNUTLS_E_INSUFFICIENT_SECURITY: moved to fatal
+	errors Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+2017-05-27  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* NEWS: doc update Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+2017-05-27  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* lib/minitasn1/decoding.c, lib/minitasn1/element.c,
+	lib/minitasn1/errors.c, lib/minitasn1/libtasn1.h,
+	lib/minitasn1/parser_aux.c: libtasn1: updated to 4.11 Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+2017-05-26  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* tests/scripts/common.sh, tests/slow/Makefile.am,
+	tests/slow/test-ciphers-common.sh, tests/slow/{test-hash-large =>
+	test-hash-large.sh}: tests: skip x86-specific tests when not in x86 Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+2017-05-24  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* configure.ac: configure: warn when building as static library [ci
+	skip] Relates #203 Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+2017-05-24  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* NEWS: doc update Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+2017-05-24  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* lib/ext/status_request.c: 
+	gnutls_ocsp_status_request_enable_client: documented requirements
+	for parameters That is, the fact that extensions and responder_id parameters must
+	be allocated, and are assigned to the session.  Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+2017-05-24  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* lib/ext/status_request.c: ext/status_request: Removed the parsing
+	of responder IDs from client extension These values were never used by gnutls, nor were accessible to
+	applications, and as such there is not reason to parse them.  Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+2017-05-24  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* lib/ext/status_request.c: ext/status_request: ensure response IDs
+	are properly deinitialized That is, do not attempt to loop through the array if there is no
+	array allocated.  Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+2017-05-23  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* lib/crypto-selftests.c: self-tests: limit compatibility API checks
+	to vectors with plaintext Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+2017-05-22  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* tests/slow/cipher-override.c: tests: on cipher override do not run
+	the compatibility checks That is, because we introduce a cipher using the new AEAD API which
+	does not provide compatibility hooks.  Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+2017-05-22  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* lib/crypto-selftests.c, lib/includes/gnutls/self-test.h: 
+	self-tests: introduced flag GNUTLS_SELF_TEST_FLAG_NO_COMPAT This allows skipping the compatibility APIs when running self tests.  Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+2017-05-22  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* lib/crypto-selftests-pk.c, lib/crypto-selftests.c,
+	lib/includes/gnutls/self-test.h: self-tests: all parameter was
+	replaced by flags This allows to introduce more options than just check all ciphers.  Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+2017-05-22  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* NEWS: doc update Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+2017-05-22  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* lib/accelerated/aarch64/aes-gcm-aarch64.c: aarch64: fix AES-GCM
+	in-place encryption and decryption Resolves #204 Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+2017-05-22  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* lib/crypto-selftests.c: crypto: self-tests: enhance to include
+	compatibility APIs That is, run the compatibility gnutls_cipher_* APIs on self tests
+	for AEAD ciphers in addition to the AEAD API.  Relates #204 Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+2017-05-22  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* lib/algorithms/ciphers.c, lib/crypto-api.c, lib/gnutls_int.h: 
+	crypto-api: refuse to run gnutls_cipher_init() in full AEAD modes That is, there are AEAD modes like CCM that can only be used through
+	the AEAD API. Always refuse calls to gnutls_cipher_init() in these
+	modes.  Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+2017-05-22  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* lib/x509/privkey.c: doc: corrected error in
+	gnutls_x509_privkey_sign_data parameters [ci skip] Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+2017-05-16  Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+	* NEWS: doc update Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+2017-05-08  Karl Tarbe <karl.tarbe@cyber.ee>
+
+	* tests/cert-tests/Makefile.am,
+	tests/cert-tests/data/pkcs7-chain-endcert-key.pem,
+	tests/cert-tests/data/pkcs7-chain-root.pem,
+	tests/cert-tests/data/pkcs7-chain.pem,
+	tests/cert-tests/pkcs7-list-sign: tests: add test for signing with
+	certificate list Signing with one certificate, but includes the other certificates
+	inside the PKCS#7 structure.  Signed-off-by: Karl Tarbe <karl.tarbe@cyber.ee>
+
+2017-05-04  Karl Tarbe <karl.tarbe@cyber.ee>
+
+	* src/certtool-args.def, src/certtool.c: certtool: allow multiple
+	certificates in --p7-sign Signed-off-by: Karl Tarbe <karl.tarbe@cyber.ee>
+
+2017-05-12  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* lib/x509/pkcs7.c: find_signer: eliminate memory leak Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+2017-05-14  Andreas Metzler <ametzler@bebt.de>
+
+	* m4/hooks.m4: Fix autoconf progress message concerning heartbeat
+	[ci skip]
+
+2017-05-11  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* lib/x509/x509_dn.c: doc: corrected typo [ci skip] Reported by Andreas Metzler.  Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+2017-05-11  Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+	* tests/openpgp-callback.c: test: corrected typo preventing the run
+	of openpgp test [ci skip] Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
 2017-05-11  Nikos Mavrogiannopoulos <nmav@gnutls.org>
 
 	* NEWS, m4/hooks.m4: released 3.5.12 Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>

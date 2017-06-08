@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x9D5EAAF69013B842 (nmav@gnutls.org)
 #
 Name     : gnutls
-Version  : 3.5.12
-Release  : 39
-URL      : ftp://ftp.gnupg.org/gcrypt/gnutls/v3.5/gnutls-3.5.12.tar.xz
-Source0  : ftp://ftp.gnupg.org/gcrypt/gnutls/v3.5/gnutls-3.5.12.tar.xz
-Source99 : ftp://ftp.gnupg.org/gcrypt/gnutls/v3.5/gnutls-3.5.12.tar.xz.sig
+Version  : 3.5.13
+Release  : 40
+URL      : ftp://ftp.gnupg.org/gcrypt/gnutls/v3.5/gnutls-3.5.13.tar.xz
+Source0  : ftp://ftp.gnupg.org/gcrypt/gnutls/v3.5/gnutls-3.5.13.tar.xz
+Source99 : ftp://ftp.gnupg.org/gcrypt/gnutls/v3.5/gnutls-3.5.13.tar.xz.sig
 Summary  : DANE security library for the GNU system
 Group    : Development/Tools
 License  : BSD-3-Clause BSD-3-Clause-Clear GPL-3.0 GPL-3.0+ LGPL-2.0+ LGPL-2.1 LGPL-3.0 MIT
@@ -127,10 +127,10 @@ locales components for the gnutls package.
 
 
 %prep
-%setup -q -n gnutls-3.5.12
+%setup -q -n gnutls-3.5.13
 %patch1 -p1
 pushd ..
-cp -a gnutls-3.5.12 build32
+cp -a gnutls-3.5.13 build32
 popd
 
 %build
@@ -138,7 +138,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1494520474
+export SOURCE_DATE_EPOCH=1496928824
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
 export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
 export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
@@ -164,7 +164,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1494520474
+export SOURCE_DATE_EPOCH=1496928824
 rm -rf %{buildroot}
 pushd ../build32/
 %make_install32
@@ -233,14 +233,14 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libgnutls.so.30
-/usr/lib64/libgnutls.so.30.14.4
+/usr/lib64/libgnutls.so.30.14.5
 /usr/lib64/libgnutlsxx.so.28
 /usr/lib64/libgnutlsxx.so.28.1.0
 
 %files lib32
 %defattr(-,root,root,-)
 /usr/lib32/libgnutls.so.30
-/usr/lib32/libgnutls.so.30.14.4
+/usr/lib32/libgnutls.so.30.14.5
 /usr/lib32/libgnutlsxx.so.28
 /usr/lib32/libgnutlsxx.so.28.1.0
 
