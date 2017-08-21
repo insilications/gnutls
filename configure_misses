@@ -1,0 +1,109 @@
+Configure miss: whether to build with code coverage support
+Configure miss: struct iovec.iov_basea
+Configure miss: getentropy
+Configure miss: whether to use the included minitasn1
+Configure miss: whether to disable the SSL 3.0 protocol
+Configure miss: whether to disable the SSL 2.0 client hello
+Configure miss: whether to disable DTLS-SRTP extension
+Configure miss: whether to disable ALPN extension
+Configure miss: whether to disable SRP authentication support
+Configure miss: whether to disable PSK authentication support
+Configure miss: whether to disable anonymous authentication support
+Configure miss: whether to disable DHE support
+Configure miss: whether to disable ECDHE support
+Configure miss: whether to disable OpenPGP Certificate authentication support
+Configure miss: whether to add cryptodev support
+Configure miss: whether to disable OCSP support
+Configure miss: whether to disable session tickets support
+Configure miss: whether to build OpenSSL compatibility layer
+Configure miss: libseccomp
+Configure miss: libcrypto
+Configure miss: getprogname
+Configure miss: getexecname
+Configure miss: whether <limits.h> defines MIN and MAX
+Configure miss: whether stdint.h predates C++11
+Configure miss: if gcc/ld supports -Wl,--output-def
+Configure miss: whether self tests are run under valgrind
+Configure miss: whether self tests are run under valgrind
+Configure miss: whether gai_strerrorA is declared
+Configure miss: whether __argv is declared
+Configure miss: __mktime_internal
+Configure miss: timezone_t
+Configure miss: whether C compiler handles -Werror -Wunknown-warning-option
+Configure miss: whether -Wno-missing-field-initializers is needed
+Configure miss: CMOCKA
+Configure miss: library containing idn2_lookup_u8
+Configure miss: unbound library
+Configure miss: tss library
+Configure miss: sys/procset.h usability
+Configure miss: sys/procset.h presence
+Configure miss: sys/procset.h
+Configure miss: runetype.h
+Configure miss: uint_t
+Configure miss: pathfind in -lgen
+Configure miss: gettext in -lintl
+Configure miss: whether autoopts-config can be found... checking whether autoopts-config is specified
+Configure miss: whether a reg expr header is specified
+Configure miss: whether with-libregex was specified
+Configure miss: whether with-libregex-cflags was specified
+Configure miss: whether with-libregex-libs was specified
+Configure miss: whether pathfind(3) works
+Configure miss: guile-snarf
+Configure miss: i686-generic-linux-gnu-pkg-config
+Configure miss: whether to build with code coverage support
+Configure miss: struct iovec.iov_basea
+Configure miss: getentropy
+Configure miss: whether to use the included minitasn1
+Configure miss: whether to disable the SSL 3.0 protocol
+Configure miss: whether to disable the SSL 2.0 client hello
+Configure miss: whether to disable DTLS-SRTP extension
+Configure miss: whether to disable ALPN extension
+Configure miss: whether to disable SRP authentication support
+Configure miss: whether to disable PSK authentication support
+Configure miss: whether to disable anonymous authentication support
+Configure miss: whether to disable DHE support
+Configure miss: whether to disable ECDHE support
+Configure miss: whether to disable OpenPGP Certificate authentication support
+Configure miss: whether to add cryptodev support
+Configure miss: whether to disable OCSP support
+Configure miss: whether to disable session tickets support
+Configure miss: whether to build OpenSSL compatibility layer
+Configure miss: libseccomp
+Configure miss: libcrypto
+Configure miss: getprogname
+Configure miss: getexecname
+Configure miss: whether <limits.h> defines MIN and MAX
+Configure miss: whether stdint.h predates C++11
+Configure miss: if gcc/ld supports -Wl,--output-def
+Configure miss: whether self tests are run under valgrind
+Configure miss: whether INT64_MAX == LONG_MAX
+Configure miss: whether UINT64_MAX == ULONG_MAX
+Configure miss: whether self tests are run under valgrind
+Configure miss: whether gai_strerrorA is declared
+Configure miss: whether __argv is declared
+Configure miss: __mktime_internal
+Configure miss: timezone_t
+Configure miss: whether C compiler handles -Werror -Wunknown-warning-option
+Configure miss: whether -Wno-missing-field-initializers is needed
+Configure miss: i686-generic-linux-gnu-objdump
+Configure miss: i686-generic-linux-gnu-dlltool
+Configure miss: i686-generic-linux-gnu-strip
+Configure miss: i686-generic-linux-gnu-mt
+Configure miss: CMOCKA
+Configure miss: library containing idn2_lookup_u8
+Configure miss: unbound library
+Configure miss: tss library
+Configure miss: sys/procset.h usability
+Configure miss: sys/procset.h presence
+Configure miss: sys/procset.h
+Configure miss: runetype.h
+Configure miss: uint_t
+Configure miss: pathfind in -lgen
+Configure miss: gettext in -lintl
+Configure miss: whether autoopts-config can be found... checking whether autoopts-config is specified
+Configure miss: whether a reg expr header is specified
+Configure miss: whether with-libregex was specified
+Configure miss: whether with-libregex-cflags was specified
+Configure miss: whether with-libregex-libs was specified
+Configure miss: whether pathfind(3) works
+Configure miss: guile-snarf
