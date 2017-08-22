@@ -1,27 +1,11 @@
-From c5236058059cb7a328e93b7355c7a38fd7eb067c Mon Sep 17 00:00:00 2001
-From: Ikey Doherty <michael.i.doherty@intel.com>
-Date: Fri, 5 May 2017 17:04:48 +0100
-Subject: [PATCH] tests: Skip trust-store test as SSL trust uninitialised in
- build root
-
-Signed-off-by: Ikey Doherty <michael.i.doherty@intel.com>
----
- tests/Makefile.am | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/tests/Makefile.am b/tests/Makefile.am
-index 01c01d9..144c95d 100644
---- a/tests/Makefile.am
-+++ b/tests/Makefile.am
-@@ -125,7 +125,7 @@ ctests = mini-record-2 simple gc set_pkcs12_cred cert certuniqueid	\
- 	 set_known_dh_params_anon set_known_dh_params_psk session-tickets-ok \
- 	 session-tickets-missing set_x509_key_file_legacy status-request-ext \
- 	 rng-no-onload dtls1-2-mtu-check crl_apis cert_verify_inv_utf8 \
--	 hostname-check-utf8 pkcs8-key-decode-encrypted priority-mix trust-store
-+	 hostname-check-utf8 pkcs8-key-decode-encrypted priority-mix
+--- gnutls-3.6.0/tests/Makefile.am~	2017-08-19 21:40:55.000000000 +0000
++++ gnutls-3.6.0/tests/Makefile.am	2017-08-22 18:20:01.701166167 +0000
+@@ -150,7 +150,7 @@
+ 	 hostname-check-utf8 pkcs8-key-decode-encrypted priority-mix pkcs7 \
+ 	 send-data-before-handshake recv-data-before-handshake crt_inv_write \
+ 	 x509sign-verify-error rng-op-nonce rng-op-random rng-op-key x509-dn-decode-compat \
+-	 ip-check mini-x509-ipaddr trust-store base64-raw random-art dhex509self \
++	 ip-check mini-x509-ipaddr base64-raw random-art dhex509self \
+ 	 dss-sig-val sign-pk-api tls-session-ext-override
  
  if HAVE_SECCOMP_TESTS
- ctests += dtls-with-seccomp tls-with-seccomp dtls-client-with-seccomp tls-client-with-seccomp
--- 
-2.12.2
-

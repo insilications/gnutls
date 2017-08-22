@@ -1,5 +1,8 @@
 Configure miss: whether to build with code coverage support
 Configure miss: struct iovec.iov_basea
+Configure miss: threads.h usability
+Configure miss: threads.h presence
+Configure miss: threads.h
 Configure miss: getentropy
 Configure miss: whether to use the included minitasn1
 Configure miss: whether to disable the SSL 3.0 protocol
@@ -11,7 +14,6 @@ Configure miss: whether to disable PSK authentication support
 Configure miss: whether to disable anonymous authentication support
 Configure miss: whether to disable DHE support
 Configure miss: whether to disable ECDHE support
-Configure miss: whether to disable OpenPGP Certificate authentication support
 Configure miss: whether to add cryptodev support
 Configure miss: whether to disable OCSP support
 Configure miss: whether to disable session tickets support
@@ -33,6 +35,7 @@ Configure miss: whether C compiler handles -Werror -Wunknown-warning-option
 Configure miss: whether -Wno-missing-field-initializers is needed
 Configure miss: CMOCKA
 Configure miss: library containing idn2_lookup_u8
+Configure miss: nettle_rsa_pss_sha256_verify_digest in -lhogweed
 Configure miss: unbound library
 Configure miss: tss library
 Configure miss: sys/procset.h usability
@@ -52,6 +55,9 @@ Configure miss: guile-snarf
 Configure miss: i686-generic-linux-gnu-pkg-config
 Configure miss: whether to build with code coverage support
 Configure miss: struct iovec.iov_basea
+Configure miss: threads.h usability
+Configure miss: threads.h presence
+Configure miss: threads.h
 Configure miss: getentropy
 Configure miss: whether to use the included minitasn1
 Configure miss: whether to disable the SSL 3.0 protocol
@@ -63,7 +69,6 @@ Configure miss: whether to disable PSK authentication support
 Configure miss: whether to disable anonymous authentication support
 Configure miss: whether to disable DHE support
 Configure miss: whether to disable ECDHE support
-Configure miss: whether to disable OpenPGP Certificate authentication support
 Configure miss: whether to add cryptodev support
 Configure miss: whether to disable OCSP support
 Configure miss: whether to disable session tickets support
@@ -91,6 +96,7 @@ Configure miss: i686-generic-linux-gnu-strip
 Configure miss: i686-generic-linux-gnu-mt
 Configure miss: CMOCKA
 Configure miss: library containing idn2_lookup_u8
+Configure miss: nettle_rsa_pss_sha256_verify_digest in -lhogweed
 Configure miss: unbound library
 Configure miss: tss library
 Configure miss: sys/procset.h usability
