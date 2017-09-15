@@ -6,7 +6,7 @@
 #
 Name     : gnutls
 Version  : 3.6.0
-Release  : 42
+Release  : 43
 URL      : ftp://ftp.gnupg.org/gcrypt/gnutls/v3.6/gnutls-3.6.0.tar.xz
 Source0  : ftp://ftp.gnupg.org/gcrypt/gnutls/v3.6/gnutls-3.6.0.tar.xz
 Source99 : ftp://ftp.gnupg.org/gcrypt/gnutls/v3.6/gnutls-3.6.0.tar.xz.sig
@@ -17,14 +17,11 @@ Requires: gnutls-bin
 Requires: gnutls-lib
 Requires: gnutls-doc
 Requires: gnutls-locales
-BuildRequires : automake
-BuildRequires : automake-dev
 BuildRequires : bison
 BuildRequires : docbook-xml
 BuildRequires : gcc-dev32
 BuildRequires : gcc-libgcc32
 BuildRequires : gcc-libstdc++32
-BuildRequires : gettext-bin
 BuildRequires : glibc-dev32
 BuildRequires : glibc-libc32
 BuildRequires : gmp-dev
@@ -36,24 +33,19 @@ BuildRequires : libidn-dev
 BuildRequires : libidn-dev32
 BuildRequires : libtasn1-dev
 BuildRequires : libtasn1-dev32
-BuildRequires : libtool
-BuildRequires : libtool-dev
 BuildRequires : libunistring-dev
 BuildRequires : libunistring-dev32
 BuildRequires : libxslt-bin
-BuildRequires : m4
 BuildRequires : net-tools
 BuildRequires : nettle
 BuildRequires : nettle-dev
 BuildRequires : nettle-dev32
 BuildRequires : nettle-lib
 BuildRequires : nettle-lib32
-BuildRequires : pkg-config-dev
 BuildRequires : pkgconfig(32p11-kit-1)
 BuildRequires : pkgconfig(p11-kit-1)
 BuildRequires : sed
 BuildRequires : valgrind
-Patch1: 0001-tests-Skip-trust-store-test-as-SSL-trust-uninitialis.patch
 
 %description
 ext/         -> Implementation of TLS extensions
@@ -124,7 +116,6 @@ locales components for the gnutls package.
 
 %prep
 %setup -q -n gnutls-3.6.0
-%patch1 -p1
 pushd ..
 cp -a gnutls-3.6.0 build32
 popd
@@ -134,24 +125,22 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1503427855
-export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
-export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
-export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
-export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
-%reconfigure --disable-static --with-default-trust-store-file=%{_sysconfdir}/ssl/cert.pem \
---with-default-trust-store-dir=%{_datadir}/ca-certs
+export SOURCE_DATE_EPOCH=1505429673
+export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-common -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
+export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-common -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
+export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-common -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
+export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-common -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
+%configure --disable-static
 make V=1  %{?_smp_mflags}
+
 pushd ../build32/
 export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
 export CFLAGS="$CFLAGS -m32"
 export CXXFLAGS="$CXXFLAGS -m32"
 export LDFLAGS="$LDFLAGS -m32"
-%reconfigure --disable-static --with-default-trust-store-file=%{_sysconfdir}/ssl/cert.pem \
---with-default-trust-store-dir=%{_datadir}/ca-certs  --libdir=/usr/lib32 --build=i686-generic-linux-gnu --host=i686-generic-linux-gnu --target=i686-clr-linux-gnu
+%configure --disable-static    --libdir=/usr/lib32 --build=i686-generic-linux-gnu --host=i686-generic-linux-gnu --target=i686-clr-linux-gnu
 make V=1  %{?_smp_mflags}
 popd
-
 %check
 export LANG=C
 export http_proxy=http://127.0.0.1:9/
@@ -160,7 +149,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1503427855
+export SOURCE_DATE_EPOCH=1505429673
 rm -rf %{buildroot}
 pushd ../build32/
 %make_install32

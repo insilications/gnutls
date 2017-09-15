@@ -1,2 +1,0 @@
---with-default-trust-store-file=%{_sysconfdir}/ssl/cert.pem
---with-default-trust-store-dir=%{_datadir}/ca-certs
