@@ -6,7 +6,7 @@
 #
 Name     : gnutls
 Version  : 3.6.1
-Release  : 44
+Release  : 45
 URL      : ftp://ftp.gnupg.org/gcrypt/gnutls/v3.6/gnutls-3.6.1.tar.xz
 Source0  : ftp://ftp.gnupg.org/gcrypt/gnutls/v3.6/gnutls-3.6.1.tar.xz
 Source99 : ftp://ftp.gnupg.org/gcrypt/gnutls/v3.6/gnutls-3.6.1.tar.xz.sig
@@ -46,6 +46,7 @@ BuildRequires : pkgconfig(32p11-kit-1)
 BuildRequires : pkgconfig(p11-kit-1)
 BuildRequires : sed
 BuildRequires : valgrind
+Patch1: noversion.patch
 
 %description
 ext/         -> Implementation of TLS extensions
@@ -116,6 +117,7 @@ locales components for the gnutls package.
 
 %prep
 %setup -q -n gnutls-3.6.1
+%patch1 -p1
 pushd ..
 cp -a gnutls-3.6.1 build32
 popd
@@ -125,7 +127,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1508609392
+export SOURCE_DATE_EPOCH=1508619023
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
@@ -149,7 +151,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1508609392
+export SOURCE_DATE_EPOCH=1508619023
 rm -rf %{buildroot}
 pushd ../build32/
 %make_install32
