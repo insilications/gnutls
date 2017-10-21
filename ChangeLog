@@ -1,4 +1,1037 @@
 Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Sat Oct 21 09:44:37 2017 +0200
+
+    doc update [ci skip]
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Sat Oct 21 02:18:07 2017 +0200
+
+    doc update
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Thu Oct 19 10:14:33 2017 +0200
+
+    doc update [ci skip]
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Thomas Klute <thomas2.klute@uni-dortmund.de>
+Date:   Wed Oct 18 19:50:57 2017 +0200
+
+    gnutls_server_name_set: Clarify meaning of the name_length parameter [ci skip]
+    
+    Signed-off-by: Thomas Klute <thomas2.klute@uni-dortmund.de>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Wed Oct 18 15:57:53 2017 +0200
+
+    doc: mention SHA224 removal in upgrade guide
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Wed Oct 18 15:55:57 2017 +0200
+
+    bumped version
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Wed Oct 18 10:18:33 2017 +0200
+
+    gnutls-serv: print the right error code on OCSP request setting
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Wed Oct 18 13:42:21 2017 +0200
+
+    ocsptool: doc update
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Mon Oct 16 11:41:36 2017 +0200
+
+    doc update [ci skip]
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Wed Sep 27 13:25:02 2017 +0200
+
+    cmp_hsk_types: fixed check for SSLv2 hello
+    
+    Previously, if SSLv2 hello support was disabled, the check for
+    the expected TLS message was incorrect.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Sat Oct 7 10:06:09 2017 +0200
+
+    doc: improve documentation on provable private keys
+    
+    Resolves #301
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Sat Oct 7 09:44:54 2017 +0200
+
+    doc: enhanced text on PKCS#7 and public keys
+    
+    Resolves #302
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Sun Oct 1 12:20:18 2017 +0200
+
+    tests: check whether key IDs with SHA512 are corrected calculated
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Sun Oct 1 12:18:54 2017 +0200
+
+    certtool: allow using SHA512 for key IDs
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Sun Oct 1 12:17:26 2017 +0200
+
+    _gnutls_get_key_id: introduce flag GNUTLS_KEYID_USE_SHA512
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Sun Oct 1 12:14:11 2017 +0200
+
+    tests: check fingerprint generation with SHA512
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Sun Oct 1 12:12:25 2017 +0200
+
+    certtool: allow using --fingerprint with sha384 or sha512
+    
+    Resolves #295
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Andreas Metzler <ametzler@bebt.de>
+Date:   Wed Sep 27 19:21:59 2017 +0200
+
+    Modernize gtk-doc support
+    
+    Update gtk-doc.make, m4/gtk-doc.m4 and doc/reference/Makefile.am from
+    gtk-doc git head (that is 1.26 +
+    c08cc78562c59082fc83b55b58747177510b7a70).
+    Disable gtkdoc-check.
+    
+    Signed-off-by: Andreas Metzler <ametzler@bebt.de>
+
+Author: Rowan Thorpe <rowan@rowanthorpe.com>
+Date:   Wed Sep 27 21:41:43 2017 +0300
+
+    Fix autoreconf invocation to actually run autopoint
+    
+    Signed-off-by: Rowan Thorpe <rowan@rowanthorpe.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Mon Sep 25 16:57:31 2017 +0200
+
+    CONTRIBUTING.md: added some text on introducing new APIs [ci skip]
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Sun Sep 24 10:52:08 2017 +0200
+
+    tests: re-purposed client_dsa_key test to match new behavior of the library
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Sun Sep 24 10:47:05 2017 +0200
+
+    tests: update TLS 1.2 tests to account for RSA-PSS client signatures
+    
+    On commit de4f55b4dcf4bbe8f788e1f8f5bd59cd596f7d36:
+    "signature: on client side, refuse to negotiate non-enabled signature schemes"
+    
+    the behavior of allowing a client to utilize disabled for the session
+    signatures, and thus the negotiated signatures now match the ones
+    in the session's priority string.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Sat Sep 23 08:37:50 2017 +0200
+
+    signature: on client side, refuse to negotiate non-enabled signature schemes
+    
+    That amends/reverts commit 6aa8c390b08a25b18c0799fbd42bd0eec703fae4:
+    "On client side allow signing with the signature algorithm of our cert"
+    
+    Previously, when we initially disabled DSA, we allowed client certificates
+    which can do DSA-SHA1 to be utilized to ease migration from these certificates.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Fri Sep 15 09:53:01 2017 +0200
+
+    _gnutls_epoch_gc: ensure there are no stray epochs after gc
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Fri Sep 15 09:29:30 2017 +0200
+
+    constate: simplified allocation of epochs
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Fri Sep 15 08:26:22 2017 +0200
+
+    _gnutls_epoch_get(): simplified use
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Sun Sep 24 17:42:01 2017 +0200
+
+    gnutls_x509_crt/q_set_spki: always initialize the spki structure
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Sat Sep 23 11:17:21 2017 +0200
+
+    gnutls-cli: always initialize the inline commands struct
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Sat Sep 23 11:13:31 2017 +0200
+
+    gnutls-cli-debug: eliminated memory leaks
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Sat Sep 23 11:11:27 2017 +0200
+
+    ocsptool: eliminate memory leaks
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Sat Sep 23 11:09:00 2017 +0200
+
+    certtool: use assert to protect var access
+    
+    The code correctly uses the variables, but the assert ensures
+    that static analyzers follow the intended paths too.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Sat Sep 23 11:06:53 2017 +0200
+
+    srptool: removed unused variables
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Sat Sep 23 11:06:24 2017 +0200
+
+    psktool: remove unused variables
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Sat Sep 23 11:05:18 2017 +0200
+
+    gnutls-cli: fix memory leak
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Sat Sep 23 11:04:21 2017 +0200
+
+    tools: eliminated dead assignments
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Sat Sep 23 10:59:58 2017 +0200
+
+    ocsptool: check chain size on verification
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Tue Sep 19 11:08:19 2017 +0200
+
+    .gitlab-ci.yml: use static analyzer and Werror build in src
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Sat Sep 23 08:29:17 2017 +0200
+
+    tests: enhanced resumption checks with same and different SNI
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Sat Sep 23 08:19:21 2017 +0200
+
+    server name: refuse to resume a session which server name doesn't match
+    
+    That is, follow the RFC6066 requirement that server:
+    "MUST NOT accept the request to resume the session if the
+    server_name extension contains a different name."
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Sat Sep 23 10:47:15 2017 +0200
+
+    gnutls-cli: eliminate few memory leaks
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Thomas Klute <thomas2.klute@uni-dortmund.de>
+Date:   Thu Sep 21 11:00:33 2017 +0200
+
+    tests: New test for SNI parsing during cache-based session resumption
+    
+    Signed-off-by: Thomas Klute <thomas2.klute@uni-dortmund.de>
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Thomas Klute <thomas2.klute@uni-dortmund.de>
+Date:   Thu Sep 21 10:45:05 2017 +0200
+
+    Ensure the SNI extension is parsed during cache-based resumption
+    
+    This patch changes the parse_type of the SNI extension to
+    GNUTLS_EXT_MANDATORY to ensure it is parsed during every handshake.
+    
+    With SNI previously classified as GNUTLS_EXT_APPLICATION, GnuTLS
+    servers ignored the SNI extension when resuming a TLS session from
+    cache, because "application" level extensions are skipped during
+    resumption. As a result, gnutls_server_name_get() always returned
+    GNUTLS_E_REQUESTED_DATA_NOT_AVAILABLE when called on the resumed
+    session, breaking virtual server systems.
+    
+    According to RFC 6066, Section 3 the SNI extension must be parsed on
+    session resumption if implemented at all:
+    
+      "A server that implements this extension MUST NOT accept the request
+      to resume the session if the server_name extension contains a
+      different name."
+    
+    This change allows applications using GnuTLS to match SNI data on
+    resumed sessions.
+    
+    Signed-off-by: Thomas Klute <thomas2.klute@uni-dortmund.de>
+
+Author: Dmitry Eremin-Solenikov <dbaryshkov@gmail.com>
+Date:   Mon Sep 18 17:06:15 2017 +0300
+
+    tests: explicitly check for gnutls.pc in pkgconfig.sh
+    
+    Signed-off-by: Dmitry Eremin-Solenikov <dbaryshkov@gmail.com>
+
+Author: Dmitry Eremin-Solenikov <dbaryshkov@gmail.com>
+Date:   Mon Sep 18 13:33:53 2017 +0300
+
+    test: use proper library name in pkgconfig.sh error message
+    
+    If there is a -R flag in p11-kit-1.pc file, pkgconfig.sh test will still
+    reference libidn2.pc, rather than proper source of the message. Also
+    move the test for library flags before updating PKG_CONFIG_PATH.
+    
+    Signed-off-by: Dmitry Eremin-Solenikov <dbaryshkov@gmail.com>
+
+Author: Dmitry Eremin-Solenikov <dbaryshkov@gmail.com>
+Date:   Mon Sep 18 13:32:40 2017 +0300
+
+    tests: use libidn2 in pkgconfig.sh
+    
+    Since abe6a12b9766219163f99d7807a0b07fbe5f590c GnuTLS does not support
+    libidn1. Switch pkgconfig.sh test to use libidn2.
+    
+    Signed-off-by: Dmitry Eremin-Solenikov <dbaryshkov@gmail.com>
+
+Author: Tim Rühsen <tim.ruehsen@gmx.de>
+Date:   Tue Sep 19 20:36:22 2017 +0200
+
+    parse-datetime: Fix buffer overflow
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Mon Sep 18 15:35:32 2017 +0200
+
+    tlsfuzzer: document the reason of failure of few fragmentation tests
+    
+    It seems that gnutls does not accept records carrying handshake messages
+    that contain less bytes than necessary to recover the handshake header.
+    The TLS protocol allows that option, and other implementations seem to
+    accept that fragmentation.
+    
+    Relates #272
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Sat Sep 16 18:21:36 2017 +0200
+
+    parse_handshake_header: removed duplicate check
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Sat Sep 16 14:03:54 2017 +0200
+
+    ecdh: return more appropriate error code on empty packet
+    
+    This makes tlsfuzzer's test-x25519 detect the right error
+    code on empty message. Previously this issue was masked by our
+    refusal to accept 1-byte sized fragments.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Fri Sep 15 16:34:02 2017 +0200
+
+    parse_handshake_header: allow 1-byte sized fragments
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Fri Sep 15 16:21:02 2017 +0200
+
+    tests: added reproducer for DTLS infinite loop
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Tim Rühsen <tim.ruehsen@gmx.de>
+Date:   Mon Sep 18 20:55:25 2017 +0200
+
+    pkcs11/get_key_algo_type(): Always initialize bits variable
+    
+    Signed-off-by: Tim Rühsen <tim.ruehsen@gmx.de>
+
+Author: Tim Rühsen <tim.ruehsen@gmx.de>
+Date:   Mon Sep 18 20:53:23 2017 +0200
+
+    tests/base64-raw: Remove unused variable
+    
+    Signed-off-by: Tim Rühsen <tim.ruehsen@gmx.de>
+
+Author: Tim Rühsen <tim.ruehsen@gmx.de>
+Date:   Mon Sep 18 15:54:19 2017 +0200
+
+    gnutls.h: Remove redundant function declarations
+    
+    Signed-off-by: Tim Rühsen <tim.ruehsen@gmx.de>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Thu Sep 14 11:56:27 2017 +0200
+
+    x509: removed debugging code [ci skip]
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Tue Jun 27 13:58:58 2017 +0200
+
+    tests: modified the MD5 signature algorithm negotiation tests
+    
+    Since GnuTLS can no longer negotiate MD5, we utilize a byte stream
+    of a connection which advertises MD5, and we make sure we detect the
+    right error code for the rejection of MD5 signature.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Tue Jun 27 08:42:10 2017 +0200
+
+    doc update
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Tue Jun 27 08:36:01 2017 +0200
+
+    tlsfuzzer: no longer include tests involving SHA224 signatures
+    
+    We no longer support them.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Mon Jun 26 15:04:32 2017 +0200
+
+    algorithms/sign: removed TLS identifiers for legacy algorithms
+    
+    That is, for the MD5-using algorithms, as well as for the DSA2
+    signature algorithms that were never really used with TLS 1.2.
+    
+    Kept DSA-SHA1 in order to be used by TLS 1.2 and legacy applications.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Mon Jun 26 15:02:47 2017 +0200
+
+    algorithms/sign: legacy signature algorithms were moved toward the end of the list
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Mon Jun 26 14:58:17 2017 +0200
+
+    algorithms/sign: no longer enable SHA224 hash in signatures
+    
+    TLS 1.3 requires that SHA224 MUST NOT be used, and given the
+    fact that SHA224 was never widespread used in TLS 1.2, there
+    is no reason to keep these algorithms at all.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Fri Sep 8 16:19:38 2017 +0200
+
+    tlsfuzzer: added large client hello tests
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Fri Sep 8 15:16:55 2017 +0200
+
+    win32: removed no longer used subdir
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Fri Sep 8 14:01:09 2017 +0200
+
+    .gitlab-ci.yml: added warning cppcheck checks
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Thu Sep 7 16:54:24 2017 +0200
+
+    .gitlab-ci.yml: removed initialization step
+    
+    That is, combine syntax-check with the static analyzers run. That
+    provides more parallelism per build and reduces the overall time
+    spent on a successful run.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Thu Sep 7 16:20:01 2017 +0200
+
+    doc: added README on FreeBSD CI setup
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Thu Sep 7 16:21:44 2017 +0200
+
+    .gitlab-ci.yml: added FreeBSD build
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Thu Sep 7 17:05:57 2017 +0200
+
+    tests: ip-utils: added include for FreeBSD compilation
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Thu Sep 7 14:12:20 2017 +0200
+
+    .gitlab-ci.yml: enable more cppcheck tests
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Fri Sep 8 12:15:47 2017 +0200
+
+    tests: updated tlsfuzzer to reduce rsa-pss failures
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Thu Sep 7 15:51:57 2017 +0200
+
+    crq: doc update
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Thu Sep 7 09:31:30 2017 +0200
+
+    tests: added unit test for gnutls_x509_crq_sign
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Thu Sep 7 09:11:06 2017 +0200
+
+    tests: added verification checks into crl_apis
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Thu Sep 7 09:10:20 2017 +0200
+
+    gnutls_x509_crl_verify: check next update field for presence
+    
+    If not present do not attempt to utilize its value.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Thu Sep 7 08:33:24 2017 +0200
+
+    tests: added verification check into crt_apis
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Thu Sep 7 08:30:13 2017 +0200
+
+    tests: added unit test for gnutls_x509_crt_sign
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Thu Sep 7 08:24:41 2017 +0200
+
+    doc update
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Thu Sep 7 09:23:28 2017 +0200
+
+    gnutls_x509_crq_sign: undeprecate
+    
+    After the updates of the function semantics, it is no longer
+    needed to deprecate it.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Thu Sep 7 09:13:54 2017 +0200
+
+    gnutls_x509_crl_sign: undeprecate
+    
+    After the updates of the function semantics, it is no longer
+    needed to deprecate it.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Thu Sep 7 09:21:16 2017 +0200
+
+    gnutls_x509_crq_sign: no longer sign with SHA1
+    
+    Modify the behavior of the functions to sign with an appropriate
+    to the public key hash algorithm. That although it modifies the
+    semantics of the functions, it allows them to be useful even after
+    SHA1 is considered insecure.
+    
+    In addition to that, the functions which accept a hash algorithm, will
+    accept a null hash, which instructs the function to select a
+    reasonable choice.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Thu Sep 7 08:21:47 2017 +0200
+
+    gnutls_x509_*_sign: no longer sign with SHA1
+    
+    Modify the behavior of the functions to sign with an appropriate
+    to the public key hash algorithm. That although it modifies the
+    semantics of the functions, it allows them to be useful even after
+    SHA1 is considered insecure.
+    
+    In addition to that, the functions which accept a hash algorithm, will
+    accept a null hash, which instructs the function to select a
+    reasonable choice.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Thu Sep 7 08:12:05 2017 +0200
+
+    doc: document the change of gnutls_x509_crt_sign
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Fri Sep 8 08:31:42 2017 +0200
+
+    tests: tolerate leaks in opensc-pkcs11 when present
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Thu Sep 7 08:08:12 2017 +0200
+
+    doc update
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Wed Sep 6 14:51:59 2017 +0200
+
+    tests: added reproducer for safe renegotiation failure with openssl
+    
+    Relates #259
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Wed Sep 6 15:11:00 2017 +0200
+
+    handshake: check SCSVs prior to resuming a session
+    
+    This ensures that extensions which are also available as SCSVs
+    are parsed prior to resuming a session. This resolves an issue
+    with openssl sending SCSV instead of an extension for the safe
+    renegotiation.
+    
+    Relates #259
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Thomas Klausner <wiz@NetBSD.org>
+Date:   Wed Sep 6 19:16:30 2017 +0200
+
+    Use $(LIBDL) instead of hardcoding -ldl.
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Wed Sep 6 14:34:20 2017 +0200
+
+    cmocka: require 1.0.1
+    
+    This prevents failures in test suite due to insufficient cmocka
+    library version.
+    
+    Resolves #268
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Wed Sep 6 09:46:05 2017 +0200
+
+    tlslite-ng: updated to latest version
+    
+    This addresses issues with RSA-PSS signing.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Avinash Sonawane <rootkea@gmail.com>
+Date:   Thu Aug 31 18:05:04 2017 +0530
+
+    cli-debug-args.def: Fix typo
+    
+    Signed-off-by: Avinash Sonawane <rootkea@gmail.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Tue Aug 29 15:38:49 2017 +0200
+
+    latex: handle the deprecated function mark [ci skip]
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Tue Aug 29 13:56:58 2017 +0200
+
+    .gitlab-ci.yml: give more specific name to windows job artifacts [ci skip]
+    
+    This allows a more descriptive name to any downloaded artifacts.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Mon Aug 28 15:16:58 2017 +0200
+
+    tools: removed re-using PIN message when in non-verbose mode
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Mon Aug 28 12:57:38 2017 +0200
+
+    p11tool: print public or private key algorithm
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Mon Aug 28 14:20:36 2017 +0200
+
+    gnutls_pkcs11_privkey_generate3: doc update [ci skip]
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Sat Aug 26 17:27:09 2017 +0200
+
+    tests: check whether generated private keys are marked private
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Sat Aug 26 17:16:26 2017 +0200
+
+    tests: added unit test of p11tool with --set-pin
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Sat Aug 26 17:02:28 2017 +0200
+
+    tests: check whether generated or copied keys are marked as sensitive
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Fri Aug 25 15:58:14 2017 +0200
+
+    updated auto-generated files
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Fri Aug 25 15:56:49 2017 +0200
+
+    p11tool: allow obtaining PIN from command line on operations
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Fri Aug 25 14:49:33 2017 +0200
+
+    certtool: eliminate global use of default_dig
+    
+    Use instead the cinfo->hash field which is already used
+    by p11tool.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Fri Aug 25 12:01:37 2017 +0200
+
+    tests: krb5-test: disable valgrind mem leak checks for negative checks
+    
+    Resolves #192
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Fri Aug 25 11:47:28 2017 +0200
+
+    doc update
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Fri Aug 25 11:41:47 2017 +0200
+
+    tests: check whether p11tool signing with RSA-PSS works
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Fri Aug 25 10:53:51 2017 +0200
+
+    p11tool: allow signing with RSA-PSS and specifying an explicit hash
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Fri Aug 25 10:41:27 2017 +0200
+
+    sign_params_to_flags: moved to certtool-common.c
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Fri Aug 25 10:33:27 2017 +0200
+
+    certtool: hash_to_id moved to certtool-common.c
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Andreas Metzler <ametzler@bebt.de>
+Date:   Sat Aug 26 17:49:28 2017 +0200
+
+    Fix some typos [ci skip]
+    
+    occurence -> occurrence
+    sucessful -> successful
+    
+    Signed-off-by: Andreas Metzler <ametzler@bebt.de>
+
+Author: Tom Vrancken <email@tomvrancken.nl>
+Date:   Fri Aug 25 19:54:58 2017 +0200
+
+    Fixed segmentation faults caused by accessing NULL pointers during mutex operations. This bug was triggered while setting priorities.
+    
+    Signed-off-by: Tom Vrancken <email@tomvrancken.nl>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Fri Aug 25 16:15:24 2017 +0200
+
+    p11tool: explicitly mark generated keys as sensitive
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Alon Bar-Lev <alon.barlev@gmail.com>
+Date:   Sat Aug 26 00:16:03 2017 +0300
+
+    tests: windows: warning: function declaration isn't a prototype
+    
+    Signed-off-by: Alon Bar-Lev <alon.barlev@gmail.com>
+
+Author: Alon Bar-Lev <alon.barlev@gmail.com>
+Date:   Fri Aug 25 23:45:44 2017 +0300
+
+    tests: warning: implicit declaration of function
+    
+    Signed-off-by: Alon Bar-Lev <alon.barlev@gmail.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Thu Aug 24 17:03:17 2017 +0200
+
+    m4: updated ax_code_coverage.m4 [ci skip]
+    
+    This version fixes a bug which prevented including the branch coverage
+    into output.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Tim Rühsen <tim.ruehsen@gmx.de>
+Date:   Mon Aug 21 15:19:25 2017 +0200
+
+    fuzzer: Enhance code coverage of gnutls_base64_encoder_fuzzer
+    
+    Signed-off-by: Tim Rühsen <tim.ruehsen@gmx.de>
+
+Author: Tim Rühsen <tim.ruehsen@gmx.de>
+Date:   Mon Aug 21 15:16:55 2017 +0200
+
+    fuzzer: Add script 'view-coverage'
+    
+    This helper script is for viewing the code coverage of
+    single (or combined) fuzzers running with all his corpora.
+    
+    It helps optimizing the code coverage by hand-crafting corpora
+    and/or dictionaries.
+    
+    Signed-off-by: Tim Rühsen <tim.ruehsen@gmx.de>
+
+Author: Tim Rühsen <tim.ruehsen@gmx.de>
+Date:   Mon Aug 21 14:22:58 2017 +0200
+
+    fuzzer: Change CFLAGS -O0 to -O1 in fuzz/README.md
+    
+    Signed-off-by: Tim Rühsen <tim.ruehsen@gmx.de>
+
+Author: Tim Rühsen <tim.ruehsen@gmx.de>
+Date:   Mon Aug 21 14:20:54 2017 +0200
+
+    fuzzer: Update corpora from oss-fuzz
+    
+    Signed-off-by: Tim Rühsen <tim.ruehsen@gmx.de>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Thu Aug 24 15:29:19 2017 +0200
+
+    tlslite: updated to latest version
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Wed Aug 23 10:20:05 2017 +0200
+
+    certtool: do not ask about RSA encryption in non-RSA keys
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Tue Aug 22 16:17:54 2017 +0200
+
+    fuzz: work-around libtool file name
+    
+    fuzzers utilize argv[0] to discover the name the reproducers are stored
+    in. However libtool creates a script which later runs the executable.
+    Try to detect that situation and use the right paths.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Tue Aug 22 08:48:03 2017 +0200
+
+    dh params: document DH param setting functions as deprecated
+    
+    They are no longer useful after the RFC7919 DH parameter negotiation.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Tue Aug 15 10:03:54 2017 +0200
+
+    tests: introduced unit test of gnutls_memset()
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Tue Aug 22 07:27:03 2017 +0200
+
+    fuzz: removed -static ldflag completely
+    
+    It is not necessary for building the fuzzer, and was causing
+    issues in MacOSX systems.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Mon Aug 21 09:47:59 2017 +0200
+
+    .gitlab-ci.yml: use the same flags in the tags and non-tags windows builds
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Mon Aug 21 09:46:07 2017 +0200
+
+    tests: p11-kit-trust is not compiled in windows
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
 Date:   Mon Aug 21 08:35:07 2017 +0200
 
     fuzz: temporarily disable -static build of fuzz/ in MacOSX
@@ -26617,13 +27650,3 @@ Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
 Date:   Fri Nov 7 08:44:46 2014 +0100
 
     pkcs11: added the flag GNUTLS_PKCS11_OBJ_FLAG_MARK_ALWAYS_AUTH
-
-Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
-Date:   Fri Nov 7 07:54:41 2014 +0100
-
-    pkcs11: perform reauth at the appropriate state
-
-Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
-Date:   Fri Nov 7 07:49:54 2014 +0100
-
-    pkcs11_login: set the correct user type on reauthentication

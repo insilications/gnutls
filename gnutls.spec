@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x9D5EAAF69013B842 (nmav@gnutls.org)
 #
 Name     : gnutls
-Version  : 3.6.0
-Release  : 43
-URL      : ftp://ftp.gnupg.org/gcrypt/gnutls/v3.6/gnutls-3.6.0.tar.xz
-Source0  : ftp://ftp.gnupg.org/gcrypt/gnutls/v3.6/gnutls-3.6.0.tar.xz
-Source99 : ftp://ftp.gnupg.org/gcrypt/gnutls/v3.6/gnutls-3.6.0.tar.xz.sig
+Version  : 3.6.1
+Release  : 44
+URL      : ftp://ftp.gnupg.org/gcrypt/gnutls/v3.6/gnutls-3.6.1.tar.xz
+Source0  : ftp://ftp.gnupg.org/gcrypt/gnutls/v3.6/gnutls-3.6.1.tar.xz
+Source99 : ftp://ftp.gnupg.org/gcrypt/gnutls/v3.6/gnutls-3.6.1.tar.xz.sig
 Summary  : Transport Security Layer implementation for the GNU system
 Group    : Development/Tools
 License  : BSD-3-Clause BSD-3-Clause-Clear GPL-3.0 GPL-3.0+ LGPL-2.0+ LGPL-2.1 LGPL-3.0 MIT
@@ -115,9 +115,9 @@ locales components for the gnutls package.
 
 
 %prep
-%setup -q -n gnutls-3.6.0
+%setup -q -n gnutls-3.6.1
 pushd ..
-cp -a gnutls-3.6.0 build32
+cp -a gnutls-3.6.1 build32
 popd
 
 %build
@@ -125,11 +125,11 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1505429673
-export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-common -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
-export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-common -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
-export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-common -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
-export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-common -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
+export SOURCE_DATE_EPOCH=1508609392
+export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
+export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
+export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
+export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 %configure --disable-static
 make V=1  %{?_smp_mflags}
 
@@ -149,7 +149,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1505429673
+export SOURCE_DATE_EPOCH=1508609392
 rm -rf %{buildroot}
 pushd ../build32/
 %make_install32
@@ -218,14 +218,14 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libgnutls.so.30
-/usr/lib64/libgnutls.so.30.20.0
+/usr/lib64/libgnutls.so.30.20.1
 /usr/lib64/libgnutlsxx.so.28
 /usr/lib64/libgnutlsxx.so.28.1.0
 
 %files lib32
 %defattr(-,root,root,-)
 /usr/lib32/libgnutls.so.30
-/usr/lib32/libgnutls.so.30.20.0
+/usr/lib32/libgnutls.so.30.20.1
 /usr/lib32/libgnutlsxx.so.28
 /usr/lib32/libgnutlsxx.so.28.1.0
 

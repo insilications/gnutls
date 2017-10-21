@@ -18,6 +18,7 @@ Configure miss: whether to add cryptodev support
 Configure miss: whether to disable OCSP support
 Configure miss: whether to disable session tickets support
 Configure miss: whether to build OpenSSL compatibility layer
+Configure miss: GTKDOC_DEPS
 Configure miss: libseccomp
 Configure miss: libcrypto
 Configure miss: getprogname
@@ -73,6 +74,7 @@ Configure miss: whether to add cryptodev support
 Configure miss: whether to disable OCSP support
 Configure miss: whether to disable session tickets support
 Configure miss: whether to build OpenSSL compatibility layer
+Configure miss: GTKDOC_DEPS
 Configure miss: libseccomp
 Configure miss: libcrypto
 Configure miss: getprogname
