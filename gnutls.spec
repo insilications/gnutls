@@ -6,7 +6,7 @@
 #
 Name     : gnutls
 Version  : 3.6.1
-Release  : 46
+Release  : 47
 URL      : ftp://ftp.gnupg.org/gcrypt/gnutls/v3.6/gnutls-3.6.1.tar.xz
 Source0  : ftp://ftp.gnupg.org/gcrypt/gnutls/v3.6/gnutls-3.6.1.tar.xz
 Source99 : ftp://ftp.gnupg.org/gcrypt/gnutls/v3.6/gnutls-3.6.1.tar.xz.sig
