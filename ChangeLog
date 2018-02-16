@@ -1,4 +1,1052 @@
 Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Fri Feb 16 08:27:56 2018 +0100
+
+    bumped version
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Tue Feb 13 16:34:09 2018 +0100
+
+    tests: check whether gnutls_credentials_set() can be set in an hsk hook
+    
+    This is useful when these are set during the handshake process
+    on the handshake hook before client hello is parsed.
+    
+    Relates #382
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Tue Feb 13 16:47:16 2018 +0100
+
+    doc: documented how to set the credentials late in certain vhost scenarios
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Tue Feb 13 16:21:52 2018 +0100
+
+    doc: updated text on gnutls_handshake_set_hook_function
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Tue Feb 13 11:12:09 2018 +0100
+
+    doc update [ci skip]
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Mon Feb 12 11:18:06 2018 +0100
+
+    priority: disable the enabled by default RSA-PSS signature algorithms
+    
+    They have been modified in the latest (yet unsupported) TLS 1.3
+    drafts, so prevent causes interoperability failures by keeping them
+    on.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Mon Feb 12 09:20:17 2018 +0100
+
+    tests: cipher-openssl-compat: extend to include CCM tests
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Michael Catanzaro <mcatanzaro@igalia.com>
+Date:   Fri Feb 9 10:22:24 2018 -0600
+
+    Improve documentation of gnutls_x509_trust_list_iter_get_ca [ci skip]
+    
+    The documentation is confusing because it implies that
+    gnutls_x509_trust_list_iter_deinit() should be called after using this
+    function, but in fact it is generally not necessary.
+    
+    Also, there was a typo here ("usin").
+    
+    Signed-off-by: Michael Catanzaro <mcatanzaro@igalia.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Wed Feb 7 18:59:39 2018 +0100
+
+    .gitlab-ci.yml: run the fuzz testsuite under various CPU capabilities
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Wed Feb 7 09:24:18 2018 +0100
+
+    accelerated: make explicit key size check to all accelerated ciphers
+    
+    That is, do not rely on checks done on asm level, as they vary and
+    may change over updates. Also handle consistently invalid key sizes
+    by returning an error, and eliminate calls to abort().
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Vitezslav Cizek <vcizek@suse.com>
+Date:   Tue Feb 6 16:46:31 2018 +0100
+
+    accelerated: check keysize in SSSE3 cipher setkey
+    
+    aes_ssse3_cipher_setkey() accepted any key size,
+    which could lead to invalid memory access.
+    
+    Such as with the oss-fuzz corpora file
+    fuzz/gnutls_pkcs8_key_parser_fuzzer.in/da59d34eacdf50a0019a457fb7c4916be48c99a5
+    
+    Signed-off-by: Vitezslav Cizek <vcizek@suse.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Thu Feb 8 14:32:42 2018 +0100
+
+    p11tool: updated documentation [ci skip]
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Wed Feb 7 11:34:36 2018 +0100
+
+    nettle: use the nettle_get_secp API when available
+    
+    Resolves #380
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Wed Dec 6 09:46:41 2017 +0100
+
+    nettle base64_encode_raw: use cast to avoid warnings
+    
+    Nettle switched prototypes for base64_encode_raw() as follows:
+    -base64_encode_raw(uint8_t *dst, size_t length, const uint8_t *src);
+    +base64_encode_raw(char *dst, size_t length, const uint8_t *src);
+    
+    That means we need to cast fist param to void if we want to avoid
+    warnings on different platforms.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Tue Feb 6 14:40:59 2018 +0100
+
+    accelerated: x86-common: do not use _xgetbv() with clang
+    
+    Resolves #372
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Tue Feb 6 14:37:42 2018 +0100
+
+    configure: treat solaris as ELF system
+    
+    Resolves #376
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Tue Feb 6 04:03:45 2018 +0100
+
+    tests: repeat cipher test with multiple keys and nonces
+    
+    In addition include chacha20-poly1305 into the tests.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Tue Feb 6 03:59:17 2018 +0100
+
+    accelerated: aarch64: fix GCM counter increment
+    
+    Ensure that we restrict the GCM counter to the 4 bytes assigned to it.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Tue Feb 6 04:39:39 2018 +0100
+
+    accelerated: fix use of SSSE3 vpaes_encrypt
+    
+    Previously we assumed that the nettle GCM internal functions
+    will use the provided ECB function for single block encryption.
+    Newer versions no longer operate that way. Ensure that we
+    are compatible with them.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Mon Feb 5 20:25:23 2018 +0100
+
+    accelerated: fix use of aesni_ecb_encrypt()
+    
+    Previously we assumed that the nettle GCM internal functions
+    will use the provided ECB function for single block encryption.
+    Newer versions no longer operate that way. Ensure that we
+    are compatible with them.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Fri Feb 2 15:49:48 2018 +0100
+
+    serv: increase cache size used for resumption
+    
+    That allows sessions with longer parameters to be able
+    to be resumed.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Fri Feb 2 11:09:22 2018 +0100
+
+    CONTRIBUTING.md: check the issue closing as part of review [ci skip]
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Fri Feb 2 10:35:11 2018 +0100
+
+    gnutls-cli: no longer print certificate types or compression methods
+    
+    We don't support any other compression methods than the null compression,
+    nor any other certificate types.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Jay Foad <jay.foad@gmail.com>
+Date:   Sat Jan 27 09:13:17 2018 +0100
+
+    Inline version macros into its users.
+    
+    This fixes a problem in _gnutls_version_is_supported() where we want to
+    use preprocessing directives in the loop body. Doing this within a macro
+    argument is undefined behaviour according to the C standard, and not
+    supported by the system compiler on AIX.
+    
+    Signed-off-by: Jay Foad <jay.foad@gmail.com>
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Fri Jan 26 15:49:53 2018 +0100
+
+    updated auto-generated files
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Fri Jan 26 15:48:52 2018 +0100
+
+    certtool: deprecated the --certificate-pubkey option
+    
+    That option is duplicate since --pubkey-info can provide the same
+    information.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Fri Jan 26 15:44:21 2018 +0100
+
+    certtool: avoid duplicate deinitialization on --certificate-pubkey
+    
+    Resolves #368
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Sun Jan 21 12:25:10 2018 +0100
+
+    dh: document why BER decoding rules are allows
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Sun Jan 21 12:19:12 2018 +0100
+
+    pubkey: use the strict DER decoder for SubjectPublicKeyInfo
+    
+    Although there is no explicit RFC mentioning the SubjectPublicKeyInfo
+    encoding, this structure is a subset of the X.509 certificate's structure
+    and as such it is expected to be in DER form.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Sun Jan 21 11:36:20 2018 +0100
+
+    pk: document need for the generic BER decoder
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Wed Jan 17 19:26:12 2018 +0100
+
+    doc update
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Wed Jan 17 19:25:36 2018 +0100
+
+    tests: check whether deletion of a certificate object works
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Wed Jan 17 19:15:46 2018 +0100
+
+    p11tool: corrected issue preventing the deletion of objects in batch mode
+    
+    Previously initialization of PIN callbacks would only happen during listing
+    of objects, which happened only in non-batch mode.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Wed Jan 17 19:10:52 2018 +0100
+
+    p11tool: corrected type affecting use of --only-urls
+    
+    It would enable batch mode accidentally.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Fri Jan 19 11:42:02 2018 +0100
+
+    tests: pkcs11/tls-neg-pkcs11-key: updated for softhsm with PKCS#11 support
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Mon Jan 22 09:06:25 2018 +0100
+
+    added sub-section on selecting the right return value [ci skip]
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Wed Jan 17 17:35:54 2018 +0100
+
+    doc update [ci skip]
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Wed Jan 17 08:38:13 2018 +0100
+
+    examples: use gnutls_certificate_set_x509_system_trust
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Fri Jan 12 16:14:23 2018 +0100
+
+    doc update
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Fri Jan 12 13:23:03 2018 +0100
+
+    tests: privkey-verify-broken: addressed uninitialized var use
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Wed Jan 10 15:41:50 2018 +0100
+
+    tests: check whether get_mtu() functions relate to the set values
+    
+    That is, verify that gnutls_dtls_set_data_mtu() value would be
+    reflected into gnutls_dtls_get_data_mtu(), as well as the
+    gnutls_dtls_set_mtu() to gnutls_dtls_get_mtu().
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Wed Jan 10 15:35:36 2018 +0100
+
+    tests: added unit test for _gnutls_record_overhead()
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Fri Jan 12 09:01:54 2018 +0100
+
+    DTLS: improved data MTU calculation under CBC ciphersuites
+    
+    The data MTU calculation under CBC ciphersuites takes into
+    account that the overhead of these ciphersuites is constant (IV +
+    hash + 1 byte padding), though the capacity varies due to the padding
+    block. That is, on 16-byte padding block, one padding byte is the
+    overhead but the rest 15 bytes are accounted for data MTU.
+    
+    That also has the side effect that setting a data MTU using
+    gnutls_dtls_set_data_mtu(), is not definite, and the actual
+    MTU may be larger for these ciphersuites --i.e., the
+    return value of gnutls_dtls_get_data_mtu().
+    
+    Resolves #360
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Wed Jan 10 10:58:30 2018 +0100
+
+    fuzz: added reproducer for leak in gnutls_x509_crl_list_import
+    
+    That was detected by oss-fuzz in:
+      https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=4930
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Wed Jan 10 10:56:28 2018 +0100
+
+    gnutls_x509_crt_list_import: eliminated memory leak
+    
+    That leak would be triggered if GNUTLS_X509_CRT_LIST_IMPORT_FAIL_IF_EXCEED
+    flag was used and the input data would exceed the maximum limit.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Tue Jan 9 11:31:45 2018 +0100
+
+    libtasn1: updated to latest libtasn1 master branch
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Wed Jan 3 16:41:36 2018 +0100
+
+    gnutls_pkcs12_key_parser_fuzzer.in: added reproducer for oss-fuzz #4890
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Sun Jan 7 09:55:37 2018 +0100
+
+    doc update [ci skip]
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Wed Jan 3 16:27:03 2018 +0100
+
+    doc: updated copyright year for manual
+    
+    That eliminates the 'make syntax-check' error.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Sat Dec 30 20:12:36 2017 +0100
+
+    tests: added reproducer for self-signed verification error
+    
+    Relates #347
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Sat Dec 30 19:57:08 2017 +0100
+
+    x509/verify: when verifying against a self signed certificate ignore issuer
+    
+    That is, ignore issuer when checking the issuer's parameters strength. That
+    resolves the issue of marking self-signed certificates as with insecure
+    parameters during verification.
+    
+    Resolves #347
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Wed Dec 20 08:16:29 2017 +0100
+
+    gnutls_pk_self_test: include ECDSA tests on GNUTLS_PK_EC
+    
+    Previously when a request for a specific self check on GNUTLS_PK_EC
+    was done, only ECDH tests would be run. This change includes the ECDSA
+    tests as well (GNUTLS_PK_EC and GNUTLS_PK_ECDSA are an alias to each other).
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Tue Dec 19 16:40:59 2017 +0100
+
+    tests: hash-large: increase parallelism to allow fast run in CI
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Fri Dec 8 11:14:58 2017 +0100
+
+    doc: reference gnutls_prf_rfc5705 instead of gnutls_prf
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Sun Dec 3 11:34:32 2017 +0100
+
+    tests: utils.h: forbid compilation with NDEBUG
+    
+    This allows to rely on the assert() macro being functional on
+    the test suite.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Sun Dec 3 10:49:12 2017 +0100
+
+    tests: p11-kit-load.sh: verify that all modules are loaded after a private key operation
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Thu Nov 30 15:08:22 2017 +0100
+
+    tests: enhanced pkcs11/list-tokens
+    
+    This not only creates a trust list with the system certificates, but
+    also attempts to verify a certificate, increasing the number of calls
+    to PKCS#11 verification API (and thus ensuring there are no calls
+    which may trigger the load of other modules).
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Thu Nov 30 14:31:07 2017 +0100
+
+    pkcs11 verification: always use the GNUTLS_PKCS11_OBJ_FLAG_PRESENT_IN_TRUSTED_MODULE
+    
+    That is, make sure that all our calls to PKCS#11 subsystem for verification
+    will only trigger the trust module initialization, and not the generic
+    PKCS#11 initialization.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Thu Nov 30 14:28:46 2017 +0100
+
+    pkcs11: simplify trusted module loading state
+    
+    That is always utilize the same flags (GNUTLS_PKCS11_OBJ_FLAG_PRESENT_IN_TRUSTED_MODULE)
+    to determine whether to initialize trusted modules only or
+    proceed with general initialization.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Thu Nov 30 12:52:57 2017 +0100
+
+    _gnutls_pkcs11_check_init: improved transition between states
+    
+    The init_level_t for PKCS#11 modules, was incorrectly handled as a
+    linear state transition, causing few cases in the transition to be
+    incorrectly handled. Define precisely the state transitions and
+    enforce them in _gnutls_pkcs11_check_init.
+    
+    That addresses a regression introduced by the previous state handling
+    addition, which made impossible to switch from the trusted state to
+    the all modules.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Thu Nov 30 11:44:14 2017 +0100
+
+    tests: corrected destructive/p11-kit-load.sh error checking
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Daiki Ueno <dueno@redhat.com>
+Date:   Fri Dec 1 11:13:29 2017 +0100
+
+    gnutls-serv: fix double-free on inactivity timeout
+    
+    Previously, gnutls-serv --echo segfaulted when closing client
+    connection after inactivity timeout.  Here is the valgrind output:
+    
+    ==20246== Invalid free() / delete / delete[] / realloc()
+    ==20246==    at 0x4C2FD18: free (vg_replace_malloc.c:530)
+    ==20246==    by 0x405310: listener_free (serv.c:154)
+    ==20246==    by 0x408B57: tcp_server (serv.c:1568)
+    ==20246==    by 0x407DA6: main (serv.c:1231)
+    ==20246==  Address 0x6ed4fe0 is 0 bytes inside a block of size 3 free'd
+    ==20246==    at 0x4C2FD18: free (vg_replace_malloc.c:530)
+    ==20246==    by 0x408A1D: tcp_server (serv.c:1548)
+    ==20246==    by 0x407DA6: main (serv.c:1231)
+    ==20246==  Block was alloc'd at
+    ==20246==    at 0x4C2EB6B: malloc (vg_replace_malloc.c:299)
+    ==20246==    by 0x6A64489: strdup (in /usr/lib64/libc-2.25.so)
+    ==20246==    by 0x407310: get_response (serv.c:948)
+    ==20246==    by 0x408840: tcp_server (serv.c:1492)
+    ==20246==    by 0x407DA6: main (serv.c:1231)
+    ==20246==
+    
+    Signed-off-by: Daiki Ueno <dueno@redhat.com>
+
+Author: Daiki Ueno <dueno@redhat.com>
+Date:   Tue Nov 28 15:45:59 2017 +0100
+
+    .dir-locals.el: new file
+    
+    This forces Emacs to use the Linux kernel coding style for all C code.
+    
+    Signed-off-by: Daiki Ueno <dueno@redhat.com>
+
+Author: Daiki Ueno <dueno@redhat.com>
+Date:   Tue Nov 28 15:45:54 2017 +0100
+
+    build: remove m4 files pulled in by autopoint
+    
+    Having these files in the git repository causes unnecessary changes
+    after "make bootstrap".
+    
+    Signed-off-by: Daiki Ueno <dueno@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Wed Nov 29 17:16:41 2017 +0100
+
+    gnutls_aead_cipher_init: corrected potential memory leak
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Tue Nov 28 14:28:46 2017 +0100
+
+    doc: provided basic documentation of the FIPS140-2 mode [ci skip]
+    
+    Resolves #332
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Mon Nov 27 09:42:26 2017 +0100
+
+    tests: verify whether group remains the same after resumption
+    
+    Resolves #331
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Mon Nov 27 09:31:52 2017 +0100
+
+    _gnutls_set_resumed_parameters: restore the group from resumed parameters
+    
+    That allows resumed sessions to have the original group information such as
+    curve used for key exchange or FFDHE parameters.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Wed Sep 27 08:19:01 2017 +0200
+
+    tests: removed unnecessary assert
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Tue Oct 10 14:23:20 2017 +0200
+
+    tests: delete temporary files
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Wed Nov 8 11:47:22 2017 +0100
+
+    session state: use the right type for send_cert_req variable
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Fri Nov 24 08:17:40 2017 +0100
+
+    tests: client-fastopen: introduce child signal handler and delay prior to starting
+    
+    This addresses a hang issue on freebsd builds.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Wed Nov 22 17:36:30 2017 +0100
+
+    psktool: allow up to 512-byte keys
+    
+    This aligns the psktool --help output with the psktool operation.
+    
+    Suggested by Jack Lloyd.
+    
+    Resolves #327
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Tue Nov 21 20:26:43 2017 +0100
+
+    getfuncs-map.pl: added gnutls_srp_8192_group* symbols to ignore list
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Tue Nov 21 19:24:29 2017 +0100
+
+    updated auto-generated files
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Tue Nov 21 19:17:01 2017 +0100
+
+    srptool: --create-conf no longer includes 1024-bit parameters
+    
+    In addition it includes the 8192-bit parameters, and
+    the default params used for a new user are the 2k ones.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Tue Nov 21 13:23:21 2017 +0100
+
+    tests: updated SRP checks
+    
+    Test 1024, 1536, 2048, 3072, 4096 and 8192 bit parameters.
+    In addition, verify that parameters not in the SRP spec are
+    rejected by a gnutls client.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Tue Nov 21 13:05:12 2017 +0100
+
+    .gitlab-ci.yml: move destructive tests after trust store tests
+    
+    That is, to ensure they are only run after the trust store
+    is complete and that it doesn't affect its output.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Mon Nov 20 14:43:21 2017 +0100
+
+    doc update
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Mon Nov 20 14:34:20 2017 +0100
+
+    tests: include the 8192-bit SRP prime into param checks
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Mon Nov 20 14:33:33 2017 +0100
+
+    srp: added the 8192-bit prime
+    
+    As we now reject any primes not in the SRP spec, we include
+    that parameter to ensure we can handle clients within the
+    spec but with large parameters.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Mon Nov 20 14:10:02 2017 +0100
+
+    srp: reject any parameters not in the SRP draft
+    
+    This implements the SHOULD requirement from RFC5054, i.e., to
+    only accept group parameters that come from a trusted source,
+    such as those listed in Appendix A.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Mon Nov 20 14:07:12 2017 +0100
+
+    fuzz: srp-client: decreased acceptable prime bits to 1024 [ci skip]
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Thu Nov 9 09:47:10 2017 +0100
+
+    tests: combined key and cert tests
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Thu Nov 9 09:40:23 2017 +0100
+
+    tests: windows subdir is only included on windows builds
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Wed Nov 8 16:32:48 2017 +0100
+
+    tests: dtls subdir was merged into main tests
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Mon Nov 20 13:49:55 2017 +0100
+
+    fuzz: srp-client: restrict prime bits to 1537 [ci skip]
+    
+    That avoids timeouts in the oss-fuzz infrastructure:
+      https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=3277
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Sun Nov 19 16:39:16 2017 +0100
+
+    doc: corrected typo
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Thu Nov 16 16:57:29 2017 +0100
+
+    doc: better detect acronym keyword on latex output
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Thu Nov 16 16:53:46 2017 +0100
+
+    doc: latex: resolve all citation issues
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Thu Nov 16 16:43:21 2017 +0100
+
+    doc: citations translate into references in texinfo
+    
+    That makes the citations to be links in the generated html manual.
+    
+    Resolves: #321
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Mon Nov 13 11:03:35 2017 +0100
+
+    p11tool: renamed pkcs11_set_pin() to allow static linking
+    
+    Resolves #322
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Wed Nov 15 11:47:31 2017 +0100
+
+    cfg.mk: do not include reproducer files into syntax checks
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Wed Nov 15 10:31:00 2017 +0100
+
+    gnutls_x509_ext_import_proxy: corrected memory leak
+    
+    Also added reproducer for the memory leak found.
+    
+    Issue found using oss-fuzz:
+      https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=3159
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Wed Nov 8 13:56:56 2017 +0100
+
+    tools: do not access unused variables
+    
+    This avoids warnings by static analyzers.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Wed Nov 8 10:51:51 2017 +0100
+
+    .gitlab-ci.yml: disabled gcc warnings on CI builds and use dash
+    
+    That should decrease the time spent in configure. Based on suggestions
+    by Tim Ruehsen.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Sun Nov 5 20:46:47 2017 +0100
+
+    .gitlab-ci.yml: use configure cache file and ccache
+    
+    That reduces the total time spent per build by caching configure
+    checks, and compilation artifacts.
+    
+    Also that patch set no longer uploads coverage files as artifacts.
+    These files are not generally useful, and removing that "feature"
+    will reduce CI running time.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+    Signed-off-by: Dmitry Eremin-Solenikov <dbaryshkov@gmail.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Sat Nov 4 17:18:23 2017 +0100
+
+    doc: corrected typo [ci skip]
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Fri Nov 3 15:10:03 2017 +0100
+
+    tests: list-tokens: not only list but also verify whether module is operational
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Fri Nov 3 15:03:35 2017 +0100
+
+    pkcs11: refuse to load modules with duplicate information
+    
+    That is, when ck_info matches, we soft fail loading the module.
+    That is, because in several cases the pointers got by p11-kit
+    may differ for the same modules.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Fri Nov 3 14:33:24 2017 +0100
+
+    tests: enhanced PKCS#11 loading test
+    
+    Test whether implicit initialization in trusted module (e.g.,
+    via verification), would result to proper initialization of additional
+    modules once a PCKS#11 function is called.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Mon Oct 30 13:51:33 2017 +0100
+
+    tests: added PKCS#11 module loading test
+    
+    This checks:
+     1. Whether all modules are loaded from p11-kit when
+        no explicit gnutls_pkcs11_init() is called and
+        pkcs11 calls are accessed.
+     2. Whether only the trusted modules are loaded from
+        p11-kit and no other PKCS#11 calls than PKCS#11
+        cert validation is performed.
+     3. Whether the trusted modules are loaded when
+        gnutls_pkcs11_init() is called with manual
+        flag.
+    
+    Resolves #315
+    Resolves #316
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Mon Oct 30 11:29:38 2017 +0100
+
+    pkcs11: allow loading trusted modules when pkcs11 was initialized in manual mode
+    
+    When a PKCS#11 trust module is used in the system, but gnutls_pkcs11_init()
+    is explicitly called with GNUTLS_PKCS11_FLAG_MANUAL flag, then the PKCS#11
+    trust store was not loaded, and thus prevent any certificate validation.
+    
+    This change allows initializing the trust modules only even if generic
+    PKCS#11 support is disabled by the application.
+    
+    Relates #316
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Mon Oct 30 09:57:09 2017 +0100
+
+    pkcs11: introduce multiple levels of loading
+    
+    That allows to load the PKCS#11 trusted modules (on systems which use them)
+    without loading all the potentially present PKCS#11 modules.
+    
+    Relates #315
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Tue Oct 31 09:18:15 2017 +0100
+
+    CONTRIBUTING.md: added a short text on reviewing code [ci skip]
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Roberto Newmon <robertonewmon@fake-box.com>
+Date:   Sun Oct 29 08:30:02 2017 +0000
+
+    Fix non-null warning
+    
+    Help the compiler understand the control flow in the MATCH_FUNC and
+    INVALID_MATCH_FUNC macros.
+    
+    Because we are using macros, the compiler is not able to correlate the
+    replaced values of the macro variables to each other yielding non-null
+    warnings. Introduce a C variable to mimic the macro variable helping
+    the compiler understanding the control flow.
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Sat Oct 21 15:17:22 2017 +0200
+
+    tests: test whether PKCS#11 generation works without login
+    
+    Resolves #147
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Sat Oct 21 15:10:03 2017 +0200
+
+    p11tool: attempt to auto-login when the token requires it
+    
+    In operations like generation or writing objects, run as if --login
+    was given if the token is marked to require login.
+    
+    Relates #147
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Sat Oct 21 15:01:53 2017 +0200
+
+    p11tool: print PKCS#11 token flags in --list-tokens
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Sat Oct 21 14:53:37 2017 +0200
+
+    pkcs11: forward token flags to applications
+    
+    That is, gnutls_pkcs11_token_get_flags() will not return the
+    most common/useful PKCS#11 token flags, in addition to trusted and HW
+    flags.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
 Date:   Sat Oct 21 09:44:37 2017 +0200
 
     doc update [ci skip]

@@ -1,5 +1,6 @@
 libgnutls.so.30:GNUTLS_3_4
 libgnutls.so.30:GNUTLS_3_6_0
+libgnutls.so.30:GNUTLS_3_6_2
 libgnutls.so.30:GNUTLS_FIPS140_3_4
 libgnutls.so.30:GNUTLS_PRIVATE_3_4
 libgnutls.so.30:_dsa_generate_dss_g
@@ -11,6 +12,7 @@ libgnutls.so.30:_gnutls_buffer_append_str
 libgnutls.so.30:_gnutls_buffer_init
 libgnutls.so.30:_gnutls_buffer_to_datum
 libgnutls.so.30:_gnutls_cidr_to_string
+libgnutls.so.30:_gnutls_cipher_to_entry
 libgnutls.so.30:_gnutls_decode_ber_rs_raw
 libgnutls.so.30:_gnutls_digest_exists
 libgnutls.so.30:_gnutls_encode_ber_rs_raw
@@ -21,8 +23,10 @@ libgnutls.so.30:_gnutls_lib_simulate_error
 libgnutls.so.30:_gnutls_log
 libgnutls.so.30:_gnutls_mac_to_entry
 libgnutls.so.30:_gnutls_mpi_log
+libgnutls.so.30:_gnutls_pkcs11_token_get_url
 libgnutls.so.30:_gnutls_pkcs12_string_to_key
 libgnutls.so.30:_gnutls_prf_raw
+libgnutls.so.30:_gnutls_record_overhead
 libgnutls.so.30:_gnutls_record_set_default_version
 libgnutls.so.30:_gnutls_resolve_priorities
 libgnutls.so.30:_gnutls_rsa_pms_set_version
