@@ -1,10 +1,9 @@
-Configure miss: struct iovec.iov_basea
 Configure miss: threads.h usability
 Configure miss: threads.h presence
 Configure miss: threads.h
 Configure miss: getentropy
 Configure miss: whether to use the included minitasn1
-Configure miss: whether to disable the SSL 3.0 protocol
+Configure miss: whether to enable the TLS 1.3 draft protocol
 Configure miss: whether to disable the SSL 2.0 client hello
 Configure miss: whether to disable DTLS-SRTP extension
 Configure miss: whether to disable ALPN extension
@@ -13,17 +12,24 @@ Configure miss: whether to disable PSK authentication support
 Configure miss: whether to disable anonymous authentication support
 Configure miss: whether to disable DHE support
 Configure miss: whether to disable ECDHE support
+Configure miss: whether to disable GOST support
 Configure miss: whether to add cryptodev support
 Configure miss: whether to disable OCSP support
-Configure miss: whether to disable session tickets support
+Configure miss: crtdefs.h
 Configure miss: whether to build OpenSSL compatibility layer
 Configure miss: GTKDOC_DEPS
 Configure miss: libseccomp
 Configure miss: libcrypto
+Configure miss: strerror_r with POSIX signature
 Configure miss: if gcc/ld supports -Wl,--output-def
+Configure miss: ioctl with POSIX signature
+Configure miss: whether pthread_rwlock_rdlock prefers a writer to a reader
+Configure miss: working nanosleep
 Configure miss: whether gai_strerrorA is declared
 Configure miss: __mktime_internal
+Configure miss: whether localtime loops forever near extrema
 Configure miss: timezone_t
+Configure miss: whether tzset clobbers localtime buffer
 Configure miss: whether -Wno-missing-field-initializers is needed
 Configure miss: CMOCKA
 Configure miss: library containing idn2_lookup_u8
@@ -43,13 +49,12 @@ Configure miss: whether with-libregex-cflags was specified
 Configure miss: whether with-libregex-libs was specified
 Configure miss: whether pathfind(3) works
 Configure miss: guile-snarf
-Configure miss: struct iovec.iov_basea
 Configure miss: threads.h usability
 Configure miss: threads.h presence
 Configure miss: threads.h
 Configure miss: getentropy
 Configure miss: whether to use the included minitasn1
-Configure miss: whether to disable the SSL 3.0 protocol
+Configure miss: whether to enable the TLS 1.3 draft protocol
 Configure miss: whether to disable the SSL 2.0 client hello
 Configure miss: whether to disable DTLS-SRTP extension
 Configure miss: whether to disable ALPN extension
@@ -58,19 +63,25 @@ Configure miss: whether to disable PSK authentication support
 Configure miss: whether to disable anonymous authentication support
 Configure miss: whether to disable DHE support
 Configure miss: whether to disable ECDHE support
+Configure miss: whether to disable GOST support
 Configure miss: whether to add cryptodev support
 Configure miss: whether to disable OCSP support
-Configure miss: whether to disable session tickets support
+Configure miss: crtdefs.h
 Configure miss: whether to build OpenSSL compatibility layer
 Configure miss: GTKDOC_DEPS
 Configure miss: libseccomp
 Configure miss: libcrypto
+Configure miss: strerror_r with POSIX signature
 Configure miss: if gcc/ld supports -Wl,--output-def
 Configure miss: whether INT64_MAX == LONG_MAX
 Configure miss: whether UINT64_MAX == ULONG_MAX
+Configure miss: ioctl with POSIX signature
+Configure miss: whether pthread_rwlock_rdlock prefers a writer to a reader
 Configure miss: whether gai_strerrorA is declared
 Configure miss: __mktime_internal
+Configure miss: whether localtime loops forever near extrema
 Configure miss: timezone_t
+Configure miss: whether tzset clobbers localtime buffer
 Configure miss: whether -Wno-missing-field-initializers is needed
 Configure miss: CMOCKA
 Configure miss: library containing idn2_lookup_u8
