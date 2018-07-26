@@ -6,7 +6,7 @@
 #
 Name     : gnutls
 Version  : 3.6.3
-Release  : 50
+Release  : 51
 URL      : ftp://ftp.gnupg.org/gcrypt/gnutls/v3.6/gnutls-3.6.3.tar.xz
 Source0  : ftp://ftp.gnupg.org/gcrypt/gnutls/v3.6/gnutls-3.6.3.tar.xz
 Source99 : ftp://ftp.gnupg.org/gcrypt/gnutls/v3.6/gnutls-3.6.3.tar.xz.sig
@@ -96,6 +96,14 @@ Requires: gnutls-man
 doc components for the gnutls package.
 
 
+%package extras
+Summary: extras components for the gnutls package.
+Group: Default
+
+%description extras
+extras components for the gnutls package.
+
+
 %package lib
 Summary: lib components for the gnutls package.
 Group: Libraries
@@ -150,7 +158,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1531748995
+export SOURCE_DATE_EPOCH=1532620139
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
@@ -174,7 +182,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1531748995
+export SOURCE_DATE_EPOCH=1532620139
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/gnutls
 cp LICENSE %{buildroot}/usr/share/doc/gnutls/LICENSE
@@ -247,12 +255,17 @@ popd
 %doc /usr/share/doc/gnutls/*
 %doc /usr/share/info/*
 
-%files lib
+%files extras
 %defattr(-,root,root,-)
-/usr/lib64/libgnutls.so.30
-/usr/lib64/libgnutls.so.30.21.0
 /usr/lib64/libgnutlsxx.so.28
 /usr/lib64/libgnutlsxx.so.28.1.0
+
+%files lib
+%defattr(-,root,root,-)
+%exclude /usr/lib64/libgnutlsxx.so.28
+%exclude /usr/lib64/libgnutlsxx.so.28.1.0
+/usr/lib64/libgnutls.so.30
+/usr/lib64/libgnutls.so.30.21.0
 
 %files lib32
 %defattr(-,root,root,-)
