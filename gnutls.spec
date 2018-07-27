@@ -6,10 +6,10 @@
 #
 Name     : gnutls
 Version  : 3.6.3
-Release  : 51
-URL      : ftp://ftp.gnupg.org/gcrypt/gnutls/v3.6/gnutls-3.6.3.tar.xz
-Source0  : ftp://ftp.gnupg.org/gcrypt/gnutls/v3.6/gnutls-3.6.3.tar.xz
-Source99 : ftp://ftp.gnupg.org/gcrypt/gnutls/v3.6/gnutls-3.6.3.tar.xz.sig
+Release  : 52
+URL      : https://www.gnupg.org/ftp/gcrypt/gnutls/v3.6/gnutls-3.6.3.tar.xz
+Source0  : https://www.gnupg.org/ftp/gcrypt/gnutls/v3.6/gnutls-3.6.3.tar.xz
+Source99 : https://www.gnupg.org/ftp/gcrypt/gnutls/v3.6/gnutls-3.6.3.tar.xz.sig
 Summary  : Transport Security Layer implementation for the GNU system
 Group    : Development/Tools
 License  : BSD-3-Clause BSD-3-Clause-Clear GPL-3.0 GPL-3.0+ LGPL-2.0+ LGPL-2.1 LGPL-3.0 MIT
@@ -158,7 +158,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1532620139
+export SOURCE_DATE_EPOCH=1532721487
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
@@ -182,17 +182,17 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1532620139
+export SOURCE_DATE_EPOCH=1532721487
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/gnutls
 cp LICENSE %{buildroot}/usr/share/doc/gnutls/LICENSE
-cp lib/accelerated/x86/license.txt %{buildroot}/usr/share/doc/gnutls/lib_accelerated_x86_license.txt
-cp doc/COPYING.LESSER %{buildroot}/usr/share/doc/gnutls/doc_COPYING.LESSER
 cp doc/COPYING %{buildroot}/usr/share/doc/gnutls/doc_COPYING
+cp doc/COPYING.LESSER %{buildroot}/usr/share/doc/gnutls/doc_COPYING.LESSER
 cp doc/examples/tlsproxy/LICENSE %{buildroot}/usr/share/doc/gnutls/doc_examples_tlsproxy_LICENSE
-cp src/libopts/COPYING.mbsd %{buildroot}/usr/share/doc/gnutls/src_libopts_COPYING.mbsd
-cp src/libopts/COPYING.lgplv3 %{buildroot}/usr/share/doc/gnutls/src_libopts_COPYING.lgplv3
+cp lib/accelerated/x86/license.txt %{buildroot}/usr/share/doc/gnutls/lib_accelerated_x86_license.txt
 cp src/libopts/COPYING.gplv3 %{buildroot}/usr/share/doc/gnutls/src_libopts_COPYING.gplv3
+cp src/libopts/COPYING.lgplv3 %{buildroot}/usr/share/doc/gnutls/src_libopts_COPYING.lgplv3
+cp src/libopts/COPYING.mbsd %{buildroot}/usr/share/doc/gnutls/src_libopts_COPYING.mbsd
 pushd ../build32/
 %make_install32
 if [ -d  %{buildroot}/usr/lib32/pkgconfig ]
@@ -221,6 +221,7 @@ popd
 
 %files dev
 %defattr(-,root,root,-)
+%exclude /usr/lib64/libgnutlsxx.so
 /usr/include/gnutls/abstract.h
 /usr/include/gnutls/compat.h
 /usr/include/gnutls/crypto.h
@@ -240,7 +241,6 @@ popd
 /usr/include/gnutls/x509-ext.h
 /usr/include/gnutls/x509.h
 /usr/lib64/libgnutls.so
-/usr/lib64/libgnutlsxx.so
 /usr/lib64/pkgconfig/gnutls.pc
 
 %files dev32
@@ -257,6 +257,7 @@ popd
 
 %files extras
 %defattr(-,root,root,-)
+/usr/lib64/libgnutlsxx.so
 /usr/lib64/libgnutlsxx.so.28
 /usr/lib64/libgnutlsxx.so.28.1.0
 
