@@ -1,2 +1,6 @@
 3.6.3
+gnutls-dev
+intltool-dev
 pkg-config
+pkgconfig(32libidn2)
+pkgconfig(libidn2)

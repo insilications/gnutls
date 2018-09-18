@@ -1,0 +1,2 @@
+--enable-guile=no
+--with-default-trust-store-pkcs11=unix:///var/cache/ca-certs/compat/ca-roots.pem

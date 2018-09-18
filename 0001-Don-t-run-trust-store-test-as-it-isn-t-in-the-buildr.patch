@@ -1,0 +1,25 @@
+From afe888778ccffc4c0e321a58b6ecdaa6c8dd2bc0 Mon Sep 17 00:00:00 2001
+From: William Douglas <william.douglas@intel.com>
+Date: Tue, 18 Sep 2018 12:35:18 -0700
+Subject: [PATCH] Don't run trust store test as it isn't in the buildroot
+
+---
+ tests/trust-store.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/tests/trust-store.c b/tests/trust-store.c
+index 83f9dda..7aa8768 100644
+--- a/tests/trust-store.c
++++ b/tests/trust-store.c
+@@ -44,6 +44,8 @@ static void tls_log_func(int level, const char *str)
+ 
+ void doit(void)
+ {
++	/* building without ca-certificates-mozilla, skip test */
++	exit(77);
+ 	gnutls_certificate_credentials_t x509_cred;
+ 	int ret;
+ 
+-- 
+2.19.0
+

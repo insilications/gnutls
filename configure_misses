@@ -1,6 +1,3 @@
-Configure miss: threads.h usability
-Configure miss: threads.h presence
-Configure miss: threads.h
 Configure miss: getentropy
 Configure miss: whether to use the included minitasn1
 Configure miss: whether to enable the TLS 1.3 draft protocol
@@ -32,7 +29,6 @@ Configure miss: timezone_t
 Configure miss: whether tzset clobbers localtime buffer
 Configure miss: whether -Wno-missing-field-initializers is needed
 Configure miss: CMOCKA
-Configure miss: library containing idn2_lookup_u8
 Configure miss: unbound library
 Configure miss: tss library
 Configure miss: sys/procset.h usability
@@ -48,10 +44,7 @@ Configure miss: whether with-libregex was specified
 Configure miss: whether with-libregex-cflags was specified
 Configure miss: whether with-libregex-libs was specified
 Configure miss: whether pathfind(3) works
-Configure miss: guile-snarf
-Configure miss: threads.h usability
-Configure miss: threads.h presence
-Configure miss: threads.h
+Configure miss: whether building Guile bindings
 Configure miss: getentropy
 Configure miss: whether to use the included minitasn1
 Configure miss: whether to enable the TLS 1.3 draft protocol
@@ -84,7 +77,6 @@ Configure miss: timezone_t
 Configure miss: whether tzset clobbers localtime buffer
 Configure miss: whether -Wno-missing-field-initializers is needed
 Configure miss: CMOCKA
-Configure miss: library containing idn2_lookup_u8
 Configure miss: unbound library
 Configure miss: tss library
 Configure miss: sys/procset.h usability
@@ -100,4 +92,4 @@ Configure miss: whether with-libregex was specified
 Configure miss: whether with-libregex-cflags was specified
 Configure miss: whether with-libregex-libs was specified
 Configure miss: whether pathfind(3) works
-Configure miss: guile-snarf
+Configure miss: whether building Guile bindings

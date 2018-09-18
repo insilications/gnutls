@@ -6,7 +6,7 @@
 #
 Name     : gnutls
 Version  : 3.6.3
-Release  : 52
+Release  : 53
 URL      : https://www.gnupg.org/ftp/gcrypt/gnutls/v3.6/gnutls-3.6.3.tar.xz
 Source0  : https://www.gnupg.org/ftp/gcrypt/gnutls/v3.6/gnutls-3.6.3.tar.xz
 Source99 : https://www.gnupg.org/ftp/gcrypt/gnutls/v3.6/gnutls-3.6.3.tar.xz.sig
@@ -28,8 +28,10 @@ BuildRequires : glibc-libc32
 BuildRequires : gmp-dev
 BuildRequires : gmp-dev32
 BuildRequires : gmp-lib32
+BuildRequires : gnutls-dev
 BuildRequires : gtk-doc
 BuildRequires : gtk-doc-dev
+BuildRequires : intltool-dev
 BuildRequires : libidn-dev
 BuildRequires : libidn-dev32
 BuildRequires : libtasn1-dev
@@ -44,11 +46,14 @@ BuildRequires : nettle-dev32
 BuildRequires : nettle-lib
 BuildRequires : nettle-lib32
 BuildRequires : pkg-config
+BuildRequires : pkgconfig(32libidn2)
 BuildRequires : pkgconfig(32p11-kit-1)
+BuildRequires : pkgconfig(libidn2)
 BuildRequires : pkgconfig(p11-kit-1)
 BuildRequires : sed
 BuildRequires : valgrind
 Patch1: noversion.patch
+Patch2: 0001-Don-t-run-trust-store-test-as-it-isn-t-in-the-buildr.patch
 
 %description
 ext/         -> Implementation of TLS extensions
@@ -58,8 +63,8 @@ accelerated/ -> Implementation of cipher acceleration
 %package bin
 Summary: bin components for the gnutls package.
 Group: Binaries
-Requires: gnutls-license
-Requires: gnutls-man
+Requires: gnutls-license = %{version}-%{release}
+Requires: gnutls-man = %{version}-%{release}
 
 %description bin
 bin components for the gnutls package.
@@ -68,9 +73,9 @@ bin components for the gnutls package.
 %package dev
 Summary: dev components for the gnutls package.
 Group: Development
-Requires: gnutls-lib
-Requires: gnutls-bin
-Provides: gnutls-devel
+Requires: gnutls-lib = %{version}-%{release}
+Requires: gnutls-bin = %{version}-%{release}
+Provides: gnutls-devel = %{version}-%{release}
 
 %description dev
 dev components for the gnutls package.
@@ -79,9 +84,9 @@ dev components for the gnutls package.
 %package dev32
 Summary: dev32 components for the gnutls package.
 Group: Default
-Requires: gnutls-lib32
-Requires: gnutls-bin
-Requires: gnutls-dev
+Requires: gnutls-lib32 = %{version}-%{release}
+Requires: gnutls-bin = %{version}-%{release}
+Requires: gnutls-dev = %{version}-%{release}
 
 %description dev32
 dev32 components for the gnutls package.
@@ -90,7 +95,7 @@ dev32 components for the gnutls package.
 %package doc
 Summary: doc components for the gnutls package.
 Group: Documentation
-Requires: gnutls-man
+Requires: gnutls-man = %{version}-%{release}
 
 %description doc
 doc components for the gnutls package.
@@ -107,7 +112,7 @@ extras components for the gnutls package.
 %package lib
 Summary: lib components for the gnutls package.
 Group: Libraries
-Requires: gnutls-license
+Requires: gnutls-license = %{version}-%{release}
 
 %description lib
 lib components for the gnutls package.
@@ -116,7 +121,7 @@ lib components for the gnutls package.
 %package lib32
 Summary: lib32 components for the gnutls package.
 Group: Default
-Requires: gnutls-license
+Requires: gnutls-license = %{version}-%{release}
 
 %description lib32
 lib32 components for the gnutls package.
@@ -149,6 +154,7 @@ man components for the gnutls package.
 %prep
 %setup -q -n gnutls-3.6.3
 %patch1 -p1
+%patch2 -p1
 pushd ..
 cp -a gnutls-3.6.3 build32
 popd
@@ -158,12 +164,13 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1532721487
+export SOURCE_DATE_EPOCH=1537306974
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
-%configure --disable-static
+%configure --disable-static --enable-guile=no \
+--with-default-trust-store-pkcs11=unix:///var/cache/ca-certs/compat/ca-roots.pem
 make  %{?_smp_mflags}
 
 pushd ../build32/
@@ -171,7 +178,8 @@ export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
 export CFLAGS="$CFLAGS -m32"
 export CXXFLAGS="$CXXFLAGS -m32"
 export LDFLAGS="$LDFLAGS -m32"
-%configure --disable-static    --libdir=/usr/lib32 --build=i686-generic-linux-gnu --host=i686-generic-linux-gnu --target=i686-clr-linux-gnu
+%configure --disable-static --enable-guile=no \
+--with-default-trust-store-pkcs11=unix:///var/cache/ca-certs/compat/ca-roots.pem   --libdir=/usr/lib32 --build=i686-generic-linux-gnu --host=i686-generic-linux-gnu --target=i686-clr-linux-gnu
 make  %{?_smp_mflags}
 popd
 %check
@@ -180,9 +188,11 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
+cd ../build32;
+make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1532721487
+export SOURCE_DATE_EPOCH=1537306974
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/gnutls
 cp LICENSE %{buildroot}/usr/share/doc/gnutls/LICENSE
@@ -242,61 +252,6 @@ popd
 /usr/include/gnutls/x509.h
 /usr/lib64/libgnutls.so
 /usr/lib64/pkgconfig/gnutls.pc
-
-%files dev32
-%defattr(-,root,root,-)
-/usr/lib32/libgnutls.so
-/usr/lib32/libgnutlsxx.so
-/usr/lib32/pkgconfig/32gnutls.pc
-/usr/lib32/pkgconfig/gnutls.pc
-
-%files doc
-%defattr(0644,root,root,0755)
-%doc /usr/share/doc/gnutls/*
-%doc /usr/share/info/*
-
-%files extras
-%defattr(-,root,root,-)
-/usr/lib64/libgnutlsxx.so
-/usr/lib64/libgnutlsxx.so.28
-/usr/lib64/libgnutlsxx.so.28.1.0
-
-%files lib
-%defattr(-,root,root,-)
-%exclude /usr/lib64/libgnutlsxx.so.28
-%exclude /usr/lib64/libgnutlsxx.so.28.1.0
-/usr/lib64/libgnutls.so.30
-/usr/lib64/libgnutls.so.30.21.0
-
-%files lib32
-%defattr(-,root,root,-)
-/usr/lib32/libgnutls.so.30
-/usr/lib32/libgnutls.so.30.21.0
-/usr/lib32/libgnutlsxx.so.28
-/usr/lib32/libgnutlsxx.so.28.1.0
-
-%files license
-%defattr(-,root,root,-)
-/usr/share/doc/gnutls/LICENSE
-/usr/share/doc/gnutls/doc_COPYING
-/usr/share/doc/gnutls/doc_COPYING.LESSER
-/usr/share/doc/gnutls/doc_examples_tlsproxy_LICENSE
-/usr/share/doc/gnutls/lib_accelerated_x86_license.txt
-/usr/share/doc/gnutls/src_libopts_COPYING.gplv3
-/usr/share/doc/gnutls/src_libopts_COPYING.lgplv3
-/usr/share/doc/gnutls/src_libopts_COPYING.mbsd
-
-%files man
-%defattr(-,root,root,-)
-/usr/share/man/man1/certtool.1
-/usr/share/man/man1/gnutls-cli-debug.1
-/usr/share/man/man1/gnutls-cli.1
-/usr/share/man/man1/gnutls-serv.1
-/usr/share/man/man1/ocsptool.1
-/usr/share/man/man1/p11tool.1
-/usr/share/man/man1/psktool.1
-/usr/share/man/man1/srptool.1
-/usr/share/man/man1/tpmtool.1
 /usr/share/man/man3/dane_cert_type_name.3
 /usr/share/man/man3/dane_cert_usage_name.3
 /usr/share/man/man3/dane_match_type_name.3
@@ -1404,6 +1359,61 @@ popd
 /usr/share/man/man3/gnutls_x509_trust_list_verify_crt.3
 /usr/share/man/man3/gnutls_x509_trust_list_verify_crt2.3
 /usr/share/man/man3/gnutls_x509_trust_list_verify_named_crt.3
+
+%files dev32
+%defattr(-,root,root,-)
+/usr/lib32/libgnutls.so
+/usr/lib32/libgnutlsxx.so
+/usr/lib32/pkgconfig/32gnutls.pc
+/usr/lib32/pkgconfig/gnutls.pc
+
+%files doc
+%defattr(0644,root,root,0755)
+%doc /usr/share/doc/gnutls/*
+%doc /usr/share/info/*
+
+%files extras
+%defattr(-,root,root,-)
+/usr/lib64/libgnutlsxx.so
+/usr/lib64/libgnutlsxx.so.28
+/usr/lib64/libgnutlsxx.so.28.1.0
+
+%files lib
+%defattr(-,root,root,-)
+%exclude /usr/lib64/libgnutlsxx.so.28
+%exclude /usr/lib64/libgnutlsxx.so.28.1.0
+/usr/lib64/libgnutls.so.30
+/usr/lib64/libgnutls.so.30.21.0
+
+%files lib32
+%defattr(-,root,root,-)
+/usr/lib32/libgnutls.so.30
+/usr/lib32/libgnutls.so.30.21.0
+/usr/lib32/libgnutlsxx.so.28
+/usr/lib32/libgnutlsxx.so.28.1.0
+
+%files license
+%defattr(-,root,root,-)
+/usr/share/doc/gnutls/LICENSE
+/usr/share/doc/gnutls/doc_COPYING
+/usr/share/doc/gnutls/doc_COPYING.LESSER
+/usr/share/doc/gnutls/doc_examples_tlsproxy_LICENSE
+/usr/share/doc/gnutls/lib_accelerated_x86_license.txt
+/usr/share/doc/gnutls/src_libopts_COPYING.gplv3
+/usr/share/doc/gnutls/src_libopts_COPYING.lgplv3
+/usr/share/doc/gnutls/src_libopts_COPYING.mbsd
+
+%files man
+%defattr(-,root,root,-)
+/usr/share/man/man1/certtool.1
+/usr/share/man/man1/gnutls-cli-debug.1
+/usr/share/man/man1/gnutls-cli.1
+/usr/share/man/man1/gnutls-serv.1
+/usr/share/man/man1/ocsptool.1
+/usr/share/man/man1/p11tool.1
+/usr/share/man/man1/psktool.1
+/usr/share/man/man1/srptool.1
+/usr/share/man/man1/tpmtool.1
 
 %files locales -f gnutls.lang
 %defattr(-,root,root,-)
