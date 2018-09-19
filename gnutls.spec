@@ -6,7 +6,7 @@
 #
 Name     : gnutls
 Version  : 3.6.3
-Release  : 53
+Release  : 54
 URL      : https://www.gnupg.org/ftp/gcrypt/gnutls/v3.6/gnutls-3.6.3.tar.xz
 Source0  : https://www.gnupg.org/ftp/gcrypt/gnutls/v3.6/gnutls-3.6.3.tar.xz
 Source99 : https://www.gnupg.org/ftp/gcrypt/gnutls/v3.6/gnutls-3.6.3.tar.xz.sig
@@ -164,13 +164,13 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1537306974
+export SOURCE_DATE_EPOCH=1537385152
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 %configure --disable-static --enable-guile=no \
---with-default-trust-store-pkcs11=unix:///var/cache/ca-certs/compat/ca-roots.pem
+--with-default-trust-store-dir=/var/cache/ca-certs/anchors
 make  %{?_smp_mflags}
 
 pushd ../build32/
@@ -179,7 +179,7 @@ export CFLAGS="$CFLAGS -m32"
 export CXXFLAGS="$CXXFLAGS -m32"
 export LDFLAGS="$LDFLAGS -m32"
 %configure --disable-static --enable-guile=no \
---with-default-trust-store-pkcs11=unix:///var/cache/ca-certs/compat/ca-roots.pem   --libdir=/usr/lib32 --build=i686-generic-linux-gnu --host=i686-generic-linux-gnu --target=i686-clr-linux-gnu
+--with-default-trust-store-dir=/var/cache/ca-certs/anchors   --libdir=/usr/lib32 --build=i686-generic-linux-gnu --host=i686-generic-linux-gnu --target=i686-clr-linux-gnu
 make  %{?_smp_mflags}
 popd
 %check
@@ -192,7 +192,7 @@ cd ../build32;
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1537306974
+export SOURCE_DATE_EPOCH=1537385152
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/gnutls
 cp LICENSE %{buildroot}/usr/share/doc/gnutls/LICENSE
