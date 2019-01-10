@@ -5,26 +5,28 @@
 # Source0 file verified with key 0xD81C4887F1679A65 (nmav@gnutls.org)
 #
 Name     : gnutls
-Version  : 3.6.3
-Release  : 54
-URL      : https://www.gnupg.org/ftp/gcrypt/gnutls/v3.6/gnutls-3.6.3.tar.xz
-Source0  : https://www.gnupg.org/ftp/gcrypt/gnutls/v3.6/gnutls-3.6.3.tar.xz
-Source99 : https://www.gnupg.org/ftp/gcrypt/gnutls/v3.6/gnutls-3.6.3.tar.xz.sig
+Version  : 3.6.5
+Release  : 55
+URL      : https://www.gnupg.org/ftp/gcrypt/gnutls/v3.6/gnutls-3.6.5.tar.xz
+Source0  : https://www.gnupg.org/ftp/gcrypt/gnutls/v3.6/gnutls-3.6.5.tar.xz
+Source99 : https://www.gnupg.org/ftp/gcrypt/gnutls/v3.6/gnutls-3.6.5.tar.xz.sig
 Summary  : Transport Security Layer implementation for the GNU system
 Group    : Development/Tools
 License  : BSD-3-Clause BSD-3-Clause-Clear GPL-3.0 GPL-3.0+ LGPL-2.0+ LGPL-2.1 LGPL-3.0 MIT
-Requires: gnutls-bin
-Requires: gnutls-lib
-Requires: gnutls-license
-Requires: gnutls-locales
-Requires: gnutls-man
+Requires: gnutls-bin = %{version}-%{release}
+Requires: gnutls-lib = %{version}-%{release}
+Requires: gnutls-license = %{version}-%{release}
+Requires: gnutls-locales = %{version}-%{release}
+Requires: gnutls-man = %{version}-%{release}
 BuildRequires : bison
+BuildRequires : datefudge
 BuildRequires : docbook-xml
 BuildRequires : gcc-dev32
 BuildRequires : gcc-libgcc32
 BuildRequires : gcc-libstdc++32
 BuildRequires : glibc-dev32
 BuildRequires : glibc-libc32
+BuildRequires : glibc-locale
 BuildRequires : gmp-dev
 BuildRequires : gmp-dev32
 BuildRequires : gmp-lib32
@@ -34,6 +36,7 @@ BuildRequires : gtk-doc-dev
 BuildRequires : intltool-dev
 BuildRequires : libidn-dev
 BuildRequires : libidn-dev32
+BuildRequires : libseccomp-dev
 BuildRequires : libtasn1-dev
 BuildRequires : libtasn1-dev32
 BuildRequires : libunistring-dev
@@ -51,6 +54,7 @@ BuildRequires : pkgconfig(32p11-kit-1)
 BuildRequires : pkgconfig(libidn2)
 BuildRequires : pkgconfig(p11-kit-1)
 BuildRequires : sed
+BuildRequires : util-linux
 BuildRequires : valgrind
 Patch1: noversion.patch
 Patch2: 0001-Don-t-run-trust-store-test-as-it-isn-t-in-the-buildr.patch
@@ -152,11 +156,11 @@ man components for the gnutls package.
 
 
 %prep
-%setup -q -n gnutls-3.6.3
+%setup -q -n gnutls-3.6.5
 %patch1 -p1
 %patch2 -p1
 pushd ..
-cp -a gnutls-3.6.3 build32
+cp -a gnutls-3.6.5 build32
 popd
 
 %build
@@ -164,7 +168,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1537385152
+export SOURCE_DATE_EPOCH=1547140167
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
@@ -175,9 +179,10 @@ make  %{?_smp_mflags}
 
 pushd ../build32/
 export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
-export CFLAGS="$CFLAGS -m32"
-export CXXFLAGS="$CXXFLAGS -m32"
-export LDFLAGS="$LDFLAGS -m32"
+export ASFLAGS="${ASFLAGS}${ASFLAGS:+ }--32"
+export CFLAGS="${CFLAGS}${CFLAGS:+ }-m32"
+export CXXFLAGS="${CXXFLAGS}${CXXFLAGS:+ }-m32"
+export LDFLAGS="${LDFLAGS}${LDFLAGS:+ }-m32"
 %configure --disable-static --enable-guile=no \
 --with-default-trust-store-dir=/var/cache/ca-certs/anchors   --libdir=/usr/lib32 --build=i686-generic-linux-gnu --host=i686-generic-linux-gnu --target=i686-clr-linux-gnu
 make  %{?_smp_mflags}
@@ -192,17 +197,17 @@ cd ../build32;
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1537385152
+export SOURCE_DATE_EPOCH=1547140167
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/gnutls
-cp LICENSE %{buildroot}/usr/share/doc/gnutls/LICENSE
-cp doc/COPYING %{buildroot}/usr/share/doc/gnutls/doc_COPYING
-cp doc/COPYING.LESSER %{buildroot}/usr/share/doc/gnutls/doc_COPYING.LESSER
-cp doc/examples/tlsproxy/LICENSE %{buildroot}/usr/share/doc/gnutls/doc_examples_tlsproxy_LICENSE
-cp lib/accelerated/x86/license.txt %{buildroot}/usr/share/doc/gnutls/lib_accelerated_x86_license.txt
-cp src/libopts/COPYING.gplv3 %{buildroot}/usr/share/doc/gnutls/src_libopts_COPYING.gplv3
-cp src/libopts/COPYING.lgplv3 %{buildroot}/usr/share/doc/gnutls/src_libopts_COPYING.lgplv3
-cp src/libopts/COPYING.mbsd %{buildroot}/usr/share/doc/gnutls/src_libopts_COPYING.mbsd
+mkdir -p %{buildroot}/usr/share/package-licenses/gnutls
+cp LICENSE %{buildroot}/usr/share/package-licenses/gnutls/LICENSE
+cp doc/COPYING %{buildroot}/usr/share/package-licenses/gnutls/doc_COPYING
+cp doc/COPYING.LESSER %{buildroot}/usr/share/package-licenses/gnutls/doc_COPYING.LESSER
+cp doc/examples/tlsproxy/LICENSE %{buildroot}/usr/share/package-licenses/gnutls/doc_examples_tlsproxy_LICENSE
+cp lib/accelerated/x86/license.txt %{buildroot}/usr/share/package-licenses/gnutls/lib_accelerated_x86_license.txt
+cp src/libopts/COPYING.gplv3 %{buildroot}/usr/share/package-licenses/gnutls/src_libopts_COPYING.gplv3
+cp src/libopts/COPYING.lgplv3 %{buildroot}/usr/share/package-licenses/gnutls/src_libopts_COPYING.lgplv3
+cp src/libopts/COPYING.mbsd %{buildroot}/usr/share/package-licenses/gnutls/src_libopts_COPYING.mbsd
 pushd ../build32/
 %make_install32
 if [ -d  %{buildroot}/usr/lib32/pkgconfig ]
@@ -290,6 +295,12 @@ popd
 /usr/share/man/man3/gnutls_anon_set_server_dh_params.3
 /usr/share/man/man3/gnutls_anon_set_server_known_dh_params.3
 /usr/share/man/man3/gnutls_anon_set_server_params_function.3
+/usr/share/man/man3/gnutls_anti_replay_deinit.3
+/usr/share/man/man3/gnutls_anti_replay_enable.3
+/usr/share/man/man3/gnutls_anti_replay_init.3
+/usr/share/man/man3/gnutls_anti_replay_set_add_function.3
+/usr/share/man/man3/gnutls_anti_replay_set_ptr.3
+/usr/share/man/man3/gnutls_anti_replay_set_window.3
 /usr/share/man/man3/gnutls_auth_client_get_type.3
 /usr/share/man/man3/gnutls_auth_get_type.3
 /usr/share/man/man3/gnutls_auth_server_get_type.3
@@ -352,6 +363,7 @@ popd
 /usr/share/man/man3/gnutls_certificate_set_x509_trust_file.3
 /usr/share/man/man3/gnutls_certificate_set_x509_trust_mem.3
 /usr/share/man/man3/gnutls_certificate_type_get.3
+/usr/share/man/man3/gnutls_certificate_type_get2.3
 /usr/share/man/man3/gnutls_certificate_type_get_id.3
 /usr/share/man/man3/gnutls_certificate_type_get_name.3
 /usr/share/man/man3/gnutls_certificate_type_list.3
@@ -391,6 +403,7 @@ popd
 /usr/share/man/man3/gnutls_crypto_register_digest.3
 /usr/share/man/man3/gnutls_crypto_register_mac.3
 /usr/share/man/man3/gnutls_db_check_entry.3
+/usr/share/man/man3/gnutls_db_check_entry_expire_time.3
 /usr/share/man/man3/gnutls_db_check_entry_time.3
 /usr/share/man/man3/gnutls_db_get_default_cache_expiration.3
 /usr/share/man/man3/gnutls_db_get_ptr.3
@@ -718,6 +731,7 @@ popd
 /usr/share/man/man3/gnutls_prf_raw.3
 /usr/share/man/man3/gnutls_prf_rfc5705.3
 /usr/share/man/man3/gnutls_priority_certificate_type_list.3
+/usr/share/man/man3/gnutls_priority_certificate_type_list2.3
 /usr/share/man/man3/gnutls_priority_cipher_list.3
 /usr/share/man/man3/gnutls_priority_compression_list.3
 /usr/share/man/man3/gnutls_priority_deinit.3
@@ -734,6 +748,7 @@ popd
 /usr/share/man/man3/gnutls_priority_sign_list.3
 /usr/share/man/man3/gnutls_priority_string_list.3
 /usr/share/man/man3/gnutls_privkey_decrypt_data.3
+/usr/share/man/man3/gnutls_privkey_decrypt_data2.3
 /usr/share/man/man3/gnutls_privkey_deinit.3
 /usr/share/man/man3/gnutls_privkey_export_dsa_raw.3
 /usr/share/man/man3/gnutls_privkey_export_dsa_raw2.3
@@ -851,15 +866,19 @@ popd
 /usr/share/man/man3/gnutls_record_discard_queued.3
 /usr/share/man/man3/gnutls_record_get_direction.3
 /usr/share/man/man3/gnutls_record_get_discarded.3
+/usr/share/man/man3/gnutls_record_get_max_early_data_size.3
 /usr/share/man/man3/gnutls_record_get_max_size.3
 /usr/share/man/man3/gnutls_record_get_state.3
 /usr/share/man/man3/gnutls_record_overhead_size.3
 /usr/share/man/man3/gnutls_record_recv.3
+/usr/share/man/man3/gnutls_record_recv_early_data.3
 /usr/share/man/man3/gnutls_record_recv_packet.3
 /usr/share/man/man3/gnutls_record_recv_seq.3
 /usr/share/man/man3/gnutls_record_send.3
 /usr/share/man/man3/gnutls_record_send2.3
+/usr/share/man/man3/gnutls_record_send_early_data.3
 /usr/share/man/man3/gnutls_record_send_range.3
+/usr/share/man/man3/gnutls_record_set_max_early_data_size.3
 /usr/share/man/man3/gnutls_record_set_max_size.3
 /usr/share/man/man3/gnutls_record_set_state.3
 /usr/share/man/man3/gnutls_record_set_timeout.3
@@ -1383,28 +1402,28 @@ popd
 %exclude /usr/lib64/libgnutlsxx.so.28
 %exclude /usr/lib64/libgnutlsxx.so.28.1.0
 /usr/lib64/libgnutls.so.30
-/usr/lib64/libgnutls.so.30.21.0
+/usr/lib64/libgnutls.so.30.23.0
 
 %files lib32
 %defattr(-,root,root,-)
 /usr/lib32/libgnutls.so.30
-/usr/lib32/libgnutls.so.30.21.0
+/usr/lib32/libgnutls.so.30.23.0
 /usr/lib32/libgnutlsxx.so.28
 /usr/lib32/libgnutlsxx.so.28.1.0
 
 %files license
-%defattr(-,root,root,-)
-/usr/share/doc/gnutls/LICENSE
-/usr/share/doc/gnutls/doc_COPYING
-/usr/share/doc/gnutls/doc_COPYING.LESSER
-/usr/share/doc/gnutls/doc_examples_tlsproxy_LICENSE
-/usr/share/doc/gnutls/lib_accelerated_x86_license.txt
-/usr/share/doc/gnutls/src_libopts_COPYING.gplv3
-/usr/share/doc/gnutls/src_libopts_COPYING.lgplv3
-/usr/share/doc/gnutls/src_libopts_COPYING.mbsd
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/gnutls/LICENSE
+/usr/share/package-licenses/gnutls/doc_COPYING
+/usr/share/package-licenses/gnutls/doc_COPYING.LESSER
+/usr/share/package-licenses/gnutls/doc_examples_tlsproxy_LICENSE
+/usr/share/package-licenses/gnutls/lib_accelerated_x86_license.txt
+/usr/share/package-licenses/gnutls/src_libopts_COPYING.gplv3
+/usr/share/package-licenses/gnutls/src_libopts_COPYING.lgplv3
+/usr/share/package-licenses/gnutls/src_libopts_COPYING.mbsd
 
 %files man
-%defattr(-,root,root,-)
+%defattr(0644,root,root,0755)
 /usr/share/man/man1/certtool.1
 /usr/share/man/man1/gnutls-cli-debug.1
 /usr/share/man/man1/gnutls-cli.1

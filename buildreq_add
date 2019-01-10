@@ -20,3 +20,4 @@ gmp-lib32
 libunistring-dev
 libunistring-dev32
 datefudge
+util-linux

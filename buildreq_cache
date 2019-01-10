@@ -1,6 +1,8 @@
-3.6.3
+3.6.5
+glibc-locale
 gnutls-dev
 intltool-dev
+libseccomp-dev
 pkg-config
 pkgconfig(32libidn2)
 pkgconfig(libidn2)

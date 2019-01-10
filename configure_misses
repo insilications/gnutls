@@ -1,6 +1,5 @@
 Configure miss: getentropy
 Configure miss: whether to use the included minitasn1
-Configure miss: whether to enable the TLS 1.3 draft protocol
 Configure miss: whether to disable the SSL 2.0 client hello
 Configure miss: whether to disable DTLS-SRTP extension
 Configure miss: whether to disable ALPN extension
@@ -15,7 +14,6 @@ Configure miss: whether to disable OCSP support
 Configure miss: crtdefs.h
 Configure miss: whether to build OpenSSL compatibility layer
 Configure miss: GTKDOC_DEPS
-Configure miss: libseccomp
 Configure miss: libcrypto
 Configure miss: strerror_r with POSIX signature
 Configure miss: if gcc/ld supports -Wl,--output-def
@@ -29,8 +27,11 @@ Configure miss: timezone_t
 Configure miss: whether tzset clobbers localtime buffer
 Configure miss: whether -Wno-missing-field-initializers is needed
 Configure miss: CMOCKA
+Configure miss: nettle_cfb8_encrypt
+Configure miss: nettle_cmac128_update
 Configure miss: unbound library
 Configure miss: tss library
+Configure miss: autogen
 Configure miss: sys/procset.h usability
 Configure miss: sys/procset.h presence
 Configure miss: sys/procset.h
@@ -38,16 +39,32 @@ Configure miss: runetype.h
 Configure miss: uint_t
 Configure miss: pathfind in -lgen
 Configure miss: gettext in -lintl
-Configure miss: whether autoopts-config can be found... checking whether autoopts-config is specified
 Configure miss: whether a reg expr header is specified
 Configure miss: whether with-libregex was specified
 Configure miss: whether with-libregex-cflags was specified
 Configure miss: whether with-libregex-libs was specified
 Configure miss: whether pathfind(3) works
 Configure miss: whether building Guile bindings
+Configure miss: i686-generic-linux-gnu-gcc
+Configure miss: i686-generic-linux-gnu-ar
+Configure miss: i686-generic-linux-gnu-lib
+Configure miss: i686-generic-linux-gnu-link
+Configure miss: i686-generic-linux-gnu-ranlib
+Configure miss: i686-generic-linux-gnu-g++
+Configure miss: i686-generic-linux-gnu-c++
+Configure miss: i686-generic-linux-gnu-gpp
+Configure miss: i686-generic-linux-gnu-aCC
+Configure miss: i686-generic-linux-gnu-CC
+Configure miss: i686-generic-linux-gnu-cxx
+Configure miss: i686-generic-linux-gnu-cc++
+Configure miss: i686-generic-linux-gnu-cl.exe
+Configure miss: i686-generic-linux-gnu-FCC
+Configure miss: i686-generic-linux-gnu-KCC
+Configure miss: i686-generic-linux-gnu-RCC
+Configure miss: i686-generic-linux-gnu-xlC_r
+Configure miss: i686-generic-linux-gnu-xlC
 Configure miss: getentropy
 Configure miss: whether to use the included minitasn1
-Configure miss: whether to enable the TLS 1.3 draft protocol
 Configure miss: whether to disable the SSL 2.0 client hello
 Configure miss: whether to disable DTLS-SRTP extension
 Configure miss: whether to disable ALPN extension
@@ -77,8 +94,11 @@ Configure miss: timezone_t
 Configure miss: whether tzset clobbers localtime buffer
 Configure miss: whether -Wno-missing-field-initializers is needed
 Configure miss: CMOCKA
+Configure miss: nettle_cfb8_encrypt
+Configure miss: nettle_cmac128_update
 Configure miss: unbound library
 Configure miss: tss library
+Configure miss: autogen
 Configure miss: sys/procset.h usability
 Configure miss: sys/procset.h presence
 Configure miss: sys/procset.h
@@ -86,7 +106,6 @@ Configure miss: runetype.h
 Configure miss: uint_t
 Configure miss: pathfind in -lgen
 Configure miss: gettext in -lintl
-Configure miss: whether autoopts-config can be found... checking whether autoopts-config is specified
 Configure miss: whether a reg expr header is specified
 Configure miss: whether with-libregex was specified
 Configure miss: whether with-libregex-cflags was specified
