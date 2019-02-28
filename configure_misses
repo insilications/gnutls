@@ -14,7 +14,11 @@ Configure miss: whether to disable OCSP support
 Configure miss: crtdefs.h
 Configure miss: whether to build OpenSSL compatibility layer
 Configure miss: GTKDOC_DEPS
+Configure miss: 32-bit host C ABI
+Configure miss: CFLocaleCopyPreferredLanguages
 Configure miss: libcrypto
+Configure miss: fake locale system (OpenBSD)
+Configure miss: Solaris 11.4 locale system
 Configure miss: strerror_r with POSIX signature
 Configure miss: if gcc/ld supports -Wl,--output-def
 Configure miss: ioctl with POSIX signature
@@ -45,24 +49,6 @@ Configure miss: whether with-libregex-cflags was specified
 Configure miss: whether with-libregex-libs was specified
 Configure miss: whether pathfind(3) works
 Configure miss: whether building Guile bindings
-Configure miss: i686-generic-linux-gnu-gcc
-Configure miss: i686-generic-linux-gnu-ar
-Configure miss: i686-generic-linux-gnu-lib
-Configure miss: i686-generic-linux-gnu-link
-Configure miss: i686-generic-linux-gnu-ranlib
-Configure miss: i686-generic-linux-gnu-g++
-Configure miss: i686-generic-linux-gnu-c++
-Configure miss: i686-generic-linux-gnu-gpp
-Configure miss: i686-generic-linux-gnu-aCC
-Configure miss: i686-generic-linux-gnu-CC
-Configure miss: i686-generic-linux-gnu-cxx
-Configure miss: i686-generic-linux-gnu-cc++
-Configure miss: i686-generic-linux-gnu-cl.exe
-Configure miss: i686-generic-linux-gnu-FCC
-Configure miss: i686-generic-linux-gnu-KCC
-Configure miss: i686-generic-linux-gnu-RCC
-Configure miss: i686-generic-linux-gnu-xlC_r
-Configure miss: i686-generic-linux-gnu-xlC
 Configure miss: getentropy
 Configure miss: whether to use the included minitasn1
 Configure miss: whether to disable the SSL 2.0 client hello
@@ -79,8 +65,11 @@ Configure miss: whether to disable OCSP support
 Configure miss: crtdefs.h
 Configure miss: whether to build OpenSSL compatibility layer
 Configure miss: GTKDOC_DEPS
+Configure miss: CFLocaleCopyPreferredLanguages
 Configure miss: libseccomp
 Configure miss: libcrypto
+Configure miss: fake locale system (OpenBSD)
+Configure miss: Solaris 11.4 locale system
 Configure miss: strerror_r with POSIX signature
 Configure miss: if gcc/ld supports -Wl,--output-def
 Configure miss: whether INT64_MAX == LONG_MAX

@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xD81C4887F1679A65 (nmav@gnutls.org)
 #
 Name     : gnutls
-Version  : 3.6.5
-Release  : 55
-URL      : https://www.gnupg.org/ftp/gcrypt/gnutls/v3.6/gnutls-3.6.5.tar.xz
-Source0  : https://www.gnupg.org/ftp/gcrypt/gnutls/v3.6/gnutls-3.6.5.tar.xz
-Source99 : https://www.gnupg.org/ftp/gcrypt/gnutls/v3.6/gnutls-3.6.5.tar.xz.sig
+Version  : 3.6.6
+Release  : 56
+URL      : https://www.gnupg.org/ftp/gcrypt/gnutls/v3.6/gnutls-3.6.6.tar.xz
+Source0  : https://www.gnupg.org/ftp/gcrypt/gnutls/v3.6/gnutls-3.6.6.tar.xz
+Source99 : https://www.gnupg.org/ftp/gcrypt/gnutls/v3.6/gnutls-3.6.6.tar.xz.sig
 Summary  : Transport Security Layer implementation for the GNU system
 Group    : Development/Tools
 License  : BSD-3-Clause BSD-3-Clause-Clear GPL-3.0 GPL-3.0+ LGPL-2.0+ LGPL-2.1 LGPL-3.0 MIT
@@ -24,6 +24,7 @@ BuildRequires : docbook-xml
 BuildRequires : gcc-dev32
 BuildRequires : gcc-libgcc32
 BuildRequires : gcc-libstdc++32
+BuildRequires : gettext
 BuildRequires : glibc-dev32
 BuildRequires : glibc-libc32
 BuildRequires : glibc-locale
@@ -156,11 +157,11 @@ man components for the gnutls package.
 
 
 %prep
-%setup -q -n gnutls-3.6.5
+%setup -q -n gnutls-3.6.6
 %patch1 -p1
 %patch2 -p1
 pushd ..
-cp -a gnutls-3.6.5 build32
+cp -a gnutls-3.6.6 build32
 popd
 
 %build
@@ -168,7 +169,8 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1547140167
+export SOURCE_DATE_EPOCH=1551316446
+export LDFLAGS="${LDFLAGS} -fno-lto"
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
@@ -197,7 +199,7 @@ cd ../build32;
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1547140167
+export SOURCE_DATE_EPOCH=1551316446
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/gnutls
 cp LICENSE %{buildroot}/usr/share/package-licenses/gnutls/LICENSE
@@ -340,6 +342,8 @@ popd
 /usr/share/man/man3/gnutls_certificate_set_ocsp_status_request_mem.3
 /usr/share/man/man3/gnutls_certificate_set_params_function.3
 /usr/share/man/man3/gnutls_certificate_set_pin_function.3
+/usr/share/man/man3/gnutls_certificate_set_rawpk_key_file.3
+/usr/share/man/man3/gnutls_certificate_set_rawpk_key_mem.3
 /usr/share/man/man3/gnutls_certificate_set_retrieve_function.3
 /usr/share/man/man3/gnutls_certificate_set_retrieve_function2.3
 /usr/share/man/man3/gnutls_certificate_set_retrieve_function3.3
@@ -591,6 +595,8 @@ popd
 /usr/share/man/man3/gnutls_pcert_export_x509.3
 /usr/share/man/man3/gnutls_pcert_import_openpgp.3
 /usr/share/man/man3/gnutls_pcert_import_openpgp_raw.3
+/usr/share/man/man3/gnutls_pcert_import_rawpk.3
+/usr/share/man/man3/gnutls_pcert_import_rawpk_raw.3
 /usr/share/man/man3/gnutls_pcert_import_x509.3
 /usr/share/man/man3/gnutls_pcert_import_x509_list.3
 /usr/share/man/man3/gnutls_pcert_import_x509_raw.3
@@ -1402,12 +1408,12 @@ popd
 %exclude /usr/lib64/libgnutlsxx.so.28
 %exclude /usr/lib64/libgnutlsxx.so.28.1.0
 /usr/lib64/libgnutls.so.30
-/usr/lib64/libgnutls.so.30.23.0
+/usr/lib64/libgnutls.so.30.23.1
 
 %files lib32
 %defattr(-,root,root,-)
 /usr/lib32/libgnutls.so.30
-/usr/lib32/libgnutls.so.30.23.0
+/usr/lib32/libgnutls.so.30.23.1
 /usr/lib32/libgnutlsxx.so.28
 /usr/lib32/libgnutlsxx.so.28.1.0
 

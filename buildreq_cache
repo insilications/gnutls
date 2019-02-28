@@ -1,4 +1,5 @@
-3.6.5
+3.6.6
+gettext
 glibc-locale
 gnutls-dev
 intltool-dev

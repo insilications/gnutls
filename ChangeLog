@@ -1,4 +1,936 @@
 Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Fri Jan 25 08:32:17 2019 +0100
+
+    NEWS: updated
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Fri Jan 25 08:24:21 2019 +0100
+
+    src/Makefile.am: remove .bak files before autogenerating
+    
+    This avoids errors due to files pre-existing but not being
+    writable.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Fri Jan 25 08:18:01 2019 +0100
+
+    bumped versions
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Fri Jan 25 08:13:26 2019 +0100
+
+    Makefile.am: require guile-2.2 for release
+    
+    That's because guile.m4 from previous releases has issues
+    with the latest version.
+    
+    Resolves: #631
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Thu Jan 24 20:25:59 2019 +0100
+
+    priorities: when %NO_EXTENSIONS is specified disable TLS1.3
+    
+    This makes the behavior of this priority string option well-defined
+    even when TLS1.3 is enabled.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Andreas Metzler <ametzler@bebt.de>
+Date:   Thu Jan 24 18:48:40 2019 +0100
+
+    certtool.1: fix formatting
+    
+    Apostroph at start of a line is a control character in manpages, avoid
+    it. Also drop wrong indent.
+    See https://bugs.debian.org/920215
+    
+    Signed-off-by: Andreas Metzler <ametzler@bebt.de>
+
+Author: Daiki Ueno <dueno@redhat.com>
+Date:   Wed Jan 23 17:52:47 2019 +0100
+
+    tlsfuzzer: update to the latest upstream for record_size_limit tests
+    
+    Signed-off-by: Daiki Ueno <dueno@redhat.com>
+
+Author: Dmitry Eremin-Solenikov <dbaryshkov@gmail.com>
+Date:   Thu Jan 24 01:57:13 2019 +0300
+
+    configure.ac: fix substitution for libatomic
+    
+    Signed-off-by: Dmitry Eremin-Solenikov <dbaryshkov@gmail.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Wed Jan 23 20:51:11 2019 +0100
+
+    .travis.yml: avoid installing submodules
+    
+    They are not necessary for building and testing the basic
+    test suite.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Wed Jan 23 20:42:34 2019 +0100
+
+    update on "Fix gnutls.pc for multiarch builds"
+    
+    This replaces LTLIBUNISTRING with LIBUNISTRING in Makefile.am.
+    The former is no longer produced by configure.ac.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Tim Rühsen <tim.ruehsen@gmx.de>
+Date:   Wed Jan 23 15:13:12 2019 +0100
+
+    set_ciphersuite_list(): Use linear approach to cleanup priorities
+    
+    Signed-off-by: Tim Rühsen <tim.ruehsen@gmx.de>
+
+Author: Daiki Ueno <dueno@redhat.com>
+Date:   Tue Jan 22 15:47:39 2019 +0100
+
+    tests: check record_size_limit is reset after resumption
+    
+    Signed-off-by: Daiki Ueno <dueno@redhat.com>
+
+Author: Daiki Ueno <dueno@redhat.com>
+Date:   Sat Jan 19 10:31:52 2019 +0100
+
+    constate: don't restore max_record_recv_size from resumed data
+    
+    Signed-off-by: Daiki Ueno <dueno@redhat.com>
+
+Author: Daiki Ueno <dueno@redhat.com>
+Date:   Thu Jan 17 17:50:49 2019 +0100
+
+    ext/record_size_limit: mark it as mandatory extension
+    
+    In a resuming session record_size_limit is always renegotiated, and
+    thus the server should parse the extension always.
+    
+    Signed-off-by: Daiki Ueno <dueno@redhat.com>
+
+Author: Daiki Ueno <dueno@redhat.com>
+Date:   Thu Jan 17 11:52:50 2019 +0100
+
+    ext/record_size_limit: reject too large extension payload
+    
+    Signed-off-by: Daiki Ueno <dueno@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Sat Jan 5 14:12:46 2019 +0100
+
+    gnutls-serv: improvements in UDP server
+    
+    This modifies the server to deinitialize the session after use
+    (avoiding leaks), and to only send the hello verify request when
+    a client hello is seen.
+    
+    This also adds a basic unit test of gnutls-serv with the --udp option.
+    
+    Resolves #632
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Fabrice Fontaine <fontaine.fabrice@gmail.com>
+Date:   Wed Jan 23 13:36:23 2019 +0100
+
+    configure.ac: add comment for -latomic
+    
+    Signed-off-by: Fabrice Fontaine <fontaine.fabrice@gmail.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Wed Jan 23 08:42:54 2019 +0100
+
+    tests: added tests for multiple ticket reception
+    
+    This introduces tests for the reception (parsing) of multiple tickets
+    by a gnutls client. It uses the tlslite-ng server because unlike a gnutls
+    server, tlslite-ng does send multiple tickets in a single record. That
+    way we test that we can parse both ways of sending tickets.
+    
+    Resolves: #511
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Tim Rühsen <tim.ruehsen@gmx.de>
+Date:   Wed Jan 23 11:45:39 2019 +0100
+
+    Update gnulib
+    
+    Closes #653 (printf %n crashes on Android)
+    
+    Signed-off-by: Tim Rühsen <tim.ruehsen@gmx.de>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Mon Jan 21 20:53:06 2019 +0100
+
+    gnutls_alert_send_appropriate: do not send alert to peer on all errors
+    
+    That is, do not send alerts for success, or for errors indicating that
+    an alert has been received. This changes the documented function behavior
+    but does not break any existing caller expectations.
+    
+    Relates: #672
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Mon Jan 21 20:33:00 2019 +0100
+
+    gnutls_pkcs11_privkey_import_url: enable RSA-PSS only when an RSA key can sign
+    
+    In gnutls_pkcs11_privkey_import_url() we only enabled RSA-PSS functionality to
+    the key if the CKM_RSA_PKCS_PSS mechanism is available to the token. However,
+    if the specific key is not marked for use with digital signatures (CKA_SIGN
+    set), then we may have still ended-up using it and fail when using it. We
+    now test whether CKA_SIGN is set prior to enabling such keys for PSS.
+    
+    Resolves: #667
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Mon Jan 21 20:56:10 2019 +0100
+
+    alert: associate unsupported curve alerts with handshake failure
+    
+    Resolves: #672
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Tim Rühsen <tim.ruehsen@gmx.de>
+Date:   Thu Jan 10 14:53:32 2019 +0100
+
+    Check for Signed-off-by: in CI
+    
+    Signed-off-by: Tim Rühsen <tim.ruehsen@gmx.de>
+
+Author: Tim Rühsen <tim.ruehsen@gmx.de>
+Date:   Sun Jan 20 12:00:07 2019 +0100
+
+    Avoid excessive CPU usage in gnutls_idna_map()
+    
+    Signed-off-by: Tim Rühsen <tim.ruehsen@gmx.de>
+
+Author: Tim Rühsen <tim.ruehsen@gmx.de>
+Date:   Sat Jan 19 18:19:42 2019 +0100
+
+    Fix uninitialized variable in tests/x509dn.c
+    
+    Signed-off-by: Tim Rühsen <tim.ruehsen@gmx.de>
+
+Author: Tim Rühsen <tim.ruehsen@gmx.de>
+Date:   Sat Jan 19 18:04:31 2019 +0100
+
+    crypto-selftests.c: Fix checking return value
+    
+    Signed-off-by: Tim Rühsen <tim.ruehsen@gmx.de>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Fri Jan 11 07:23:40 2019 +0100
+
+    auto-generate the AUTHORS file
+    
+    The original file was unmaintained since long time. This is now
+    auto-generated from the git shortlog, at release time.
+    
+    Relates: #606
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Fabrice Fontaine <fontaine.fabrice@gmail.com>
+Date:   Thu Jan 17 13:24:04 2019 +0100
+
+    configure.ac: check if libatomic is needed
+    
+    gnutls source code uses the C++11 <atomic> functionality since
+    https://github.com/gnutls/gnutls/commit/7978a733460f92b31033affd0e487c86d66c643d,
+    which internally is implemented using the __atomic_*() gcc built-ins
+    
+    On certain architectures, the __atomic_*() built-ins are implemented in
+    the libatomic library that comes with the rest of the gcc runtime. Due
+    to this, code using <atomic> might need to link against libatomic,
+    otherwise one hits build issues such as:
+    
+    ../lib/.libs/libgnutls.so: undefined reference to `__atomic_fetch_sub_4'
+    
+    on an architecture like SPARC.
+    
+    To solve this, a configure.ac check is added to know if we need to
+    link against libatomic or not. The library is also added to gnutls.pc.
+    
+    Fixes:
+     - http://autobuild.buildroot.org/results/6c749bd592ceffeacadd2ab570d127936cce64b2
+     - http://autobuild.buildroot.org/results/30aa83d3cf3482af8a59250c196c85f4a278d343
+    
+    Signed-off-by: Fabrice Fontaine <fontaine.fabrice@gmail.com>
+
+Author: Tim Rühsen <tim.ruehsen@gmx.de>
+Date:   Thu Jan 17 10:22:45 2019 +0100
+
+    Fix gnutls.pc for multiarch builds
+    
+    Signed-off-by: Tim Rühsen <tim.ruehsen@gmx.de>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Mon Jan 14 10:56:27 2019 +0100
+
+    certtool: data encipherment is disabled by default
+    
+    For the TLS protocol this option is not necessary, and if enabled
+    by mistake (as default) and no other option is set, then the
+    generated key will be unusable. Thus we disable it, to generate
+    working keys by default.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Thu Jan 10 19:23:12 2019 +0100
+
+    .travis.yml: use ./bootstrap instead of make autoreconf
+    
+    The latter is no longer available after the removal of
+    GNUMakefile.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Thu Jan 10 07:56:17 2019 +0100
+
+    The flag %NO_EXTENSIONS is disabling extension support while being functional
+    
+    That is, the %NO_EXTENSIONS option is the only documented way to disable
+    extensions completely from a session. Clarify that message, mention that
+    its behavior is undefined when combine with TLS1.3, and make sure that it
+    is functional. The latter makes sure that safe renegotiation and extended
+    master secret extensions remain disabled when this flag is given.
+    
+    That simplifies testing certain scenarios under TLS1.0 or TLS1.1 when
+    no extensions must be used.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Tue Jan 8 12:26:19 2019 +0100
+
+    When sending no extensions do not include a zero length
+    
+    According to RFC5246:
+       The presence of extensions can be detected by determining whether
+       there are bytes following the compression_method field at the end of
+       the ServerHello.
+    
+    and as such we correct our behavior to not send the zero length bytes.
+    This was our behavior in 3.5.x and 3.3.x branch, and thus this corrects
+    a regression of gnutls with these branches.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+    Signed-off-by: David Woodhouse <dwmw2@infradead.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Tue Jan 8 19:37:49 2019 +0000
+
+    Avoid calling sign_algorithm_get_name() when we already have pointer to the algorithm.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Daiki Ueno <dueno@redhat.com>
+Date:   Wed Jan 2 13:21:49 2019 +0100
+
+    tls-sig: check RSA-PSS signature key compatibility also in TLS 1.2
+    
+    This extends commit 51d21634 to cover the optional TLS 1.2 cases,
+    which RFC 8446 4.2.3 suggests: "Implementations that advertise support
+    for RSASSA-PSS (which is mandatory in TLS 1.3) MUST be prepared to
+    accept a signature using that scheme even when TLS 1.2 is negotiated".
+    
+    Signed-off-by: Daiki Ueno <dueno@redhat.com>
+
+Author: Daiki Ueno <dueno@redhat.com>
+Date:   Tue Jan 8 18:09:29 2019 +0100
+
+    tlsfuzzer: update to the latest upstream for the TLS 1.2 CV tests
+    
+    Signed-off-by: Daiki Ueno <dueno@redhat.com>
+
+Author: Daiki Ueno <dueno@redhat.com>
+Date:   Tue Jan 8 18:06:17 2019 +0100
+
+    alert: map GNUTLS_E_UNKNOWN_COMPRESSION_ALGORITHM to illegal_parameter
+    
+    This alert is more appropriate according to the tlsfuzzer test:
+    https://github.com/tomato42/tlsfuzzer/commit/4b6a4aa8b00cf3f3bcb2388d1bfdad985610ed1d
+    
+    Signed-off-by: Daiki Ueno <dueno@redhat.com>
+
+Author: Daiki Ueno <dueno@redhat.com>
+Date:   Tue Jan 8 14:40:25 2019 +0100
+
+    Revert "build: remove src/*.bak from distribution"
+    
+    This reverts commit 9ba397aa841730e4824d2bf8537aa15e711ad9b3, as it
+    turned out to be not practical.  See !862 for the discussion.
+    
+    Signed-off-by: Daiki Ueno <dueno@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Tue Jan 8 12:07:00 2019 +0100
+
+    _gnutls_hello_ext_set_datum: removed unnecessary remark [ci skip]
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Maks Naumov <maksqwe1@ukr.net>
+Date:   Tue Jan 8 00:05:23 2019 +0200
+
+    Fix _gnutls_write_new_general_name() result checking
+
+Author: Alon Bar-Lev <alon.barlev@gmail.com>
+Date:   Mon Jan 7 17:46:10 2019 +0200
+
+    build: install all m4 macros
+    
+    having all m4 macros in m4/ directory enables easier autoreconf process for
+    downstream as dependency programs that provide these macros are not required.
+    
+    both gtk-doc and guile requires huge dependency list, and currently are
+    required per any change (patch) in autotools.
+    
+    Signed-off-by: Alon Bar-Lev <alon.barlev@gmail.com>
+
+Author: Daiki Ueno <dueno@redhat.com>
+Date:   Wed Jan 2 13:44:50 2019 +0100
+
+    ext/pre_shared_key: avoid unnecessary use of VLA for MSVC
+    
+    Suggested by Gisle Vanem in:
+    https://github.com/gnutls/gnutls/commit/fd8c1ec8fe155861dffa28811127f101b6697b4b#r31802648
+    
+    Signed-off-by: Daiki Ueno <dueno@redhat.com>
+
+Author: Tim Rühsen <tim.ruehsen@gmx.de>
+Date:   Fri Jan 4 09:47:24 2019 +0100
+
+    Fix typos in lib/
+    
+    Signed-off-by: Tim Rühsen <tim.ruehsen@gmx.de>
+
+Author: Tim Rühsen <tim.ruehsen@gmx.de>
+Date:   Thu Jan 3 16:36:17 2019 +0100
+
+    Unroll MinGW CI runner commands
+    
+    Signed-off-by: Tim Rühsen <tim.ruehsen@gmx.de>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Thu Jan 3 09:51:34 2019 +0100
+
+    tests: treat all signals as error
+    
+    Previously we were only treating SIGSEGV as error though there is
+    no reason to treat other signals as success and they may hide an
+    actual error case (e.g., when SIGPIPE is received). With this change we
+    treat any signals received by the child except SIGTERM as error, and
+    we ensure that SIGPIPE is ignored in all tests.
+    
+    This also updates tests/slow/cipher-api-test.c to test failures with
+    SIGABRT or otherwise consistently.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Fri Jan 4 14:48:26 2019 +0100
+
+    Revert "verify-high2: Fix cert dir iteration on Win32"
+    
+    This was failing CI (x509cert-tl) but was not detected due to
+    a bug.
+    
+    This reverts commit 362a0c30b79ccede7e5bc3a7747c3e7f1d30889a.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Marga Manterola <marga@google.com>
+Date:   Thu Jan 3 17:57:29 2019 +0000
+
+    Fix typo when checking for ed25519 support
+
+Author: Tim Rühsen <tim.ruehsen@gmx.de>
+Date:   Tue Jan 1 14:26:04 2019 +0100
+
+    Fix typos in doc/
+    
+    Signed-off-by: Tim Rühsen <tim.ruehsen@gmx.de>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Thu Jan 3 09:13:56 2019 +0100
+
+    _gnutls13_handshake_sign_data: properly fail on signing error
+    
+    When signing failed, gnutls would return an invalid signed message
+    (with no data) instead of failing.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Tim Rühsen <tim.ruehsen@gmx.de>
+Date:   Wed Jan 2 10:29:48 2019 +0100
+
+    Fix 'make distcheck'
+    
+    The following error will be fixed:
+    
+    ERROR: files left in build directory after distclean:
+    ./tests/softhsm-privkey-eddsa-test.config
+    make[1]: *** [Makefile:1833: distcleancheck] Error 1
+    
+    Signed-off-by: Tim Rühsen <tim.ruehsen@gmx.de>
+
+Author: Tim Rühsen <tim.ruehsen@gmx.de>
+Date:   Wed Jan 2 10:22:26 2019 +0100
+
+    Remove auto-generated gnulib files from repo
+    
+    Bootstrapping with latest gnulib updated both files,
+    so they are obviously auto-generated files which do not
+    belong into the repository.
+    
+    Signed-off-by: Tim Rühsen <tim.ruehsen@gmx.de>
+
+Author: Tim Rühsen <tim.ruehsen@gmx.de>
+Date:   Wed Jan 2 10:02:11 2019 +0100
+
+    Update required autoconf version to 2.63
+    
+    This fixes the bootstrap error with the latest gnulib:
+    
+    gnulib/gnulib-tool: *** minimum supported autoconf version is 2.63. Try adding AC_PREREQ([2.63]) to your configure.ac.
+    gnulib/gnulib-tool: *** Stop.
+    ./bootstrap: gnulib-tool failed
+    
+    Signed-off-by: Tim Rühsen <tim.ruehsen@gmx.de>
+
+Author: Tim Rühsen <tim.ruehsen@gmx.de>
+Date:   Wed Jan 2 09:56:42 2019 +0100
+
+    Update gnulib
+    
+    This fixes the following 'make syntax-check' failure:
+    
+    maint.mk: out of date copyright in ./gnulib/lib/version-etc.c; update it
+    make: *** [maint.mk:1199: sc_copyright_check] Error 1
+    
+    Signed-off-by: Tim Rühsen <tim.ruehsen@gmx.de>
+
+Author: Tim Rühsen <tim.ruehsen@gmx.de>
+Date:   Wed Jan 2 09:49:19 2019 +0100
+
+    Update copyright year in doc/gnutls.texi
+    
+    This fixes the following error of 'make syntax-check':
+    
+    maint.mk: out of date copyright in doc/gnutls.texi; update it
+    make: *** [maint.mk:1201: sc_copyright_check] Error 1
+    
+    Signed-off-by: Tim Rühsen <tim.ruehsen@gmx.de>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Sun Dec 30 16:25:08 2018 +0100
+
+    examples: ignore GNUTLS_E_AGAIN or INTERRUPTED errors
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Sun Dec 30 16:00:43 2018 +0100
+
+    examples: use a valid DNS name
+    
+    This prevents a gnutls server from sending an unexpected message
+    alert due to invalid DNS name encoding, if the example is not modified.
+    
+    Resolves: #663
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Tim Rühsen <tim.ruehsen@gmx.de>
+Date:   Sat Dec 29 19:16:57 2018 +0100
+
+    Fix OSS-Fuzz build
+    
+    Signed-off-by: Tim Rühsen <tim.ruehsen@gmx.de>
+
+Author: Dmitry Eremin-Solenikov <dbaryshkov@gmail.com>
+Date:   Tue Dec 25 14:44:11 2018 +0300
+
+    tests: cipher-openssl-compat: don't call EVP_CIPHER_CTX_init()
+    
+    There is no need to call EVP_CIPHER_CTX_init() after
+    EVP_CIPHER_CTX_new().
+    
+    Fixes #658
+    
+    Signed-off-by: Dmitry Eremin-Solenikov <dbaryshkov@gmail.com>
+
+Author: Dmitry Eremin-Solenikov <dbaryshkov@gmail.com>
+Date:   Tue Dec 25 14:43:56 2018 +0300
+
+    tests: cipher-openssl-compat: don't fail if OpenSSL doesn't provide cipher
+    
+    LibreSSL does not provide ChaCha20-Poly1305 through EVP_CIPHER
+    interface, so let's skip the test if cipher is not available.
+    
+    Signed-off-by: Dmitry Eremin-Solenikov <dbaryshkov@gmail.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Thu Dec 20 17:49:21 2018 +0100
+
+    gnutls_pubkey_import_ecc_raw: set the public key bits
+    
+    This sets the number of key bits once an ECC key is imported.
+    
+    Resolves #640
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Fri Dec 21 07:58:24 2018 +0100
+
+    GNUTLS_X509_NO_WELL_DEFINED_EXPIRATION: deprecated
+    
+    This removes the documented use of this macro. It was non-functional.
+    Given the nature of the definition of the non-well defined date for
+    certificates, it may be wise not to use a special macro at all. The
+    reason is that the no-well defined date is a real date (~year 9999),
+    and any approximation with seconds will be unstable due to irregular
+    leap seconds.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Fri Dec 21 07:54:40 2018 +0100
+
+    gnutls-cli-debug: removed unused variable
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Hugo Beauzée-Luyssen <hugo@beauzee.fr>
+Date:   Mon Dec 17 11:37:12 2018 +0100
+
+    win32: Check that CertOpenStore is behaving as CertOpenSystemStore
+    
+    The test isn't located in tests/windows since we need the actual
+    libcrypt32 implementations.
+
+Author: Tim Rühsen <tim.ruehsen@gmx.de>
+Date:   Thu Dec 20 16:33:34 2018 +0100
+
+    testrandom.sh: Fix endless loop
+    
+    Signed-off-by: Tim Rühsen <tim.ruehsen@gmx.de>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Wed Dec 19 09:41:41 2018 +0100
+
+    vasprintf: use from gnulib; don't bundle twice
+    
+    Relates #653
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Hugo Beauzée-Luyssen <hugo@beauzee.fr>
+Date:   Thu Dec 13 17:31:29 2018 +0100
+
+    win32: Use CertOpenStore instead of CertOpenSystemStore
+    
+    CertOpenSystemStore is not available when building for windows store.
+    Both functions are available since windows XP, so there is no
+    compatibility change.
+    CertOpenSystemStore documentation states "Only current user certificates
+    are accessible using this method, not the local machine store." hence we
+    pass CERT_SYSTEM_STORE_CURRENT_USER.
+    We also use the wide chars variants, in the event the ansi ones are
+    silently rejected by windows store applications (which is not
+    documented, but which I strongly suspect)
+    This is equivalent to Wine's implementation of CertOpenSystemStore:
+    https://github.com/wine-mirror/wine/blob/master/dlls/crypt32/store.c#L904
+
+Author: Hugo Beauzée-Luyssen <hugo@beauzee.fr>
+Date:   Tue Dec 4 15:18:36 2018 +0100
+
+    keys-win: Disable private key import on windows store
+    
+    Windows store drastically limits the available functions.
+    In this case, at least CryptSetProvParam and the NCrypt* functions
+    can't be used
+    
+    Signed-off-by: Hugo Beauzée-Luyssen <hugo@beauzee.fr>
+
+Author: Hugo Beauzée-Luyssen <hugo@beauzee.fr>
+Date:   Tue Dec 4 13:22:52 2018 +0100
+
+    verify-high2: Fix cert dir iteration on Win32
+    
+    And especially when building for windows store, which only allows
+    unicode version of opendir & friends functions.
+
+Author: Hugo Beauzée-Luyssen <hugo@beauzee.fr>
+Date:   Tue Dec 4 11:53:48 2018 +0100
+
+    lib: Don't hardcode LoadLibraryA
+    
+    Those functions are forbidden when building for Windows Store
+    
+    Signed-off-by: Hugo Beauzée-Luyssen <hugo@beauzee.fr>
+
+Author: Tim Rühsen <tim.ruehsen@gmx.de>
+Date:   Tue Dec 18 16:27:29 2018 +0100
+
+    .gitlab-ci.yml: Remove assert in gl/tests/test-strerror.c
+    
+    A bug made our CI cross builds fail.
+    See https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=916779
+    
+    Signed-off-by: Tim Rühsen <tim.ruehsen@gmx.de>
+
+Author: Tim Rühsen <tim.ruehsen@gmx.de>
+Date:   Fri Nov 16 16:22:10 2018 +0100
+
+    tests/cert-tests/certtool-eddsa: Increase portability (fix for busybox)
+    
+    Signed-off-by: Tim Rühsen <tim.ruehsen@gmx.de>
+
+Author: Tim Rühsen <tim.ruehsen@gmx.de>
+Date:   Fri Nov 16 16:20:17 2018 +0100
+
+    tests/cert-tests/certtool: SKIP if --disable-bash-tests was given
+    
+    Signed-off-by: Tim Rühsen <tim.ruehsen@gmx.de>
+
+Author: Tim Rühsen <tim.ruehsen@gmx.de>
+Date:   Fri Nov 16 16:13:31 2018 +0100
+
+    tests/cert-tests/pkcs12-utf8: Use /bin/sh instead of bash
+    
+    Signed-off-by: Tim Rühsen <tim.ruehsen@gmx.de>
+
+Author: Tim Rühsen <tim.ruehsen@gmx.de>
+Date:   Fri Nov 16 16:12:31 2018 +0100
+
+    tests/cert-tests/pkcs12-corner-cases: Increase portability (fix for busybox)
+    
+    Signed-off-by: Tim Rühsen <tim.ruehsen@gmx.de>
+
+Author: Tim Rühsen <tim.ruehsen@gmx.de>
+Date:   Fri Nov 16 16:11:53 2018 +0100
+
+    tests/cert-tests/certtool-ecdsa: Increase portability (fix for busybox)
+    
+    Signed-off-by: Tim Rühsen <tim.ruehsen@gmx.de>
+
+Author: Tim Rühsen <tim.ruehsen@gmx.de>
+Date:   Fri Nov 16 16:06:18 2018 +0100
+
+    tests/cert-tests/pem-decoding: Increase portability (fix for busybox)
+    
+    Signed-off-by: Tim Rühsen <tim.ruehsen@gmx.de>
+
+Author: Tim Rühsen <tim.ruehsen@gmx.de>
+Date:   Fri Nov 16 13:28:26 2018 +0100
+
+    tests/cert-tests/certtool-crl-decoding: Increase portability (fix for busybox)
+    
+    Signed-off-by: Tim Rühsen <tim.ruehsen@gmx.de>
+
+Author: Tim Rühsen <tim.ruehsen@gmx.de>
+Date:   Fri Nov 16 12:34:01 2018 +0100
+
+    tests/long-crl.sh: Increase portability (fix for busybox)
+    
+    Signed-off-by: Tim Rühsen <tim.ruehsen@gmx.de>
+
+Author: Tim Rühsen <tim.ruehsen@gmx.de>
+Date:   Fri Nov 16 12:14:27 2018 +0100
+
+    tests/gnutls-cli-debug.sh: Remove bashisms
+    
+    Signed-off-by: Tim Rühsen <tim.ruehsen@gmx.de>
+
+Author: Tim Rühsen <tim.ruehsen@gmx.de>
+Date:   Fri Nov 23 19:58:49 2018 +0100
+
+    tests/scripts/common.sh: Add check_if_equal()
+    
+    Signed-off-by: Tim Rühsen <tim.ruehsen@gmx.de>
+
+Author: Tim Rühsen <tim.ruehsen@gmx.de>
+Date:   Fri Nov 16 12:08:06 2018 +0100
+
+    tests/scripts/common.sh: Make random port value work on busybox
+    
+    On busybox 'date +%N' returns an empty value.
+    On 'dash' (Debian shell) $RANDOM doesn't work.
+    
+    This commit works first tries $RANDOM and then falls back to 'date +%N'.
+    
+    Signed-off-by: Tim Rühsen <tim.ruehsen@gmx.de>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Sat Dec 15 22:14:18 2018 +0100
+
+    doc: minor fixes [ci skip]
+    
+    Created NEWS entry for 3.6.6 and unified the listing of gnutls_init_flags_t
+    items.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Peter Wu <peter@lekensteyn.nl>
+Date:   Sat Dec 15 22:01:10 2018 +0100
+
+    pkcs11: fix memleak in gnutls_pkcs11_token_get_ptr
+    
+    find_token_modname_cb uses p11_kit_config_option to retrieve the module
+    name, but its return value (stored in tn.modname) must be freed.
+
+Author: Tom Vrancken <email@tomvrancken.nl>
+Date:   Sat Aug 26 14:22:44 2017 +0200
+
+    Implemented support for raw public-key functionality (RFC7250).
+    
+    Signed-off-by: Tom Vrancken <dev@tomvrancken.nl>
+
+Author: Hugo Beauzée-Luyssen <hugo@beauzee.fr>
+Date:   Thu Dec 13 11:00:03 2018 +0100
+
+    configure.ac: Always enable unicode support on windows
+
+Author: Peter Wu <peter@lekensteyn.nl>
+Date:   Thu Nov 29 18:21:22 2018 +0100
+
+    pkcs11: fix memleak when querying for GNUTLS_PKCS11_TOKEN_MODNAME
+    
+    find_token_modname_cb uses p11_kit_config_option to retrieve the module
+    name, but its return value must be free'd.
+    
+    Other fixes:
+    - Do not silently truncate the output buffer, return an error instead.
+    - If the module name is unavailable, do not write "(null)" to the
+      output. Write an empty string instead.
+    - The module path can be of arbitrary length, so passing output=NULL to
+      learn the length seems reasonable, except that snprintf crashed on a
+      NULL pointer dereference.
+    
+    Fixes: 241f9f0b1 ("Added GNUTLS_PKCS11_TOKEN_MODNAME for gnutls_pkcs11_token_get_info")
+    Signed-off-by: Peter Wu <peter@lekensteyn.nl>
+
+Author: Peter Wu <peter@lekensteyn.nl>
+Date:   Thu Nov 29 18:43:39 2018 +0100
+
+    pkcs11: clarify gnutls_pkcs11_*_get_info output_size
+    
+    It was not clear whether @output_size contains the actual string length
+    or the buffer length (including null terminator).
+    
+    Signed-off-by: Peter Wu <peter@lekensteyn.nl>
+
+Author: Tim Rühsen <tim.ruehsen@gmx.de>
+Date:   Thu Nov 15 10:44:20 2018 +0100
+
+    build: remove src/*.bak from distribution
+    
+    Instead, include the autogen-generated *.c, *.h and the stamp files in
+    the distribution.
+    
+    To prevent the bundled files being linked with incompatible autogen
+    libopts, this adds an extra check in configure.  If the detected
+    system libopts version is too old, it will use the included libopts
+    implementation.
+    
+    Signed-off-by: Tim Rühsen <tim.ruehsen@gmx.de>
+    Signed-off-by: Daiki Ueno <dueno@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Wed Dec 12 09:48:01 2018 +0100
+
+    GNUTLS_PCERT_NO_CERT: marked as unused/ignored
+    
+    This flag was already a no-op.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Tue Dec 11 09:34:22 2018 +0100
+
+    srp/psk: update recommendations for usernames [ci skip]
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Wed Dec 12 06:15:25 2018 +0100
+
+    doc: include PSK examples into documentation
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Daiki Ueno <dueno@redhat.com>
+Date:   Thu Dec 6 14:59:30 2018 +0100
+
+    tlsfuzzer: update to the latest upstream to eanble CCS tests
+    
+    Signed-off-by: Daiki Ueno <dueno@redhat.com>
+
+Author: Tim Rühsen <tim.ruehsen@gmx.de>
+Date:   Tue Dec 4 17:15:02 2018 +0100
+
+    Fix gnutls_handshake_set_timeout() for values < 1000
+    
+    handshake-timeout.c now tests for <1000ms timeout and for >=1000ms
+    timeout. The test duration decreased from 45s to 1.2s.
+    
+    Signed-off-by: Tim Rühsen <tim.ruehsen@gmx.de>
+
+Author: Daiki Ueno <dueno@redhat.com>
+Date:   Thu Nov 22 14:59:11 2018 +0100
+
+    record: make CCS handling stricter in TLS 1.3
+    
+    In TLS 1.3, the change_cipher_spec messages received under the
+    following conditions should be treated as unexpected record type:
+    containing value other than 0x01, or received after the handshake.
+    
+    Signed-off-by: Daiki Ueno <dueno@redhat.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
+Date:   Wed Dec 5 14:44:23 2018 +0100
+
+    bootstrap: only update the required submodules for building
+    
+    Although we have few submodules they are not all required for
+    building and testing. This patch modified bootstrap.conf not
+    to update all of them, but only the necessary for building and
+    testing.
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@redhat.com>
+
+Author: Andreas Metzler <ametzler@bebt.de>
+Date:   Sat Dec 1 13:26:20 2018 +0100
+
+    Fix error message on old or missing nettle.
+    
+    Signed-off-by: Andreas Metzler <ametzler@bebt.de>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
 Date:   Sat Dec 1 06:04:45 2018 +0100
 
     released 3.4.1
@@ -84,6 +1016,27 @@ Date:   Wed Nov 28 14:10:35 2018 +0300
     Signed-off-by: Dmitry Eremin-Solenikov <dbaryshkov@gmail.com>
     Fixes: 88377775a3eff679a9ec60ab9bfc6b3c683a0407
     Signed-off-by: Dmitry Eremin-Solenikov <dbaryshkov@gmail.com>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Wed Nov 28 20:08:29 2018 +0100
+
+    CONTRIBUTING.md: specify rules for static/inline functions [ci skip]
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Thu Nov 22 17:36:17 2018 +0100
+
+    CONTRIBUTING.md: proposal for new features/modifications approach [ci skip]
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+
+Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date:   Wed Nov 21 21:09:33 2018 +0100
+
+    CONTRIBUTING.md: added proposal on commenting style [ci skip]
+    
+    Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
 
 Author: Dmitry Eremin-Solenikov <dbaryshkov@gmail.com>
 Date:   Wed Nov 28 16:03:59 2018 +0300
@@ -37665,13 +38618,3 @@ Author: Nikos Mavrogiannopoulos <nmav@redhat.com>
 Date:   Fri Nov 7 08:44:46 2014 +0100
 
     pkcs11: added the flag GNUTLS_PKCS11_OBJ_FLAG_MARK_ALWAYS_AUTH
-
-Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
-Date:   Fri Nov 7 07:54:41 2014 +0100
-
-    pkcs11: perform reauth at the appropriate state
-
-Author: Nikos Mavrogiannopoulos <nmav@gnutls.org>
-Date:   Fri Nov 7 07:49:54 2014 +0100
-
-    pkcs11_login: set the correct user type on reauthentication
