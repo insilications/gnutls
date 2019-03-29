@@ -5,14 +5,14 @@
 # Source0 file verified with key 0xD81C4887F1679A65 (nmav@gnutls.org)
 #
 Name     : gnutls
-Version  : 3.6.6
-Release  : 56
-URL      : https://www.gnupg.org/ftp/gcrypt/gnutls/v3.6/gnutls-3.6.6.tar.xz
-Source0  : https://www.gnupg.org/ftp/gcrypt/gnutls/v3.6/gnutls-3.6.6.tar.xz
-Source99 : https://www.gnupg.org/ftp/gcrypt/gnutls/v3.6/gnutls-3.6.6.tar.xz.sig
+Version  : 3.6.7
+Release  : 57
+URL      : https://www.gnupg.org/ftp/gcrypt/gnutls/v3.6/gnutls-3.6.7.tar.xz
+Source0  : https://www.gnupg.org/ftp/gcrypt/gnutls/v3.6/gnutls-3.6.7.tar.xz
+Source99 : https://www.gnupg.org/ftp/gcrypt/gnutls/v3.6/gnutls-3.6.7.tar.xz.sig
 Summary  : Transport Security Layer implementation for the GNU system
 Group    : Development/Tools
-License  : BSD-3-Clause BSD-3-Clause-Clear GPL-3.0 GPL-3.0+ LGPL-2.0+ LGPL-2.1 LGPL-3.0 MIT
+License  : BSD-3-Clause GPL-3.0 GPL-3.0+ LGPL-2.0+ LGPL-2.1 LGPL-3.0 MIT
 Requires: gnutls-bin = %{version}-%{release}
 Requires: gnutls-lib = %{version}-%{release}
 Requires: gnutls-license = %{version}-%{release}
@@ -24,7 +24,6 @@ BuildRequires : docbook-xml
 BuildRequires : gcc-dev32
 BuildRequires : gcc-libgcc32
 BuildRequires : gcc-libstdc++32
-BuildRequires : gettext
 BuildRequires : glibc-dev32
 BuildRequires : glibc-libc32
 BuildRequires : glibc-locale
@@ -69,7 +68,6 @@ accelerated/ -> Implementation of cipher acceleration
 Summary: bin components for the gnutls package.
 Group: Binaries
 Requires: gnutls-license = %{version}-%{release}
-Requires: gnutls-man = %{version}-%{release}
 
 %description bin
 bin components for the gnutls package.
@@ -157,11 +155,11 @@ man components for the gnutls package.
 
 
 %prep
-%setup -q -n gnutls-3.6.6
+%setup -q -n gnutls-3.6.7
 %patch1 -p1
 %patch2 -p1
 pushd ..
-cp -a gnutls-3.6.6 build32
+cp -a gnutls-3.6.7 build32
 popd
 
 %build
@@ -169,7 +167,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1551316446
+export SOURCE_DATE_EPOCH=1553894356
 export LDFLAGS="${LDFLAGS} -fno-lto"
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
@@ -199,15 +197,13 @@ cd ../build32;
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1551316446
+export SOURCE_DATE_EPOCH=1553894356
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/gnutls
 cp LICENSE %{buildroot}/usr/share/package-licenses/gnutls/LICENSE
 cp doc/COPYING %{buildroot}/usr/share/package-licenses/gnutls/doc_COPYING
 cp doc/COPYING.LESSER %{buildroot}/usr/share/package-licenses/gnutls/doc_COPYING.LESSER
 cp doc/examples/tlsproxy/LICENSE %{buildroot}/usr/share/package-licenses/gnutls/doc_examples_tlsproxy_LICENSE
-cp lib/accelerated/x86/license.txt %{buildroot}/usr/share/package-licenses/gnutls/lib_accelerated_x86_license.txt
-cp src/libopts/COPYING.gplv3 %{buildroot}/usr/share/package-licenses/gnutls/src_libopts_COPYING.gplv3
 cp src/libopts/COPYING.lgplv3 %{buildroot}/usr/share/package-licenses/gnutls/src_libopts_COPYING.lgplv3
 cp src/libopts/COPYING.mbsd %{buildroot}/usr/share/package-licenses/gnutls/src_libopts_COPYING.mbsd
 pushd ../build32/
@@ -1408,12 +1404,12 @@ popd
 %exclude /usr/lib64/libgnutlsxx.so.28
 %exclude /usr/lib64/libgnutlsxx.so.28.1.0
 /usr/lib64/libgnutls.so.30
-/usr/lib64/libgnutls.so.30.23.1
+/usr/lib64/libgnutls.so.30.23.2
 
 %files lib32
 %defattr(-,root,root,-)
 /usr/lib32/libgnutls.so.30
-/usr/lib32/libgnutls.so.30.23.1
+/usr/lib32/libgnutls.so.30.23.2
 /usr/lib32/libgnutlsxx.so.28
 /usr/lib32/libgnutlsxx.so.28.1.0
 
@@ -1423,8 +1419,6 @@ popd
 /usr/share/package-licenses/gnutls/doc_COPYING
 /usr/share/package-licenses/gnutls/doc_COPYING.LESSER
 /usr/share/package-licenses/gnutls/doc_examples_tlsproxy_LICENSE
-/usr/share/package-licenses/gnutls/lib_accelerated_x86_license.txt
-/usr/share/package-licenses/gnutls/src_libopts_COPYING.gplv3
 /usr/share/package-licenses/gnutls/src_libopts_COPYING.lgplv3
 /usr/share/package-licenses/gnutls/src_libopts_COPYING.mbsd
 
