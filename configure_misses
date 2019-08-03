@@ -31,8 +31,10 @@ Configure miss: timezone_t
 Configure miss: whether tzset clobbers localtime buffer
 Configure miss: whether -Wno-missing-field-initializers is needed
 Configure miss: CMOCKA
-Configure miss: nettle_cfb8_encrypt
-Configure miss: nettle_cmac128_update
+Configure miss: nettle_secp_192r1 in -lhogweed
+Configure miss: nettle_gosthash94cp_update
+Configure miss: nettle_gost28147_set_key
+Configure miss: nettle_streebog512_update
 Configure miss: unbound library
 Configure miss: tss library
 Configure miss: autogen
@@ -43,6 +45,7 @@ Configure miss: runetype.h
 Configure miss: uint_t
 Configure miss: pathfind in -lgen
 Configure miss: gettext in -lintl
+Configure miss: whether autoopts-config can be found... checking whether autoopts-config is specified
 Configure miss: whether a reg expr header is specified
 Configure miss: whether with-libregex was specified
 Configure miss: whether with-libregex-cflags was specified
@@ -83,8 +86,10 @@ Configure miss: timezone_t
 Configure miss: whether tzset clobbers localtime buffer
 Configure miss: whether -Wno-missing-field-initializers is needed
 Configure miss: CMOCKA
-Configure miss: nettle_cfb8_encrypt
-Configure miss: nettle_cmac128_update
+Configure miss: nettle_secp_192r1 in -lhogweed
+Configure miss: nettle_gosthash94cp_update
+Configure miss: nettle_gost28147_set_key
+Configure miss: nettle_streebog512_update
 Configure miss: unbound library
 Configure miss: tss library
 Configure miss: autogen
@@ -95,6 +100,7 @@ Configure miss: runetype.h
 Configure miss: uint_t
 Configure miss: pathfind in -lgen
 Configure miss: gettext in -lintl
+Configure miss: whether autoopts-config can be found... checking whether autoopts-config is specified
 Configure miss: whether a reg expr header is specified
 Configure miss: whether with-libregex was specified
 Configure miss: whether with-libregex-cflags was specified
