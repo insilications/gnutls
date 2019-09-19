@@ -41,6 +41,9 @@ Configure miss: autogen
 Configure miss: sys/procset.h usability
 Configure miss: sys/procset.h presence
 Configure miss: sys/procset.h
+Configure miss: sys/stropts.h usability
+Configure miss: sys/stropts.h presence
+Configure miss: sys/stropts.h
 Configure miss: runetype.h
 Configure miss: uint_t
 Configure miss: pathfind in -lgen
@@ -96,6 +99,9 @@ Configure miss: autogen
 Configure miss: sys/procset.h usability
 Configure miss: sys/procset.h presence
 Configure miss: sys/procset.h
+Configure miss: sys/stropts.h usability
+Configure miss: sys/stropts.h presence
+Configure miss: sys/stropts.h
 Configure miss: runetype.h
 Configure miss: uint_t
 Configure miss: pathfind in -lgen
