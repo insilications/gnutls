@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xD81C4887F1679A65 (nmav@gnutls.org)
 #
 Name     : gnutls
-Version  : 3.6.9
-Release  : 59
-URL      : https://www.gnupg.org/ftp/gcrypt/gnutls/v3.6/gnutls-3.6.9.tar.xz
-Source0  : https://www.gnupg.org/ftp/gcrypt/gnutls/v3.6/gnutls-3.6.9.tar.xz
-Source1 : https://www.gnupg.org/ftp/gcrypt/gnutls/v3.6/gnutls-3.6.9.tar.xz.sig
+Version  : 3.6.10
+Release  : 60
+URL      : https://www.gnupg.org/ftp/gcrypt/gnutls/v3.6/gnutls-3.6.10.tar.xz
+Source0  : https://www.gnupg.org/ftp/gcrypt/gnutls/v3.6/gnutls-3.6.10.tar.xz
+Source1 : https://www.gnupg.org/ftp/gcrypt/gnutls/v3.6/gnutls-3.6.10.tar.xz.sig
 Summary  : Transport Security Layer implementation for the GNU system
 Group    : Development/Tools
 License  : BSD-3-Clause GPL-3.0 GPL-3.0+ LGPL-2.0+ LGPL-2.1 LGPL-3.0 MIT
@@ -24,7 +24,6 @@ BuildRequires : docbook-xml
 BuildRequires : gcc-dev32
 BuildRequires : gcc-libgcc32
 BuildRequires : gcc-libstdc++32
-BuildRequires : gettext
 BuildRequires : glibc-dev32
 BuildRequires : glibc-libc32
 BuildRequires : glibc-locale
@@ -156,11 +155,11 @@ man components for the gnutls package.
 
 
 %prep
-%setup -q -n gnutls-3.6.9
+%setup -q -n gnutls-3.6.10
 %patch1 -p1
 %patch2 -p1
 pushd ..
-cp -a gnutls-3.6.9 build32
+cp -a gnutls-3.6.10 build32
 popd
 
 %build
@@ -168,7 +167,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1568857639
+export SOURCE_DATE_EPOCH=1570068628
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-lto -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-lto -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
@@ -198,7 +197,7 @@ cd ../build32;
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1568857639
+export SOURCE_DATE_EPOCH=1570068628
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/gnutls
 cp LICENSE %{buildroot}/usr/share/package-licenses/gnutls/LICENSE
@@ -276,9 +275,11 @@ popd
 /usr/share/man/man3/dane_verify_crt_raw.3
 /usr/share/man/man3/dane_verify_session_crt.3
 /usr/share/man/man3/gnutls_aead_cipher_decrypt.3
+/usr/share/man/man3/gnutls_aead_cipher_decryptv2.3
 /usr/share/man/man3/gnutls_aead_cipher_deinit.3
 /usr/share/man/man3/gnutls_aead_cipher_encrypt.3
 /usr/share/man/man3/gnutls_aead_cipher_encryptv.3
+/usr/share/man/man3/gnutls_aead_cipher_encryptv2.3
 /usr/share/man/man3/gnutls_aead_cipher_init.3
 /usr/share/man/man3/gnutls_alert_get.3
 /usr/share/man/man3/gnutls_alert_get_name.3
@@ -1410,12 +1411,12 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libgnutls.so.30
-/usr/lib64/libgnutls.so.30.25.0
+/usr/lib64/libgnutls.so.30.26.0
 
 %files lib32
 %defattr(-,root,root,-)
 /usr/lib32/libgnutls.so.30
-/usr/lib32/libgnutls.so.30.25.0
+/usr/lib32/libgnutls.so.30.26.0
 /usr/lib32/libgnutlsxx.so.28
 /usr/lib32/libgnutlsxx.so.28.1.0
 

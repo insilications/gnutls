@@ -31,7 +31,6 @@ Configure miss: timezone_t
 Configure miss: whether tzset clobbers localtime buffer
 Configure miss: whether -Wno-missing-field-initializers is needed
 Configure miss: CMOCKA
-Configure miss: nettle_secp_192r1 in -lhogweed
 Configure miss: nettle_gosthash94cp_update
 Configure miss: nettle_gost28147_set_key
 Configure miss: nettle_streebog512_update
@@ -89,7 +88,6 @@ Configure miss: timezone_t
 Configure miss: whether tzset clobbers localtime buffer
 Configure miss: whether -Wno-missing-field-initializers is needed
 Configure miss: CMOCKA
-Configure miss: nettle_secp_192r1 in -lhogweed
 Configure miss: nettle_gosthash94cp_update
 Configure miss: nettle_gost28147_set_key
 Configure miss: nettle_streebog512_update

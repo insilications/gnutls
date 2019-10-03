@@ -1,5 +1,5 @@
 PKG_NAME := gnutls
-URL = https://www.gnupg.org/ftp/gcrypt/gnutls/v3.6/gnutls-3.6.9.tar.xz
+URL = https://www.gnupg.org/ftp/gcrypt/gnutls/v3.6/gnutls-3.6.10.tar.xz
 ARCHIVES = 
 
 include ../common/Makefile.common
