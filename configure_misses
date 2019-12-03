@@ -1,3 +1,4 @@
+Configure miss: KERN_ARND
 Configure miss: getentropy
 Configure miss: whether to use the included minitasn1
 Configure miss: whether to disable the SSL 2.0 client hello
@@ -54,6 +55,7 @@ Configure miss: whether with-libregex-cflags was specified
 Configure miss: whether with-libregex-libs was specified
 Configure miss: whether pathfind(3) works
 Configure miss: whether building Guile bindings
+Configure miss: KERN_ARND
 Configure miss: getentropy
 Configure miss: whether to use the included minitasn1
 Configure miss: whether to disable the SSL 2.0 client hello
