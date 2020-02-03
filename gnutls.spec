@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xD81C4887F1679A65 (nmav@gnutls.org)
 #
 Name     : gnutls
-Version  : 3.6.11.1
-Release  : 62
-URL      : https://www.gnupg.org/ftp/gcrypt/gnutls/v3.6/gnutls-3.6.11.1.tar.xz
-Source0  : https://www.gnupg.org/ftp/gcrypt/gnutls/v3.6/gnutls-3.6.11.1.tar.xz
-Source1 : https://www.gnupg.org/ftp/gcrypt/gnutls/v3.6/gnutls-3.6.11.1.tar.xz.sig
+Version  : 3.6.12
+Release  : 63
+URL      : https://www.gnupg.org/ftp/gcrypt/gnutls/v3.6/gnutls-3.6.12.tar.xz
+Source0  : https://www.gnupg.org/ftp/gcrypt/gnutls/v3.6/gnutls-3.6.12.tar.xz
+Source1  : https://www.gnupg.org/ftp/gcrypt/gnutls/v3.6/gnutls-3.6.12.tar.xz.sig
 Summary  : Transport Security Layer implementation for the GNU system
 Group    : Development/Tools
 License  : BSD-3-Clause GPL-3.0 GPL-3.0+ LGPL-2.0+ LGPL-2.1 LGPL-3.0 MIT
@@ -60,9 +60,13 @@ Patch1: noversion.patch
 Patch2: 0001-Don-t-run-trust-store-test-as-it-isn-t-in-the-buildr.patch
 
 %description
-ext/         -> Implementation of TLS extensions
-auth/        -> Implementation of TLS authentication methods (DHE, SRP etc.)
-accelerated/ -> Implementation of cipher acceleration
+THIS TARBALL IS NOT A FULL DISTRIBUTION.
+The contents of this tarball is designed to be incorporated into
+software packages that utilize the AutoOpts option automation package
+and are intended to be installed on systems that may not have libopts
+installed.  It is redistributable under the terms of either the LGPL
+(see COPYING.lgpl) or under the terms of the advertising clause free BSD
+license (see COPYING.mbsd).
 
 %package bin
 Summary: bin components for the gnutls package.
@@ -79,6 +83,7 @@ Group: Development
 Requires: gnutls-lib = %{version}-%{release}
 Requires: gnutls-bin = %{version}-%{release}
 Provides: gnutls-devel = %{version}-%{release}
+Requires: gnutls = %{version}-%{release}
 Requires: gnutls = %{version}-%{release}
 
 %description dev
@@ -165,12 +170,12 @@ man components for the gnutls package.
 
 
 %prep
-%setup -q -n gnutls-3.6.11.1
-cd %{_builddir}/gnutls-3.6.11.1
+%setup -q -n gnutls-3.6.12
+cd %{_builddir}/gnutls-3.6.12
 %patch1 -p1
 %patch2 -p1
 pushd ..
-cp -a gnutls-3.6.11.1 build32
+cp -a gnutls-3.6.12 build32
 popd
 
 %build
@@ -178,7 +183,8 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1575333530
+export SOURCE_DATE_EPOCH=1580750660
+# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-lto -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-lto -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
@@ -208,18 +214,18 @@ cd ../build32;
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1575333530
+export SOURCE_DATE_EPOCH=1580750660
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/gnutls
-cp %{_builddir}/gnutls-3.6.11.1/LICENSE %{buildroot}/usr/share/package-licenses/gnutls/1f511bc8132f3904e090af21d25ef3453314b910
-cp %{_builddir}/gnutls-3.6.11.1/doc/COPYING %{buildroot}/usr/share/package-licenses/gnutls/0dd432edfab90223f22e49c02e2124f87d6f0a56
-cp %{_builddir}/gnutls-3.6.11.1/doc/COPYING.LESSER %{buildroot}/usr/share/package-licenses/gnutls/545f380fb332eb41236596500913ff8d582e3ead
-cp %{_builddir}/gnutls-3.6.11.1/doc/examples/tlsproxy/LICENSE %{buildroot}/usr/share/package-licenses/gnutls/06407f2dacc5ba7cbae1b6120c6a57379969a6f3
-cp %{_builddir}/gnutls-3.6.11.1/lib/accelerated/x86/license.txt %{buildroot}/usr/share/package-licenses/gnutls/54c70759aa4b060ff33b7412fa6f38480fc840b2
-cp %{_builddir}/gnutls-3.6.11.1/lib/inih/LICENSE.txt %{buildroot}/usr/share/package-licenses/gnutls/d097282eb6f05d825f591cef06bac3654b58feba
-cp %{_builddir}/gnutls-3.6.11.1/src/libopts/COPYING.gplv3 %{buildroot}/usr/share/package-licenses/gnutls/a8573c5c670d8a150d41fbde33d79e8e49d2a9fa
-cp %{_builddir}/gnutls-3.6.11.1/src/libopts/COPYING.lgplv3 %{buildroot}/usr/share/package-licenses/gnutls/8ca3cbd336e9a13d5ee05753567d9261af4066a3
-cp %{_builddir}/gnutls-3.6.11.1/src/libopts/COPYING.mbsd %{buildroot}/usr/share/package-licenses/gnutls/76f15ccf78ed039d563200c8db64f85d17c3d7cb
+cp %{_builddir}/gnutls-3.6.12/LICENSE %{buildroot}/usr/share/package-licenses/gnutls/1f511bc8132f3904e090af21d25ef3453314b910
+cp %{_builddir}/gnutls-3.6.12/doc/COPYING %{buildroot}/usr/share/package-licenses/gnutls/0dd432edfab90223f22e49c02e2124f87d6f0a56
+cp %{_builddir}/gnutls-3.6.12/doc/COPYING.LESSER %{buildroot}/usr/share/package-licenses/gnutls/545f380fb332eb41236596500913ff8d582e3ead
+cp %{_builddir}/gnutls-3.6.12/doc/examples/tlsproxy/LICENSE %{buildroot}/usr/share/package-licenses/gnutls/06407f2dacc5ba7cbae1b6120c6a57379969a6f3
+cp %{_builddir}/gnutls-3.6.12/lib/accelerated/x86/license.txt %{buildroot}/usr/share/package-licenses/gnutls/54c70759aa4b060ff33b7412fa6f38480fc840b2
+cp %{_builddir}/gnutls-3.6.12/lib/inih/LICENSE.txt %{buildroot}/usr/share/package-licenses/gnutls/d097282eb6f05d825f591cef06bac3654b58feba
+cp %{_builddir}/gnutls-3.6.12/src/libopts/COPYING.gplv3 %{buildroot}/usr/share/package-licenses/gnutls/a8573c5c670d8a150d41fbde33d79e8e49d2a9fa
+cp %{_builddir}/gnutls-3.6.12/src/libopts/COPYING.lgplv3 %{buildroot}/usr/share/package-licenses/gnutls/8ca3cbd336e9a13d5ee05753567d9261af4066a3
+cp %{_builddir}/gnutls-3.6.12/src/libopts/COPYING.mbsd %{buildroot}/usr/share/package-licenses/gnutls/76f15ccf78ed039d563200c8db64f85d17c3d7cb
 pushd ../build32/
 %make_install32
 if [ -d  %{buildroot}/usr/lib32/pkgconfig ]
@@ -382,6 +388,8 @@ popd
 /usr/share/man/man3/gnutls_certificate_type_get_id.3
 /usr/share/man/man3/gnutls_certificate_type_get_name.3
 /usr/share/man/man3/gnutls_certificate_type_list.3
+/usr/share/man/man3/gnutls_certificate_verification_profile_get_id.3
+/usr/share/man/man3/gnutls_certificate_verification_profile_get_name.3
 /usr/share/man/man3/gnutls_certificate_verification_status_print.3
 /usr/share/man/man3/gnutls_certificate_verify_peers.3
 /usr/share/man/man3/gnutls_certificate_verify_peers2.3
@@ -532,6 +540,7 @@ popd
 /usr/share/man/man3/gnutls_hmac_copy.3
 /usr/share/man/man3/gnutls_hmac_deinit.3
 /usr/share/man/man3/gnutls_hmac_fast.3
+/usr/share/man/man3/gnutls_hmac_get_key_size.3
 /usr/share/man/man3/gnutls_hmac_get_len.3
 /usr/share/man/man3/gnutls_hmac_init.3
 /usr/share/man/man3/gnutls_hmac_output.3
@@ -1443,12 +1452,12 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libgnutls.so.30
-/usr/lib64/libgnutls.so.30.26.1
+/usr/lib64/libgnutls.so.30.26.2
 
 %files lib32
 %defattr(-,root,root,-)
 /usr/lib32/libgnutls.so.30
-/usr/lib32/libgnutls.so.30.26.1
+/usr/lib32/libgnutls.so.30.26.2
 /usr/lib32/libgnutlsxx.so.28
 /usr/lib32/libgnutlsxx.so.28.1.0
 

@@ -1,7 +1,5 @@
-3.6.11.1
-gettext
+3.6.12
 glibc-locale
-gnutls-dev
 intltool-dev
 libseccomp-dev
 pkg-config

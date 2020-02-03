@@ -1,6 +1,7 @@
 Configure miss: KERN_ARND
 Configure miss: getentropy
 Configure miss: whether to use the included minitasn1
+Configure miss: whether to disable strict DER time encodings for backwards compatibility
 Configure miss: whether to disable the SSL 2.0 client hello
 Configure miss: whether to disable DTLS-SRTP extension
 Configure miss: whether to disable ALPN extension
@@ -30,11 +31,17 @@ Configure miss: __mktime_internal
 Configure miss: whether localtime loops forever near extrema
 Configure miss: timezone_t
 Configure miss: whether tzset clobbers localtime buffer
+Configure miss: libev
 Configure miss: whether -Wno-missing-field-initializers is needed
 Configure miss: CMOCKA
 Configure miss: nettle_gosthash94cp_update
 Configure miss: nettle_gost28147_set_key
 Configure miss: nettle_streebog512_update
+Configure miss: nettle_curve448_mul
+Configure miss: nettle_ed448_shake256_sign
+Configure miss: nettle_get_gost_gc256b
+Configure miss: nettle_get_gost_gc512a
+Configure miss: nettle_gostdsa_sign
 Configure miss: unbound library
 Configure miss: tss library
 Configure miss: autogen
@@ -58,6 +65,7 @@ Configure miss: whether building Guile bindings
 Configure miss: KERN_ARND
 Configure miss: getentropy
 Configure miss: whether to use the included minitasn1
+Configure miss: whether to disable strict DER time encodings for backwards compatibility
 Configure miss: whether to disable the SSL 2.0 client hello
 Configure miss: whether to disable DTLS-SRTP extension
 Configure miss: whether to disable ALPN extension
@@ -88,11 +96,17 @@ Configure miss: __mktime_internal
 Configure miss: whether localtime loops forever near extrema
 Configure miss: timezone_t
 Configure miss: whether tzset clobbers localtime buffer
+Configure miss: libev
 Configure miss: whether -Wno-missing-field-initializers is needed
 Configure miss: CMOCKA
 Configure miss: nettle_gosthash94cp_update
 Configure miss: nettle_gost28147_set_key
 Configure miss: nettle_streebog512_update
+Configure miss: nettle_curve448_mul
+Configure miss: nettle_ed448_shake256_sign
+Configure miss: nettle_get_gost_gc256b
+Configure miss: nettle_get_gost_gc512a
+Configure miss: nettle_gostdsa_sign
 Configure miss: unbound library
 Configure miss: tss library
 Configure miss: autogen

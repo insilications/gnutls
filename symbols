@@ -1,6 +1,7 @@
 libgnutls.so.30:GNUTLS_3_4
 libgnutls.so.30:GNUTLS_3_6_0
 libgnutls.so.30:GNUTLS_3_6_10
+libgnutls.so.30:GNUTLS_3_6_12
 libgnutls.so.30:GNUTLS_3_6_2
 libgnutls.so.30:GNUTLS_3_6_3
 libgnutls.so.30:GNUTLS_3_6_4
@@ -166,6 +167,8 @@ libgnutls.so.30:gnutls_certificate_type_get2
 libgnutls.so.30:gnutls_certificate_type_get_id
 libgnutls.so.30:gnutls_certificate_type_get_name
 libgnutls.so.30:gnutls_certificate_type_list
+libgnutls.so.30:gnutls_certificate_verification_profile_get_id
+libgnutls.so.30:gnutls_certificate_verification_profile_get_name
 libgnutls.so.30:gnutls_certificate_verification_status_print
 libgnutls.so.30:gnutls_certificate_verify_peers
 libgnutls.so.30:gnutls_certificate_verify_peers2
@@ -318,6 +321,7 @@ libgnutls.so.30:gnutls_hmac
 libgnutls.so.30:gnutls_hmac_copy
 libgnutls.so.30:gnutls_hmac_deinit
 libgnutls.so.30:gnutls_hmac_fast
+libgnutls.so.30:gnutls_hmac_get_key_size
 libgnutls.so.30:gnutls_hmac_get_len
 libgnutls.so.30:gnutls_hmac_init
 libgnutls.so.30:gnutls_hmac_output
