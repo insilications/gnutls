@@ -1,5 +1,6 @@
 Configure miss: whether the compiler is clang
 Configure miss: compiler option needed when checking for declarations
+Configure miss: g++ option to enable C++11 features
 Configure miss: KERN_ARND
 Configure miss: getentropy
 Configure miss: whether to use the included minitasn1
@@ -21,7 +22,10 @@ Configure miss: GTKDOC_DEPS
 Configure miss: 32-bit host C ABI
 Configure miss: CFLocaleCopyPreferredLanguages
 Configure miss: libcrypto
+Configure miss: memset_s
 Configure miss: pthread_sigmask
+Configure miss: mquery
+Configure miss: pstat_getprocvm
 Configure miss: fake locale system (OpenBSD)
 Configure miss: Solaris 11.4 locale system
 Configure miss: strerror_r with POSIX signature
@@ -38,15 +42,11 @@ Configure miss: whether tzset clobbers localtime buffer
 Configure miss: libev
 Configure miss: whether -Wno-missing-field-initializers is needed
 Configure miss: CMOCKA
-Configure miss: nettle_gosthash94cp_update
 Configure miss: nettle_gost28147_set_key
 Configure miss: nettle_streebog512_update
-Configure miss: nettle_curve448_mul
-Configure miss: nettle_ed448_shake256_sign
-Configure miss: nettle_get_gost_gc256b
-Configure miss: nettle_get_gost_gc512a
-Configure miss: nettle_gostdsa_sign
-Configure miss: nettle_chacha_set_counter
+Configure miss: gmp soname
+Configure miss: nettle soname
+Configure miss: hogweed soname
 Configure miss: unbound library
 Configure miss: tss library
 Configure miss: autogen
@@ -69,6 +69,7 @@ Configure miss: whether pathfind(3) works
 Configure miss: whether building Guile bindings
 Configure miss: whether the compiler is clang
 Configure miss: compiler option needed when checking for declarations
+Configure miss: g++ option to enable C++11 features
 Configure miss: KERN_ARND
 Configure miss: getentropy
 Configure miss: whether to use the included minitasn1
@@ -90,7 +91,10 @@ Configure miss: GTKDOC_DEPS
 Configure miss: CFLocaleCopyPreferredLanguages
 Configure miss: libseccomp
 Configure miss: libcrypto
+Configure miss: memset_s
 Configure miss: pthread_sigmask
+Configure miss: mquery
+Configure miss: pstat_getprocvm
 Configure miss: fake locale system (OpenBSD)
 Configure miss: Solaris 11.4 locale system
 Configure miss: strerror_r with POSIX signature
@@ -108,15 +112,11 @@ Configure miss: whether tzset clobbers localtime buffer
 Configure miss: libev
 Configure miss: whether -Wno-missing-field-initializers is needed
 Configure miss: CMOCKA
-Configure miss: nettle_gosthash94cp_update
 Configure miss: nettle_gost28147_set_key
 Configure miss: nettle_streebog512_update
-Configure miss: nettle_curve448_mul
-Configure miss: nettle_ed448_shake256_sign
-Configure miss: nettle_get_gost_gc256b
-Configure miss: nettle_get_gost_gc512a
-Configure miss: nettle_gostdsa_sign
-Configure miss: nettle_chacha_set_counter
+Configure miss: gmp soname
+Configure miss: nettle soname
+Configure miss: hogweed soname
 Configure miss: unbound library
 Configure miss: tss library
 Configure miss: autogen
