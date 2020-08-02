@@ -4,24 +4,25 @@
 #
 # Source0 file verified with key 0xD605848ED7E69871 (ueno@gnu.org)
 #
+%define keepstatic 1
 Name     : gnutls
 Version  : 3.6.14
-Release  : 66
+Release  : 67
 URL      : https://www.gnupg.org/ftp/gcrypt/gnutls/v3.6/gnutls-3.6.14.tar.xz
 Source0  : https://www.gnupg.org/ftp/gcrypt/gnutls/v3.6/gnutls-3.6.14.tar.xz
 Source1  : https://www.gnupg.org/ftp/gcrypt/gnutls/v3.6/gnutls-3.6.14.tar.xz.sig
 Summary  : Transport Security Layer implementation for the GNU system
 Group    : Development/Tools
-License  : BSD-3-Clause GPL-3.0 GPL-3.0+ LGPL-2.0+ LGPL-2.1 LGPL-3.0 MIT
+License  : GPL-3.0+ LGPL-2.0+ LGPL-2.1
 Requires: gnutls-bin = %{version}-%{release}
 Requires: gnutls-info = %{version}-%{release}
 Requires: gnutls-lib = %{version}-%{release}
-Requires: gnutls-license = %{version}-%{release}
 Requires: gnutls-locales = %{version}-%{release}
 Requires: gnutls-man = %{version}-%{release}
 BuildRequires : bison
 BuildRequires : datefudge
 BuildRequires : docbook-xml
+BuildRequires : findutils
 BuildRequires : gcc-dev32
 BuildRequires : gcc-libgcc32
 BuildRequires : gcc-libstdc++32
@@ -41,6 +42,7 @@ BuildRequires : libtasn1-dev
 BuildRequires : libtasn1-dev32
 BuildRequires : libunistring-dev
 BuildRequires : libunistring-dev32
+BuildRequires : libunistring-staticdev
 BuildRequires : libxslt-bin
 BuildRequires : net-tools
 BuildRequires : nettle
@@ -54,9 +56,15 @@ BuildRequires : pkgconfig(32p11-kit-1)
 BuildRequires : pkgconfig(libidn2)
 BuildRequires : pkgconfig(p11-kit-1)
 BuildRequires : sed
+BuildRequires : texinfo
 BuildRequires : util-linux
+BuildRequires : util-linux-dev
+BuildRequires : util-linux-staticdev
 BuildRequires : valgrind
 BuildRequires : valgrind-dev
+# Suppress stripping binaries
+%define __strip /bin/true
+%define debug_package %{nil}
 Patch1: noversion.patch
 Patch2: 0001-Don-t-run-trust-store-test-as-it-isn-t-in-the-buildr.patch
 
@@ -68,7 +76,6 @@ accelerated/ -> Implementation of cipher acceleration
 %package bin
 Summary: bin components for the gnutls package.
 Group: Binaries
-Requires: gnutls-license = %{version}-%{release}
 
 %description bin
 bin components for the gnutls package.
@@ -126,7 +133,6 @@ info components for the gnutls package.
 %package lib
 Summary: lib components for the gnutls package.
 Group: Libraries
-Requires: gnutls-license = %{version}-%{release}
 
 %description lib
 lib components for the gnutls package.
@@ -135,18 +141,9 @@ lib components for the gnutls package.
 %package lib32
 Summary: lib32 components for the gnutls package.
 Group: Default
-Requires: gnutls-license = %{version}-%{release}
 
 %description lib32
 lib32 components for the gnutls package.
-
-
-%package license
-Summary: license components for the gnutls package.
-Group: Default
-
-%description license
-license components for the gnutls package.
 
 
 %package locales
@@ -165,6 +162,24 @@ Group: Default
 man components for the gnutls package.
 
 
+%package staticdev
+Summary: staticdev components for the gnutls package.
+Group: Default
+Requires: gnutls-dev = %{version}-%{release}
+
+%description staticdev
+staticdev components for the gnutls package.
+
+
+%package staticdev32
+Summary: staticdev32 components for the gnutls package.
+Group: Default
+Requires: gnutls-dev = %{version}-%{release}
+
+%description staticdev32
+staticdev32 components for the gnutls package.
+
+
 %prep
 %setup -q -n gnutls-3.6.14
 cd %{_builddir}/gnutls-3.6.14
@@ -175,18 +190,50 @@ cp -a gnutls-3.6.14 build32
 popd
 
 %build
-export http_proxy=http://127.0.0.1:9/
-export https_proxy=http://127.0.0.1:9/
-export no_proxy=localhost,127.0.0.1,0.0.0.0
+unset http_proxy
+unset https_proxy
+unset no_proxy
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1591660246
+export SOURCE_DATE_EPOCH=1596392143
 export GCC_IGNORE_WERROR=1
-export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-lto -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
-export FCFLAGS="$FFLAGS -O3 -falign-functions=32 -fno-lto -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
-export FFLAGS="$FFLAGS -O3 -falign-functions=32 -fno-lto -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
-export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-lto -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
-%configure --disable-static --enable-guile=no \
---with-default-trust-store-dir=/var/cache/ca-certs/anchors
+## altflags_pgo content
+## pgo generate
+export PGO_GEN="-fprofile-generate=/var/tmp/pgo -fprofile-dir=/var/tmp/pgo -fprofile-abs-path -fprofile-update=atomic -fprofile-arcs -ftest-coverage --coverage -fprofile-partial-training"
+export CFLAGS_GENERATE="-O3 -march=native -mtune=native -falign-functions=32 -fno-semantic-interposition -fno-stack-protector -fuse-ld=bfd -fuse-linker-plugin -malign-data=cacheline -mtls-dialect=gnu2 -fno-math-errno -fno-trapping-math -pipe $PGO_GEN"
+export FCFLAGS_GENERATE="-O3 -march=native -mtune=native -falign-functions=32 -fno-semantic-interposition -fno-stack-protector -fuse-ld=bfd -fuse-linker-plugin -malign-data=cacheline -mtls-dialect=gnu2 -fno-math-errno -fno-trapping-math -pipe $PGO_GEN"
+export FFLAGS_GENERATE="-O3 -march=native -mtune=native -falign-functions=32 -fno-semantic-interposition -fno-stack-protector -fuse-ld=bfd -fuse-linker-plugin -malign-data=cacheline -mtls-dialect=gnu2 -fno-math-errno -fno-trapping-math -pipe $PGO_GEN"
+export CXXFLAGS_GENERATE="-O3 -march=native -mtune=native -falign-functions=32 -fno-semantic-interposition -fno-stack-protector -fuse-ld=bfd -fuse-linker-plugin -malign-data=cacheline -mtls-dialect=gnu2 -fno-math-errno -fno-trapping-math -fvisibility-inlines-hidden -pipe $PGO_GEN"
+export LDFLAGS_GENERATE="-O3 -march=native -mtune=native -falign-functions=32 -fno-semantic-interposition -fno-stack-protector -fuse-ld=bfd -fuse-linker-plugin -malign-data=cacheline -mtls-dialect=gnu2 -fno-math-errno -fno-trapping-math -pipe $PGO_GEN"
+## pgo use
+## -ffat-lto-objects -fno-PIE -fno-PIE -m64 -no-pie -fpic -fvisibility=hidden
+## gcc: -feliminate-unused-debug-types -fipa-pta -flto=16 -Wno-error -Wp,-D_REENTRANT -fno-common
+export PGO_USE="-fprofile-use=/var/tmp/pgo -fprofile-dir=/var/tmp/pgo -fprofile-abs-path -fprofile-correction -fprofile-partial-training"
+export CFLAGS_USE="-g -O3 -march=native -mtune=native -fgraphite-identity -Wall -Wl,--as-needed -Wl,--build-id=sha1 -Wl,--enable-new-dtags -Wl,--hash-style=gnu -Wl,-O2 -Wl,-z,now -Wl,-z,relro -falign-functions=32 -fasynchronous-unwind-tables -fdevirtualize-at-ltrans -floop-nest-optimize -fno-math-errno -fno-semantic-interposition -fno-stack-protector -fno-trapping-math -ftree-loop-distribute-patterns -ftree-loop-vectorize -ftree-vectorize -funroll-loops -fuse-ld=bfd -fuse-linker-plugin -malign-data=cacheline -feliminate-unused-debug-types -fipa-pta -flto=16 -fno-plt -mtls-dialect=gnu2 -Wl,-sort-common -Wno-error -Wp,-D_REENTRANT -pipe $PGO_USE"
+export FCFLAGS_USE="-g -O3 -march=native -mtune=native -fgraphite-identity -Wall -Wl,--as-needed -Wl,--build-id=sha1 -Wl,--enable-new-dtags -Wl,--hash-style=gnu -Wl,-O2 -Wl,-z,now -Wl,-z,relro -falign-functions=32 -fasynchronous-unwind-tables -fdevirtualize-at-ltrans -floop-nest-optimize -fno-math-errno -fno-semantic-interposition -fno-stack-protector -fno-trapping-math -ftree-loop-distribute-patterns -ftree-loop-vectorize -ftree-vectorize -funroll-loops -fuse-ld=bfd -fuse-linker-plugin -malign-data=cacheline -feliminate-unused-debug-types -fipa-pta -flto=16 -fno-plt -mtls-dialect=gnu2 -Wl,-sort-common -Wno-error -Wp,-D_REENTRANT -pipe $PGO_USE"
+export FFLAGS_USE="-g -O3 -march=native -mtune=native -fgraphite-identity -Wall -Wl,--as-needed -Wl,--build-id=sha1 -Wl,--enable-new-dtags -Wl,--hash-style=gnu -Wl,-O2 -Wl,-z,now -Wl,-z,relro -falign-functions=32 -fasynchronous-unwind-tables -fdevirtualize-at-ltrans -floop-nest-optimize -fno-math-errno -fno-semantic-interposition -fno-stack-protector -fno-trapping-math -ftree-loop-distribute-patterns -ftree-loop-vectorize -ftree-vectorize -funroll-loops -fuse-ld=bfd -fuse-linker-plugin -malign-data=cacheline -feliminate-unused-debug-types -fipa-pta -flto=16 -fno-plt -mtls-dialect=gnu2 -Wl,-sort-common -Wno-error -Wp,-D_REENTRANT -pipe $PGO_USE"
+export CXXFLAGS_USE="-g -O3 -march=native -mtune=native -fgraphite-identity -Wall -Wl,--as-needed -Wl,--build-id=sha1 -Wl,--enable-new-dtags -Wl,--hash-style=gnu -Wl,-O2 -Wl,-z,now -Wl,-z,relro -falign-functions=32 -fasynchronous-unwind-tables -fdevirtualize-at-ltrans -floop-nest-optimize -fno-math-errno -fno-semantic-interposition -fno-stack-protector -fno-trapping-math -ftree-loop-distribute-patterns -ftree-loop-vectorize -ftree-vectorize -funroll-loops -fuse-ld=bfd -fuse-linker-plugin -malign-data=cacheline -feliminate-unused-debug-types -fipa-pta -flto=16 -fno-plt -mtls-dialect=gnu2 -Wl,-sort-common -Wno-error -Wp,-D_REENTRANT -fvisibility-inlines-hidden -pipe $PGO_USE"
+export LDFLAGS_USE="-g -O3 -march=native -mtune=native -fgraphite-identity -Wall -Wl,--as-needed -Wl,--build-id=sha1 -Wl,--enable-new-dtags -Wl,--hash-style=gnu -Wl,-O2 -Wl,-z,now -Wl,-z,relro -falign-functions=32 -fasynchronous-unwind-tables -fdevirtualize-at-ltrans -floop-nest-optimize -fno-math-errno -fno-semantic-interposition -fno-stack-protector -fno-trapping-math -ftree-loop-distribute-patterns -ftree-loop-vectorize -ftree-vectorize -funroll-loops -fuse-ld=bfd -fuse-linker-plugin -malign-data=cacheline -feliminate-unused-debug-types -fipa-pta -flto=16 -fno-plt -mtls-dialect=gnu2 -Wl,-sort-common -Wno-error -Wp,-D_REENTRANT -pipe $PGO_USE"
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+#export CCACHE_DISABLE=1
+## altflags_pgo end
+export CFLAGS="${CFLAGS_GENERATE}"
+export CXXFLAGS="${CXXFLAGS_GENERATE}"
+export FFLAGS="${FFLAGS_GENERATE}"
+export FCFLAGS="${FCFLAGS_GENERATE}"
+export LDFLAGS="${LDFLAGS_GENERATE}"
+%configure  --enable-guile=no --with-default-trust-store-dir=/var/cache/ca-certs/anchors --enable-shared --enable-static
+make  %{?_smp_mflags}
+
+make VERBOSE=1 V=1 %{?_smp_mflags} check || :
+make clean
+export CFLAGS="${CFLAGS_USE}"
+export CXXFLAGS="${CXXFLAGS_USE}"
+export FFLAGS="${FFLAGS_USE}"
+export FCFLAGS="${FCFLAGS_USE}"
+export LDFLAGS="${LDFLAGS_USE}"
+%configure  --enable-guile=no --with-default-trust-store-dir=/var/cache/ca-certs/anchors --enable-shared --enable-static
 make  %{?_smp_mflags}
 
 pushd ../build32/
@@ -195,32 +242,22 @@ export ASFLAGS="${ASFLAGS}${ASFLAGS:+ }--32"
 export CFLAGS="${CFLAGS}${CFLAGS:+ }-m32 -mstackrealign"
 export CXXFLAGS="${CXXFLAGS}${CXXFLAGS:+ }-m32 -mstackrealign"
 export LDFLAGS="${LDFLAGS}${LDFLAGS:+ }-m32 -mstackrealign"
-%configure --disable-static --enable-guile=no \
---with-default-trust-store-dir=/var/cache/ca-certs/anchors   --libdir=/usr/lib32 --build=i686-generic-linux-gnu --host=i686-generic-linux-gnu --target=i686-clr-linux-gnu
+%configure  --enable-guile=no --with-default-trust-store-dir=/var/cache/ca-certs/anchors --enable-shared --enable-static   --libdir=/usr/lib32 --build=i686-generic-linux-gnu --host=i686-generic-linux-gnu --target=i686-clr-linux-gnu
 make  %{?_smp_mflags}
 popd
+
 %check
 export LANG=C.UTF-8
-export http_proxy=http://127.0.0.1:9/
-export https_proxy=http://127.0.0.1:9/
-export no_proxy=localhost,127.0.0.1,0.0.0.0
-make VERBOSE=1 V=1 %{?_smp_mflags} check || :
+unset http_proxy
+unset https_proxy
+unset no_proxy
+make %{?_smp_mflags} check || :
 cd ../build32;
-make VERBOSE=1 V=1 %{?_smp_mflags} check || : || :
+make %{?_smp_mflags} check || : || :
 
 %install
-export SOURCE_DATE_EPOCH=1591660246
+export SOURCE_DATE_EPOCH=1596392143
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/package-licenses/gnutls
-cp %{_builddir}/gnutls-3.6.14/LICENSE %{buildroot}/usr/share/package-licenses/gnutls/1f511bc8132f3904e090af21d25ef3453314b910
-cp %{_builddir}/gnutls-3.6.14/doc/COPYING %{buildroot}/usr/share/package-licenses/gnutls/0dd432edfab90223f22e49c02e2124f87d6f0a56
-cp %{_builddir}/gnutls-3.6.14/doc/COPYING.LESSER %{buildroot}/usr/share/package-licenses/gnutls/545f380fb332eb41236596500913ff8d582e3ead
-cp %{_builddir}/gnutls-3.6.14/doc/examples/tlsproxy/LICENSE %{buildroot}/usr/share/package-licenses/gnutls/06407f2dacc5ba7cbae1b6120c6a57379969a6f3
-cp %{_builddir}/gnutls-3.6.14/lib/accelerated/x86/license.txt %{buildroot}/usr/share/package-licenses/gnutls/54c70759aa4b060ff33b7412fa6f38480fc840b2
-cp %{_builddir}/gnutls-3.6.14/lib/inih/LICENSE.txt %{buildroot}/usr/share/package-licenses/gnutls/d097282eb6f05d825f591cef06bac3654b58feba
-cp %{_builddir}/gnutls-3.6.14/src/libopts/COPYING.gplv3 %{buildroot}/usr/share/package-licenses/gnutls/a8573c5c670d8a150d41fbde33d79e8e49d2a9fa
-cp %{_builddir}/gnutls-3.6.14/src/libopts/COPYING.lgplv3 %{buildroot}/usr/share/package-licenses/gnutls/8ca3cbd336e9a13d5ee05753567d9261af4066a3
-cp %{_builddir}/gnutls-3.6.14/src/libopts/COPYING.mbsd %{buildroot}/usr/share/package-licenses/gnutls/76f15ccf78ed039d563200c8db64f85d17c3d7cb
 pushd ../build32/
 %make_install32
 if [ -d  %{buildroot}/usr/lib32/pkgconfig ]
@@ -1468,18 +1505,6 @@ popd
 /usr/lib32/libgnutlsxx.so.28
 /usr/lib32/libgnutlsxx.so.28.1.0
 
-%files license
-%defattr(0644,root,root,0755)
-/usr/share/package-licenses/gnutls/06407f2dacc5ba7cbae1b6120c6a57379969a6f3
-/usr/share/package-licenses/gnutls/0dd432edfab90223f22e49c02e2124f87d6f0a56
-/usr/share/package-licenses/gnutls/1f511bc8132f3904e090af21d25ef3453314b910
-/usr/share/package-licenses/gnutls/545f380fb332eb41236596500913ff8d582e3ead
-/usr/share/package-licenses/gnutls/54c70759aa4b060ff33b7412fa6f38480fc840b2
-/usr/share/package-licenses/gnutls/76f15ccf78ed039d563200c8db64f85d17c3d7cb
-/usr/share/package-licenses/gnutls/8ca3cbd336e9a13d5ee05753567d9261af4066a3
-/usr/share/package-licenses/gnutls/a8573c5c670d8a150d41fbde33d79e8e49d2a9fa
-/usr/share/package-licenses/gnutls/d097282eb6f05d825f591cef06bac3654b58feba
-
 %files man
 %defattr(0644,root,root,0755)
 /usr/share/man/man1/certtool.1
@@ -1491,6 +1516,16 @@ popd
 /usr/share/man/man1/psktool.1
 /usr/share/man/man1/srptool.1
 /usr/share/man/man1/tpmtool.1
+
+%files staticdev
+%defattr(-,root,root,-)
+/usr/lib64/libgnutls.a
+/usr/lib64/libgnutlsxx.a
+
+%files staticdev32
+%defattr(-,root,root,-)
+/usr/lib32/libgnutls.a
+/usr/lib32/libgnutlsxx.a
 
 %files locales -f gnutls.lang
 %defattr(-,root,root,-)

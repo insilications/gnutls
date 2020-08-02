@@ -3,4 +3,5 @@ glibc-locale
 intltool-dev
 libseccomp-dev
 pkg-config
+texinfo
 valgrind-dev
