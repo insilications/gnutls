@@ -8,6 +8,8 @@ findutils
 gmp-dev
 gmp-dev32
 gmp-lib32
+gmp-staticdev
+gmp-staticdev32
 libidn-dev
 libidn-dev32
 libtasn1-dev
@@ -20,8 +22,9 @@ nettle-dev
 nettle-dev32
 nettle-lib
 nettle-lib32
+nettle-staticdev
+nettle-staticdev32
 net-tools
 util-linux
 util-linux-dev
 util-linux-staticdev
-valgrind

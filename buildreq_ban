@@ -3,3 +3,5 @@
 # undesireable desirable. One name per line, no whitespace.
 #
 gnutls-dev
+valgrind
+valgrind-dev

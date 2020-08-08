@@ -35,7 +35,6 @@ libgnutls.so.30:_gnutls_decode_ber_rs_raw
 libgnutls.so.30:_gnutls_digest_exists
 libgnutls.so.30:_gnutls_ecc_curve_is_supported
 libgnutls.so.30:_gnutls_encode_ber_rs_raw
-libgnutls.so.30:_gnutls_global_init_skip
 libgnutls.so.30:_gnutls_global_set_gettime_function
 libgnutls.so.30:_gnutls_hello_set_default_version
 libgnutls.so.30:_gnutls_iov_iter_init

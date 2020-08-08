@@ -1,6 +1,9 @@
 Configure miss: whether the compiler is clang
 Configure miss: compiler option needed when checking for declarations
 Configure miss: g++ option to enable C++11 features
+Configure miss: valgrind/memcheck.h usability
+Configure miss: valgrind/memcheck.h presence
+Configure miss: valgrind/memcheck.h
 Configure miss: KERN_ARND
 Configure miss: getentropy
 Configure miss: whether to use the included minitasn1
@@ -18,7 +21,7 @@ Configure miss: whether to add cryptodev support
 Configure miss: whether to disable OCSP support
 Configure miss: crtdefs.h
 Configure miss: whether to build OpenSSL compatibility layer
-Configure miss: GTKDOC_DEPS
+Configure miss: glib-2.0 >= 2.10.0 gobject-2.0  >= 2.10.0
 Configure miss: 32-bit host C ABI
 Configure miss: CFLocaleCopyPreferredLanguages
 Configure miss: libcrypto
@@ -41,7 +44,7 @@ Configure miss: timezone_t
 Configure miss: whether tzset clobbers localtime buffer
 Configure miss: libev
 Configure miss: whether -Wno-missing-field-initializers is needed
-Configure miss: CMOCKA
+Configure miss: cmocka >= 1.0.1
 Configure miss: nettle_gost28147_set_key
 Configure miss: nettle_streebog512_update
 Configure miss: gmp soname
@@ -70,6 +73,9 @@ Configure miss: whether building Guile bindings
 Configure miss: whether the compiler is clang
 Configure miss: compiler option needed when checking for declarations
 Configure miss: g++ option to enable C++11 features
+Configure miss: valgrind/memcheck.h usability
+Configure miss: valgrind/memcheck.h presence
+Configure miss: valgrind/memcheck.h
 Configure miss: KERN_ARND
 Configure miss: getentropy
 Configure miss: whether to use the included minitasn1
@@ -87,7 +93,7 @@ Configure miss: whether to add cryptodev support
 Configure miss: whether to disable OCSP support
 Configure miss: crtdefs.h
 Configure miss: whether to build OpenSSL compatibility layer
-Configure miss: GTKDOC_DEPS
+Configure miss: glib-2.0 >= 2.10.0 gobject-2.0  >= 2.10.0
 Configure miss: 32-bit host C ABI
 Configure miss: CFLocaleCopyPreferredLanguages
 Configure miss: libcrypto
@@ -110,7 +116,7 @@ Configure miss: timezone_t
 Configure miss: whether tzset clobbers localtime buffer
 Configure miss: libev
 Configure miss: whether -Wno-missing-field-initializers is needed
-Configure miss: CMOCKA
+Configure miss: cmocka >= 1.0.1
 Configure miss: nettle_gost28147_set_key
 Configure miss: nettle_streebog512_update
 Configure miss: gmp soname
@@ -139,6 +145,9 @@ Configure miss: whether building Guile bindings
 Configure miss: whether the compiler is clang
 Configure miss: compiler option needed when checking for declarations
 Configure miss: g++ option to enable C++11 features
+Configure miss: valgrind/memcheck.h usability
+Configure miss: valgrind/memcheck.h presence
+Configure miss: valgrind/memcheck.h
 Configure miss: KERN_ARND
 Configure miss: getentropy
 Configure miss: whether to use the included minitasn1
@@ -156,7 +165,7 @@ Configure miss: whether to add cryptodev support
 Configure miss: whether to disable OCSP support
 Configure miss: crtdefs.h
 Configure miss: whether to build OpenSSL compatibility layer
-Configure miss: GTKDOC_DEPS
+Configure miss: glib-2.0 >= 2.10.0 gobject-2.0  >= 2.10.0
 Configure miss: CFLocaleCopyPreferredLanguages
 Configure miss: libseccomp
 Configure miss: libcrypto
@@ -180,7 +189,7 @@ Configure miss: timezone_t
 Configure miss: whether tzset clobbers localtime buffer
 Configure miss: libev
 Configure miss: whether -Wno-missing-field-initializers is needed
-Configure miss: CMOCKA
+Configure miss: cmocka >= 1.0.1
 Configure miss: nettle_gost28147_set_key
 Configure miss: nettle_streebog512_update
 Configure miss: gmp soname
