@@ -10,10 +10,14 @@ gmp-dev32
 gmp-lib32
 gmp-staticdev
 gmp-staticdev32
-libidn-dev
-libidn-dev32
+libidn2-dev
+libidn2-dev32
+libidn2-staticdev
+libidn2-staticdev32
 libtasn1-dev
 libtasn1-dev32
+libtasn1-staticdev
+libtasn1-staticdev32
 libunistring-dev
 libunistring-dev32
 libunistring-staticdev

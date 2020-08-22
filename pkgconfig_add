@@ -2,3 +2,17 @@
 # This file contains extra pkgconfig build requirements that don't get picked up but are 
 # desirable. One name per line, no whitespace.
 #
+32libidn2
+32p11-kit-1
+libidn2
+p11-kit-1
+hogweed
+nettle
+32libtasn1
+libtasn1
+32libidn2
+libidn2
+32gmp
+32gmpxx
+gmp
+gmpxx
