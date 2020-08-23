@@ -18,5 +18,3 @@ export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 #export CCACHE_DISABLE=1
-
-
