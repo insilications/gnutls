@@ -1,1 +1,1 @@
---enable-guile=no --with-default-trust-store-dir=/var/cache/ca-certs/anchors --enable-shared --disable-static --disable-rpath
+--enable-guile=no --with-default-trust-store-dir=/var/cache/ca-certs/anchors --enable-shared --disable-static --disable-rpath --disable-full-test-suite --disable-valgrind-tests
