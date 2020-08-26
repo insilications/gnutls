@@ -3,6 +3,7 @@
 # desirable. One name per line, no whitespace.
 #
 bison
+ccache
 datefudge
 docbook-xml
 findutils
@@ -33,6 +34,11 @@ libunistring-dev
 libunistring-dev32
 libunistring-staticdev
 libunistring-staticdev32
+automake
+automake-dev
+autoconf
+buildreq-configure
+buildreq-make
 libxslt-bin
 nettle
 nettle-dev
