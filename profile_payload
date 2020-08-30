@@ -1,1 +1,1 @@
-make -j16 VERBOSE=1 V=1 check || : 
+make -j16 VERBOSE=1 V=1 LDFLAGS="${LDFLAGS} -Wl,--whole-archive /usr/lib64/libunistring.a /usr/lib64/libtasn1.a /usr/lib64/libhogweed.a /usr/lib64/libnettle.a /usr/lib64/libgmp.a /usr/lib64/libidn2.a -Wl,--no-whole-archive" check || : 

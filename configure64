@@ -1,0 +1,1 @@
+--enable-guile=no --with-default-trust-store-dir=/var/cache/ca-certs/anchors --enable-shared --enable-static --disable-rpath --disable-valgrind-tests --disable-gtk-doc-html --disable-gtk-doc-html --disable-gtk-doc-pdf --disable-doc --disable-gcc-warnings

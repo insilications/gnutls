@@ -2,7 +2,12 @@
 # This file contains extra pkgconfig build requirements that don't get picked up but are 
 # desirable. One name per line, no whitespace.
 #
+autoconf
+automake
+automake-dev
 bison
+buildreq-configure
+buildreq-make
 ccache
 datefudge
 docbook-xml
@@ -34,11 +39,6 @@ libunistring-dev
 libunistring-dev32
 libunistring-staticdev
 libunistring-staticdev32
-automake
-automake-dev
-autoconf
-buildreq-configure
-buildreq-make
 libxslt-bin
 nettle
 nettle-dev

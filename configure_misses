@@ -297,7 +297,6 @@ Configure miss: whether to disable ECDHE support
 Configure miss: whether to disable GOST support
 Configure miss: whether to add cryptodev support
 Configure miss: whether to disable OCSP support
-Configure miss: crtdefs.h
 Configure miss: whether to build OpenSSL compatibility layer
 Configure miss: glib-2.0 >= 2.10.0 gobject-2.0  >= 2.10.0
 Configure miss: CFLocaleCopyPreferredLanguages
