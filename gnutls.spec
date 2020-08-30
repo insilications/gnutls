@@ -228,9 +228,9 @@ export FFLAGS="${FFLAGS_GENERATE}"
 export FCFLAGS="${FCFLAGS_GENERATE}"
 export LDFLAGS="${LDFLAGS_GENERATE}"
  %configure  --enable-guile=no --with-default-trust-store-dir=/var/cache/ca-certs/anchors --enable-shared --enable-static --disable-rpath --disable-valgrind-tests --disable-gtk-doc-html --disable-gtk-doc-html --disable-gtk-doc-pdf --disable-doc --disable-gcc-warnings
-make  %{?_smp_mflags}  V=1 VERBOSE=1 LDFLAGS="${LDFLAGS} -Wl,--whole-archive /usr/lib64/libunistring.a /usr/lib64/libtasn1.a /usr/lib64/libhogweed.a /usr/lib64/libnettle.a /usr/lib64/libgmp.a /usr/lib64/libidn2.a -Wl,--no-whole-archive"
+make  %{?_smp_mflags}  V=1 VERBOSE=1 LDFLAGS="${LDFLAGS} -Wl,--whole-archive /usr/lib64/libunistring.a /usr/lib64/libtasn1.a /usr/lib64/libhogweed.a /usr/lib64/libnettle.a /usr/lib64/libgmp.a /usr/lib64/libidn2.a /usr/lib64/libunistring.a -Wl,--no-whole-archive"
 
-make -j16 VERBOSE=1 V=1 LDFLAGS="${LDFLAGS} -Wl,--whole-archive /usr/lib64/libunistring.a /usr/lib64/libtasn1.a /usr/lib64/libhogweed.a /usr/lib64/libnettle.a /usr/lib64/libgmp.a /usr/lib64/libidn2.a -Wl,--no-whole-archive" check || :
+make -j16 VERBOSE=1 V=1 LDFLAGS="${LDFLAGS} -Wl,--whole-archive /usr/lib64/libunistring.a /usr/lib64/libtasn1.a /usr/lib64/libhogweed.a /usr/lib64/libnettle.a /usr/lib64/libgmp.a /usr/lib64/libidn2.a /usr/lib64/libunistring.a -Wl,--no-whole-archive" check || :
 make clean
 export CFLAGS="${CFLAGS_USE}"
 export CXXFLAGS="${CXXFLAGS_USE}"
@@ -238,7 +238,7 @@ export FFLAGS="${FFLAGS_USE}"
 export FCFLAGS="${FCFLAGS_USE}"
 export LDFLAGS="${LDFLAGS_USE}"
 %configure  --enable-guile=no --with-default-trust-store-dir=/var/cache/ca-certs/anchors --enable-shared --enable-static --disable-rpath --disable-valgrind-tests --disable-gtk-doc-html --disable-gtk-doc-html --disable-gtk-doc-pdf --disable-doc --disable-gcc-warnings
-make  %{?_smp_mflags}  V=1 VERBOSE=1 LDFLAGS="${LDFLAGS} -Wl,--whole-archive /usr/lib64/libunistring.a /usr/lib64/libtasn1.a /usr/lib64/libhogweed.a /usr/lib64/libnettle.a /usr/lib64/libgmp.a /usr/lib64/libidn2.a -Wl,--no-whole-archive"
+make  %{?_smp_mflags}  V=1 VERBOSE=1 LDFLAGS="${LDFLAGS} -Wl,--whole-archive /usr/lib64/libunistring.a /usr/lib64/libtasn1.a /usr/lib64/libhogweed.a /usr/lib64/libnettle.a /usr/lib64/libgmp.a /usr/lib64/libidn2.a /usr/lib64/libunistring.a -Wl,--no-whole-archive"
 
 pushd ../build32/
 export CFLAGS="-g -O2 -fuse-linker-plugin -pipe"
@@ -262,7 +262,7 @@ export LANG=C.UTF-8
 unset http_proxy
 unset https_proxy
 unset no_proxy
-make %{?_smp_mflags} check || :
+make %{?_smp_mflags} check LDFLAGS="${LDFLAGS} -Wl,--whole-archive /usr/lib64/libunistring.a /usr/lib64/libtasn1.a /usr/lib64/libhogweed.a /usr/lib64/libnettle.a /usr/lib64/libgmp.a /usr/lib64/libidn2.a -Wl,--no-whole-archive" || :
 cd ../build32;
 make %{?_smp_mflags} check || : || :
 
