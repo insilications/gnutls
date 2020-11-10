@@ -7,7 +7,6 @@ automake
 automake-dev
 bison
 buildreq-configure
-buildreq-make
 ccache
 datefudge
 docbook-xml

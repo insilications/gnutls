@@ -2,6 +2,4 @@ noversion.patch
 0001-Don-t-run-trust-store-test-as-it-isn-t-in-the-buildr.patch
 gnutls-3.2.7-rpath.patch
 gnutls-3.6.7-no-now-guile.patch
-gnutls-3.6.14-configure-fix-soname-detection.patch
-gnutls-3.6.14-fix-iovec-memory-leak.patch
-gnutls-3.6.14-pthreads.patch
+gnutls-3.6.15-gnulib-perror-tests.patch
