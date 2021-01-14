@@ -5,7 +5,7 @@
 %define keepstatic 1
 Name     : gnutls
 Version  : 3.6.15
-Release  : 73
+Release  : 74
 URL      : https://www.gnupg.org/ftp/gcrypt/gnutls/v3.6/gnutls-3.6.15.tar.xz
 Source0  : https://www.gnupg.org/ftp/gcrypt/gnutls/v3.6/gnutls-3.6.15.tar.xz
 Summary  : Transport Security Layer implementation for the GNU system
@@ -59,6 +59,8 @@ BuildRequires : nettle-lib
 BuildRequires : nettle-lib32
 BuildRequires : nettle-staticdev
 BuildRequires : nettle-staticdev32
+BuildRequires : p11-kit-dev
+BuildRequires : p11-kit-dev32
 BuildRequires : pkg-config
 BuildRequires : pkgconfig(32gmp)
 BuildRequires : pkgconfig(32gmpxx)
@@ -79,6 +81,7 @@ BuildRequires : texinfo
 BuildRequires : util-linux
 BuildRequires : util-linux-dev
 BuildRequires : util-linux-staticdev
+BuildRequires : valgrind-dev
 # Suppress stripping binaries
 %define __strip /bin/true
 %define debug_package %{nil}
@@ -183,7 +186,7 @@ unset https_proxy
 unset no_proxy
 export SSL_CERT_FILE=/var/cache/ca-certs/anchors/ca-certificates.crt
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1605047224
+export SOURCE_DATE_EPOCH=1610611737
 export GCC_IGNORE_WERROR=1
 ## altflags_pgo content
 ## pgo generate
@@ -212,9 +215,6 @@ export CCACHE_SLOPPINESS=pch_defines,locale,time_macros
 # export CCACHE_DISABLE=1
 # --disable-full-test-suite
 ## altflags_pgo end
-##
-%global _lto_cflags 1
-##
 export CFLAGS="${CFLAGS_GENERATE}"
 export CXXFLAGS="${CXXFLAGS_GENERATE}"
 export FFLAGS="${FFLAGS_GENERATE}"
@@ -234,9 +234,9 @@ export LDFLAGS="${LDFLAGS_USE}"
 make  %{?_smp_mflags}  V=1 VERBOSE=1 LDFLAGS="${LDFLAGS} -Wl,--whole-archive /usr/lib64/libunistring.a /usr/lib64/libtasn1.a /usr/lib64/libhogweed.a /usr/lib64/libnettle.a /usr/lib64/libgmp.a /usr/lib64/libidn2.a /usr/lib64/libunistring.a -Wl,--no-whole-archive"
 
 pushd ../build32/
-export CFLAGS="-g -O2 -fuse-linker-plugin -pipe"
-export CXXFLAGS="-g -O2 -fuse-linker-plugin -fvisibility-inlines-hidden -pipe"
-export LDFLAGS="-g -O2 -fuse-linker-plugin -pipe"
+export CFLAGS="-O2 -ffat-lto-objects -fuse-linker-plugin -pipe -fPIC -m32 -mstackrealign -march=native -mtune=native"
+export CXXFLAGS="-O2 -ffat-lto-objects -fuse-linker-plugin -fvisibility-inlines-hidden -pipe -fPIC -m32 -mstackrealign -march=native -mtune=native"
+export LDFLAGS="-O2 -ffat-lto-objects -fuse-linker-plugin -pipe -fPIC -m32 -mstackrealign -march=native -mtune=native"
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -261,7 +261,7 @@ cd ../build32;
 make %{?_smp_mflags} check || : || :
 
 %install
-export SOURCE_DATE_EPOCH=1605047224
+export SOURCE_DATE_EPOCH=1610611737
 rm -rf %{buildroot}
 pushd ../build32/
 %make_install32

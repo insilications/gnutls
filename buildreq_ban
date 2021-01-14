@@ -2,7 +2,7 @@
 # This file contains banned pkgconfig build requirements that get picked up but are 
 # undesireable desirable. One name per line, no whitespace.
 #
-valgrind
-valgrind-dev
-autogen
-autogen-dev
+#valgrind
+#valgrind-dev
+#autogen
+#autogen-dev

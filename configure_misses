@@ -1,9 +1,6 @@
 Configure miss: whether the compiler is clang
 Configure miss: compiler option needed when checking for declarations
 Configure miss: g++ option to enable C++11 features
-Configure miss: valgrind/memcheck.h usability
-Configure miss: valgrind/memcheck.h presence
-Configure miss: valgrind/memcheck.h
 Configure miss: KERN_ARND
 Configure miss: getentropy
 Configure miss: whether to use the included minitasn1
@@ -45,7 +42,6 @@ Configure miss: whether tzset clobbers localtime buffer
 Configure miss: libev
 Configure miss: CMOCKA
 Configure miss: nettle_gost28147_set_key
-Configure miss: nettle_streebog512_update
 Configure miss: unbound library
 Configure miss: tss library
 Configure miss: autogen
@@ -69,9 +65,6 @@ Configure miss: whether building Guile bindings
 Configure miss: whether the compiler is clang
 Configure miss: compiler option needed when checking for declarations
 Configure miss: g++ option to enable C++11 features
-Configure miss: valgrind/memcheck.h usability
-Configure miss: valgrind/memcheck.h presence
-Configure miss: valgrind/memcheck.h
 Configure miss: KERN_ARND
 Configure miss: getentropy
 Configure miss: whether to use the included minitasn1
@@ -113,7 +106,6 @@ Configure miss: whether tzset clobbers localtime buffer
 Configure miss: libev
 Configure miss: CMOCKA
 Configure miss: nettle_gost28147_set_key
-Configure miss: nettle_streebog512_update
 Configure miss: unbound library
 Configure miss: tss library
 Configure miss: autogen
@@ -137,9 +129,6 @@ Configure miss: whether building Guile bindings
 Configure miss: whether the compiler is clang
 Configure miss: compiler option needed when checking for declarations
 Configure miss: g++ option to enable C++11 features
-Configure miss: valgrind/memcheck.h usability
-Configure miss: valgrind/memcheck.h presence
-Configure miss: valgrind/memcheck.h
 Configure miss: KERN_ARND
 Configure miss: getentropy
 Configure miss: whether to use the included minitasn1
@@ -182,7 +171,6 @@ Configure miss: whether tzset clobbers localtime buffer
 Configure miss: libev
 Configure miss: CMOCKA
 Configure miss: nettle_gost28147_set_key
-Configure miss: nettle_streebog512_update
 Configure miss: unbound library
 Configure miss: tss library
 Configure miss: autogen
