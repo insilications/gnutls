@@ -47,6 +47,7 @@ nettle-lib32
 nettle-staticdev
 nettle-staticdev32
 net-tools
+p11-kit
 p11-kit-dev
 p11-kit-dev32
 pkg-config

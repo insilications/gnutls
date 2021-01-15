@@ -5,7 +5,7 @@
 %define keepstatic 1
 Name     : gnutls
 Version  : 3.6.15
-Release  : 74
+Release  : 75
 URL      : https://www.gnupg.org/ftp/gcrypt/gnutls/v3.6/gnutls-3.6.15.tar.xz
 Source0  : https://www.gnupg.org/ftp/gcrypt/gnutls/v3.6/gnutls-3.6.15.tar.xz
 Summary  : Transport Security Layer implementation for the GNU system
@@ -59,6 +59,7 @@ BuildRequires : nettle-lib
 BuildRequires : nettle-lib32
 BuildRequires : nettle-staticdev
 BuildRequires : nettle-staticdev32
+BuildRequires : p11-kit
 BuildRequires : p11-kit-dev
 BuildRequires : p11-kit-dev32
 BuildRequires : pkg-config
@@ -186,7 +187,7 @@ unset https_proxy
 unset no_proxy
 export SSL_CERT_FILE=/var/cache/ca-certs/anchors/ca-certificates.crt
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1610611737
+export SOURCE_DATE_EPOCH=1610668908
 export GCC_IGNORE_WERROR=1
 ## altflags_pgo content
 ## pgo generate
@@ -261,7 +262,7 @@ cd ../build32;
 make %{?_smp_mflags} check || : || :
 
 %install
-export SOURCE_DATE_EPOCH=1610611737
+export SOURCE_DATE_EPOCH=1610668908
 rm -rf %{buildroot}
 pushd ../build32/
 %make_install32
