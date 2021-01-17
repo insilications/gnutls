@@ -25,6 +25,10 @@ gmp-staticdev32
 gtk-doc
 gtk-doc-dev
 intltool-dev
+libffi-dev
+libffi-dev32
+libffi-staticdev
+libffi-staticdev32
 libidn2-dev
 libidn2-dev32
 libidn2-staticdev
@@ -50,6 +54,8 @@ net-tools
 p11-kit
 p11-kit-dev
 p11-kit-dev32
+p11-kit-lib
+p11-kit-lib32
 pkg-config
 sed
 texinfo

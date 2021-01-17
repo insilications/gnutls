@@ -6,13 +6,11 @@
 32gmpxx
 32libidn2
 32libtasn1
-32p11-kit-1
 gmp
 gmpxx
 hogweed
 libidn2
 libtasn1
 nettle
-p11-kit-1
 libunistring
 32libunistring
